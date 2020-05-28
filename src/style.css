@@ -1,0 +1,415 @@
+/******** GENERAL ********/
+
+.hidden {
+    display: none;
+}
+
+a {
+    color: #9999ff;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Manrope', 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 254);
+}
+
+main {
+    margin: .5rem;
+    line-height: 1.5;
+    background-color: white;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+    padding: .25rem;
+}
+
+.nav-name {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: .25rem;
+    font-size: 1.5em;
+}
+
+nav {
+    background-color: #9999ff;
+    color: white;
+    margin: 0;
+}
+
+nav li:hover {
+    color: white;
+    border-bottom: solid white;
+}
+
+.quote {
+    text-align: center;
+    font-style: italic;
+    font-weight: 300;
+    color: navy;
+}
+
+.page-title {
+    padding: 2rem;
+}
+
+.h3-indent-3 {
+    padding: 3rem;
+}
+
+.h3-indent-1 {
+    padding: 1rem;
+}
+
+.h5-indent-1 {
+    padding: 1rem;
+}
+
+.content-header {
+    padding-left: 3rem;
+}
+
+footer {
+    padding: 2rem;
+}
+
+.buffer {
+    display: none;
+}
+
+.back-button {
+    margin-right: 3rem;
+}
+
+.loading-icon {
+    position: relative;
+    width: 20px;
+    height: 20px; 
+    margin: auto;   
+}
+
+hr {
+    margin: 0px;
+}
+
+.about-page {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-bottom: 5rem;
+}
+
+.btn-primary, .btn-info {
+    background-color: #9999ff;
+    border-color: #9999ff;
+}
+
+/*https://www.jquery-az.com/bootstrap-button-9-demos-of-custom-color-size-dropdown-navbar-and-more/*/
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .open .dropdown-toggle.btn-primary,
+.btn-info:hover, .btn-info:focus, .btn-info:active, .open .dropdown-toggle.btn-info {
+    background-color: #5d5d9e;
+    border-color: #5d5d9e;     
+}
+
+/******** DROPDOWNS ********/
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
+/******** FORMS ********/
+
+.search-inline {
+    display: inline-block;
+}
+
+.dropdown {
+    text-align: left;
+    padding-top: 2rem;
+}
+
+div .filter {
+    padding-left: 3rem;
+    padding-top: 2rem;
+    position: absolute;
+}
+
+.search-box {
+    padding-top: 2rem;
+    align-content: center;
+}
+
+.button-add {
+    margin-top: 1.6rem;
+}
+
+/******** LISTS ********/
+
+/* highlight */
+
+li.session:hover, li.session:focus {
+    background-color: #f0f0ff;
+}
+
+.open-details {
+    float: right;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    padding-top: .25rem;
+}
+
+.progress {
+    margin-top: 8px;
+}
+
+.d-flex button {
+    margin-top: 2px;
+}
+
+/* title padding */
+
+li.session h5 {
+    padding-left: 5px;
+}
+
+/* List title link */
+
+li.session h5.session-list a {
+    color: black;
+}
+
+/*** LIST COLORS ***/
+
+h5.list-recommended {
+    border-left: 5px solid pink;
+}
+
+h5.list-fun {
+    border-left: 5px solid lightseagreen;
+}
+
+h5.list-favorites {
+    border-left: 5px solid lightblue;
+}
+
+h5.list-profdev {
+    border-left: 5px solid gold;
+}
+
+h5.list-work {
+    border-left: 5px solid palevioletred;
+}
+
+h5.list-honors-class {
+    border-left: 5px solid plum;
+}
+
+/*** SESSION ***/
+
+li.session p.date {
+    font-size: 14px;
+}
+
+li.session p.progress-count, li.search-results p.author {
+    color: gray;
+}
+
+li.session p.notes {
+    color: #7d7dd1;
+}
+
+/*** SEARCH RESULTS ***/
+
+li img.book-cover {
+    max-width: 3rem;
+    float: left;
+}
+
+li.search-results h5, li.search-results p {
+    margin-left: 4rem;
+}
+
+/******** CARDS ********/
+
+.card-img-top {
+    height: auto;
+    width: auto;
+    object-fit: cover;
+}
+
+p.card-text {
+    text-align: center;
+}
+
+div .card {
+    display: flex;
+}
+
+.text-center {
+    height: 500px;
+    width: auto;
+}
+
+.text-center img {
+    height: 200px;
+    width: auto;
+}
+
+/* sets the size of search result cards  */
+/* div #search {
+    display: flex;
+    height: 520px;
+    width: 300px;
+} */
+
+.card-columns {
+    display: inline-block;
+    align-items: auto;
+}
+
+@media (min-width:356px) {
+    .card-columns {
+        column-count: 1;
+    }
+}
+
+@media (min-width:576px) {
+    .card-columns {
+        column-count: 1;
+    }
+}
+
+@media (min-width:768px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width:992px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width:1200px) {
+    .card-columns {
+        column-count: 4;
+    }
+}
+
+/*** CARD POP-UPS ***/
+
+.card.popup {
+    padding: 2em;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.border-lightgray {
+    border-color: #b8b8b8;
+}
+
+.card-title {
+    padding-bottom: 0.5em;
+    text-align: center;
+    font-size: 20pt;
+}
+
+.card-booktitle {
+    padding-bottom: 0.5em;
+    text-align: center;
+    font-size: 16pt;
+}
+
+.card-author {
+    font-size: 12pt;
+}
+
+.card-pages {
+    font-size: 10pt;
+}
+
+
+/* popup background */
+
+body.popup, main.popup {
+    background-color: lightgray;
+    margin: 0;
+}
+
+div.popup.card img.book-cover {
+    max-width: 4rem;
+    float: left;
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+div.book-details.popup.card h2.title {
+    font-size: 1.5em;
+}
+
+div.book-details.popup.card h3.author {
+    font-size: 1em;
+    color: gray;
+}
+
+/******** MISCELLANEOUS ********/
+
+.checked {
+    color: gold;
+}
+
+li.search-results div.rating {
+    padding-left: 4rem;
+}
+
+@media (min-width: 598px) {
+    div.buffer.col.add {
+        max-width: 15rem;
+    }
+    .filter-btn {
+        float: none;
+    }
+}
+
+@media (min-width: 768px) {
+    div.buffer {
+        display: inline;
+        max-width: 10rem;
+    }
+    div.buffer.col.add {
+        max-width: 20rem;
+    }
+    .filter-btn {
+        float: none;
+    }
+    .content-header-chunk {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    div.buffer {
+        display: inline;
+        max-width: 25rem;
+    }
+    div.buffer.col.add {
+        max-width: 20rem;
+    }
+    .filter-btn {
+        float: none;
+    }
+    .content-header-chunk {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
