@@ -96,10 +96,11 @@ class BookCard extends Component {
                     <Card.Text></Card.Text>
                     <Card.Img variant="top" src={bookInfo.imgLink} alt="Book cover" className="rounded mt-3"/>
                     <div className="card-body text-dark">
-                        <h4 className="card-booktitle">{bookInfo.title}</h4>
+                        <h4 className="card-text card-booktitle">{bookInfo.title}</h4>
                         <h5 className="card-text card-author">{bookInfo.authors}</h5>
                         <h6 className="card-text card-pages">{pages}</h6>
-                        <p className="card-text">{rating}</p>
+                        <p className="card-text card-rating">{rating}</p>
+                        <p className="bottom-buffer"></p>
                         <Button href={bookInfo.url} variant="primary">Learn More</Button>{' '}
                     </div>
                 </Card.Body>
