@@ -87,8 +87,8 @@ class Loading extends Component {
 class BookCard extends Component {
     render() {
         let bookInfo = this.props.bookInfo;
-        let pages = bookInfo.pageCount + "pages";
-        let rating = bookInfo.rating + "out of 5 stars";
+        let pages = bookInfo.pageCount + " pages";
+        let rating = bookInfo.rating + " out of 5 stars";
 
         return (
             <Card id="search" className="text-center mb-8 border-lightgray mt-4" style={{ height: '500', width: '300' }}>
