@@ -16,26 +16,19 @@ export default class App extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col">
-                        <h2 className="page-title">Explore</h2>
+                        <PageTitle title="Explore" />
                     </div>
-
                     <div className="col">
                         <SearchBar />
                     </div>
-
                     <div className="col">
                         <SortButton />
                     </div>
                 </div>
             </div>
 
-            <div className="loading-icon">
-                <i className="d-none fa fa-spinner fa-spin fa-lg" aria-hidden="true"></i>
-            </div>
-
+            <Loading />
             <SearchResults />
-
-            <hr></hr>
             <Footer />
             </>
         );
@@ -72,19 +65,42 @@ class NavLinks extends Component {
     }
 }
 
+class PageTitle extends Component {
+    render() {
+        let title = this.props.title;
+        return (
+            <h2 className="page-title">{title}</h2>
+        );
+    }
+}
+
+class Loading extends Component {
+    render() {
+        return (
+            <div className="loading-icon">
+                <i className="d-none fa fa-spinner fa-spin fa-lg" aria-hidden="true"></i>
+            </div>
+        )
+    };
+}
+
 class BookCard extends Component {
     render() {
+        let bookInfo = this.props.bookInfo;
+        let pages = bookInfo.pageCount + "pages";
+        let rating = bookInfo.rating + "out of 5 stars";
+
         return (
             <Card id="search" className="text-center mb-8 border-lightgray mt-4" style={{ height: '500', width: '300' }}>
                 <Card.Body>
                     <Card.Text></Card.Text>
-                    <Card.Img variant="top" src="img/book.png" alt="Book cover" className="rounded mt-3"/>
+                    <Card.Img variant="top" src={bookInfo.imgLink} alt="Book cover" className="rounded mt-3"/>
                     <div className="card-body text-dark">
-                        <h4 className="card-booktitle">Title</h4>
-                        <h5 className="card-text card-author">Author Name</h5>
-                        <h6 className="card-text card-pages">Page Count</h6>
-                        <p className="card-text">Rating</p>
-                        <Button variant="primary">Learn More</Button>{' '}
+                        <h4 className="card-booktitle">{bookInfo.title}</h4>
+                        <h5 className="card-text card-author">{bookInfo.authors}</h5>
+                        <h6 className="card-text card-pages">{pages}</h6>
+                        <p className="card-text">{rating}</p>
+                        <Button href={bookInfo.url} variant="primary">Learn More</Button>{' '}
                     </div>
                 </Card.Body>
             </Card>
@@ -94,11 +110,21 @@ class BookCard extends Component {
 
 class SearchResults extends Component {
     render() {
+        let bookInfo = {
+            title:"Book Title",
+            authors:"Author Name(s)", 
+            imgLink:"https://via.placeholder.com/150", 
+            rating:"4.57", 
+            pageCount:"230", 
+            url:"#",
+            isbn10:"isbn10",
+            isbn13:"isbn13"
+        }
         return (
             <div className="container-fluid">
                 <div className="card-columns">
                     <div className="search-results text-center">
-                        <BookCard />
+                        <BookCard bookInfo={bookInfo}/>
                     </div>
                 </div>
             </div>
