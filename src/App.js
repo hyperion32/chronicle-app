@@ -39,7 +39,7 @@ class NavBar extends Component {
     render() {
         return (
             <Navbar bg="dark" expand="lg">
-                <a href="#home"><img className="logo" src="img/book.png" alt="book logo"/></a>
+                <a href="#explore"><img className="logo" src="img/book.png" alt="book logo"/></a>
                 <Navbar.Brand href="#explore">Chronicle</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
