@@ -7,31 +7,32 @@ import Card from 'react-bootstrap/Card';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl'
+import FormControl from 'react-bootstrap/FormControl';
+import Form from 'react-bootstrap/Form';
 
 export default class App extends Component {
-  
+
     render() {
         return (
             <>
-            <NavBar />
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col">
-                        <PageTitle title="Explore" />
-                    </div>
-                    <div className="col">
-                        <SearchBar />
-                    </div>
-                    <div className="col">
-                        <SortButton />
+                <NavBar />
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col">
+                            <PageTitle title="Explore" />
+                        </div>
+                        <div className="col">
+                            <SearchBar />
+                        </div>
+                        <div className="col">
+                            <SortButton />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <Loading />
-            <SearchResults />
-            <Footer />
+                <Loading />
+                <SearchResults />
+                <Footer />
             </>
         );
     }
@@ -41,7 +42,7 @@ class NavBar extends Component {
     render() {
         return (
             <Navbar bg="dark" expand="lg">
-                <a href="#explore"><img className="logo" src="img/book.png" alt="book logo"/></a>
+                <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
                 <Navbar.Brand href="#explore">Chronicle</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -96,7 +97,7 @@ class BookCard extends Component {
             <Card id="search" className="text-center mb-8 border-lightgray mt-4" style={{ height: '500', width: '300' }}>
                 <Card.Body>
                     <Card.Text></Card.Text>
-                    <Card.Img variant="top" src={bookInfo.imgLink} alt="Book cover" className="rounded mt-3"/>
+                    <Card.Img variant="top" src={bookInfo.imgLink} alt="Book cover" className="rounded mt-3" />
                     <div className="card-body text-dark">
                         <h4 className="card-text card-booktitle">{bookInfo.title}</h4>
                         <h5 className="card-text card-author">{bookInfo.authors}</h5>
@@ -114,20 +115,20 @@ class BookCard extends Component {
 class SearchResults extends Component {
     render() {
         let bookInfo = {
-            title:"Book Title",
-            authors:"Author Name(s)", 
-            imgLink:"https://via.placeholder.com/150", 
-            rating:"4.57", 
-            pageCount:"230", 
-            url:"#",
-            isbn10:"isbn10",
-            isbn13:"isbn13"
+            title: "Book Title",
+            authors: "Author Name(s)",
+            imgLink: "https://via.placeholder.com/150",
+            rating: "4.57",
+            pageCount: "230",
+            url: "#",
+            isbn10: "isbn10",
+            isbn13: "isbn13"
         }
         return (
             <div className="container-fluid">
                 <div className="card-columns">
                     <div className="search-results text-center">
-                        <BookCard bookInfo={bookInfo}/>
+                        <BookCard bookInfo={bookInfo} />
                     </div>
                 </div>
             </div>
@@ -150,7 +151,7 @@ class SearchBar extends Component {
 
                 <div className="input-group mb-3 form-inline">
                     <input id="search-value" type="text" className="form-control"
-                        placeholder="Search books"/>
+                        placeholder="Search books" />
                     <div className="input-group-append">
                         <Button variant="primary" id="search-button" className="btn btn-secondary btn-small" type="submit">
                             <i className="fa fa-search" aria-hidden="true"></i>
@@ -166,12 +167,12 @@ class Footer extends Component {
     render() {
         return (
             <>
-            <footer>
-                <p>Copyright&copy; 2020 | Lisi Case and Greyson Fields</p>
-                <p>Contact: Lisi Case <a href="mailto:casee@uw.edu">casee@uw.edu</a> | Greyson Fields <a
+                <footer>
+                    <p>Copyright&copy; 2020 | Lisi Case and Greyson Fields</p>
+                    <p>Contact: Lisi Case <a href="mailto:casee@uw.edu">casee@uw.edu</a> | Greyson Fields <a
                         href="mailto:gfields5@uw.edu">gfields5@uw.edu</a></p>
-                <p>Data from <a href="https://developers.google.com/books/docs/overview">Google Books API</a></p>
-            </footer>
+                    <p>Data from <a href="https://developers.google.com/books/docs/overview">Google Books API</a></p>
+                </footer>
             </>
         );
     }
@@ -188,3 +189,56 @@ class SortButton extends Component {
         );
     }
 }
+
+// class dataFetch extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             error: null,
+//             isLoaded: false,
+//             items: []
+//         };
+//     }
+
+//     componentDidMount() {
+//         let search = document.getElementById("search-value").value;
+//         fetch("https://www.googleapis.com/books/v1/volumes?q=" + search)
+//             .then(res => res.json())
+//             .then(
+//                 (result) => {
+//                     this.setState({
+//                         isLoaded: true,
+//                         items: result.items
+//                     });
+//                 },
+//                 // Note: it's important to handle errors here
+//                 // instead of a catch() block so that we don't swallow
+//                 // exceptions from actual bugs in components.
+//                 (error) => {
+//                     this.setState({
+//                         isLoaded: true,
+//                         error
+//                     });
+//                 }
+//             )
+//     }
+
+//     render() {
+//         const { error, isLoaded, items } = this.state;
+//         if (error) {
+//             return <div>Error: {error.message}</div>;
+//         } else if (!isLoaded) {
+//             return <div>Loading...</div>;
+//         } else {
+//             return (
+//                 <ul>
+//                     {items.map(item => (
+//                         <li key={item.name}>
+//                             {item.name} {item.price}
+//                         </li>
+//                     ))}
+//                 </ul>
+//             );
+//         }
+//     }
+// }
