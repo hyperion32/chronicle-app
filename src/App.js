@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl'
 
 export default class App extends Component {
   
@@ -137,7 +139,16 @@ class SearchBar extends Component {
     render() {
         return (
             <div className="search-box">
-                <div className="input-group mb-3">
+                {/* https://react-bootstrap.github.io/components/input-group/
+                <InputGroup className="mb-3">
+                    <FormControl placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                    <InputGroup.Append>
+                        <InputGroup.Text id="basic-addon2">@example.com</InputGroup.Text>
+                    </InputGroup.Append>
+                </InputGroup>
+                */}
+
+                <div className="input-group mb-3 form-inline">
                     <input id="search-value" type="text" className="form-control"
                         placeholder="Search books"/>
                     <div className="input-group-append">
