@@ -9,8 +9,45 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
+import NavLink from 'react-bootstrap/NavLink';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+
+
+// nav bar 
+// explore, search, sort 
+// display results 
+// footer information 
 
 export default class App extends Component {
+
+    constructor(props) {
+        super(props); //pass up to parent
+
+        // // initialize state 
+        // this.state = { tasks: this.props.initialTasks };
+
+        //Example 3A initialize state if we are going to load from a file 
+        this.state = {
+            tasks: [] //SAMPLE_TASKS //store the tasks in the STATE, initialize
+        };
+
+    }
+
+    componentDidMount() {
+        //fetch('https://api.github.com/repos/info340a-au18/lecture-demos/issues')
+        fetch('./tasks.json') //local file
+            .then((res) => res.json())
+            .then((data) => {
+                let issueTasks = data.map((issue) => {
+                    return {
+                        id: issue.id,
+                        description: issue.description,
+                        complete: false
+                    }
+                })
+                this.setState({ tasks: issueTasks })
+            })
+    }
 
     render() {
         return (
@@ -30,7 +67,7 @@ export default class App extends Component {
                     </div>
                 </div>
 
-                <Loading />
+                {/* <Loading /> */}
                 <SearchResults />
                 <Footer />
             </>
@@ -41,12 +78,48 @@ export default class App extends Component {
 class NavBar extends Component {
     render() {
         return (
-            <Navbar bg="dark" expand="lg">
-                <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
-                <Navbar.Brand href="#explore">Chronicle</Navbar.Brand>
+            // <Navbar bg="dark" expand="lg">
+            //     <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
+            //     <Navbar.Brand href="#explore">Chronicle</Navbar.Brand>
+            //     <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            //     <Navbar.Collapse id="basic-navbar-nav">
+            //         <NavLinks />
+            //     </Navbar.Collapse>
+            // </Navbar>
+
+            // <Navbar bg="light" expand="lg">
+            //     <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            //     <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            //     <Navbar.Collapse id="basic-navbar-nav">
+            //         <Nav className="mr-auto">
+            //             <NavLinks />
+            //         </Nav>
+            //         <Form inline>
+            //             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            //             <Button variant="outline-success">Search</Button>
+            //         </Form>
+            //     </Navbar.Collapse>
+            // </Navbar>
+
+            <Navbar bg="light" expand="lg">
+                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <NavLinks />
+                    <Nav className="mr-auto">
+                        <Nav.Link href="#home">Home</Nav.Link>
+                        <Nav.Link href="#link">Link</Nav.Link>
+                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
+                    <Form inline>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                        <Button variant="outline-success">Search</Button>
+                    </Form>
                 </Navbar.Collapse>
             </Navbar>
         );
@@ -77,15 +150,15 @@ class PageTitle extends Component {
     }
 }
 
-class Loading extends Component {
-    render() {
-        return (
-            <div className="loading-icon">
-                <i className="d-none fa fa-spinner fa-spin fa-lg" aria-hidden="true"></i>
-            </div>
-        )
-    };
-}
+// class Loading extends Component {
+//     render() {
+//         return (
+//             <div className="loading-icon">
+//                 <i className="d-none fa fa-spinner fa-spin fa-lg" aria-hidden="true"></i>
+//             </div>
+//         )
+//     };
+// }
 
 class BookCard extends Component {
     render() {
@@ -95,9 +168,9 @@ class BookCard extends Component {
 
         return (
             <Card id="search" className="text-center mb-8 border-lightgray mt-4" style={{ height: '500', width: '300' }}>
+                <Card.Img variant="top" src={bookInfo.imgLink} alt="Book cover" className="rounded mt-3" />
                 <Card.Body>
                     <Card.Text></Card.Text>
-                    <Card.Img variant="top" src={bookInfo.imgLink} alt="Book cover" className="rounded mt-3" />
                     <div className="card-body text-dark">
                         <h4 className="card-text card-booktitle">{bookInfo.title}</h4>
                         <h5 className="card-text card-author">{bookInfo.authors}</h5>
@@ -108,6 +181,23 @@ class BookCard extends Component {
                     </div>
                 </Card.Body>
             </Card>
+
+
+            // <Card style={{ width: '18rem' }}>
+            //     <Card.Img variant="top" src={bookInfo.imgLink} alt="Book cover" className="rounded mt-3" />
+            //     <Card.Body>
+            //         <Card.Title>Card Title</Card.Title>
+            //         <Card.Text></Card.Text>
+            //         <div className="card-body text-dark">
+            //             <h4 className="card-text card-booktitle">{bookInfo.title}</h4>
+            //             <h5 className="card-text card-author">{bookInfo.authors}</h5>
+            //             <h6 className="card-text card-pages">{pages}</h6>
+            //             <p className="card-text card-rating">{rating}</p>
+            //             <p className="bottom-buffer"></p>
+            //             <Button href={bookInfo.url} variant="primary">Learn More</Button>{' '}
+            //         </div>
+            //     </Card.Body>
+            // </Card>
         );
     }
 }
@@ -179,14 +269,19 @@ class Footer extends Component {
 }
 
 class SortButton extends Component {
+
+    sortClick() {
+        console.log("sort is clicked");
+    }
+
     render() {
-        return (
-            <DropdownButton id="dropdown-basic-button" size="sm" variant="secondary" title="Sort">
-                <Dropdown.Item>Sort By Pages</Dropdown.Item>
-                <Dropdown.Item>Sort By Rating</Dropdown.Item>
-                <Dropdown.Item>Sort By Price</Dropdown.Item>
-            </DropdownButton>
-        );
+        return <button onClick={this.sortClick}>Sort</button>;
+        // <DropdownButton id="dropdown-basic-button" size="sm" variant="secondary" title="Sort" onClick={this.sortClick}>
+        //     <Dropdown.Item>Sort By Pages</Dropdown.Item>
+        //     <Dropdown.Item>Sort By Rating</Dropdown.Item>
+        //     <Dropdown.Item>Sort By Price</Dropdown.Item>
+        // </DropdownButton>
+
     }
 }
 
