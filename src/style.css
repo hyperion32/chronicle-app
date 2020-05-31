@@ -230,8 +230,8 @@ div .filter {
 
 /* highlight */
 
-li.session:hover, li.session:focus {
-    background-color: #f0f0ff;
+.session:hover, .session:focus {
+    background-color: #f2edfb;
 }
 
 .open-details {
@@ -251,21 +251,21 @@ li.session:hover, li.session:focus {
 
 /* title padding */
 
-li.session h5 {
+.session h5 {
     padding-left: 5px;
 } 
 
 /*** SESSION ***/
 
-li.session p.date {
+.session p.date {
     font-size: 14px;
 }
 
-li.session p.progress-count, li.search-results p.author {
+.session p.progress-count, .search-results p.author {
     color: gray;
 }
 
-li.session p.notes {
+.session p.notes {
     color: #7d7dd1;
 }
 

@@ -5,6 +5,18 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
 class LogContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            logList: [
+                { title: "The Hunger Games", date: "03/12/20", startPage: 1, endPage: 24, minutes: 12, list: 2, notes: "Feeling like Peeta. Quarantine is like living in a dystopia and my only talent is making bread." },
+                { title: "The Hobbit", date: "03/15/20", startPage: 1, endPage: 6, minutes: 14, list: 1, notes: "So boreddddd" },
+                { title: "Where the Crawdads Sing", date: "03/15/20", startPage: 1, endPage: 57, minutes: 35, list: 3, notes: "" },
+                { title: "Purple Hibiscus", date: "03/17/20", startPage: 1, endPage: 38, minutes: 20, list: 3, notes: "I really enjoyed this part!" }
+            ]
+        }
+    }
+
     render() {
         return (
             <div className="container-fluid">
