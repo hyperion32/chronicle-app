@@ -7,7 +7,7 @@ class LogContainer extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <PageHeaderWithAdd title="Log" />
+                {/* <PageHeaderWithAdd title="Log" /> */}
 
                 <ListContainer>
                     <Session title="Favorites" bookCount="6" color="lightblue" />

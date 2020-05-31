@@ -7,7 +7,7 @@ class ListsContainer extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <PageHeaderWithAdd title="Lists"/>
+                {/* <PageHeaderWithAdd title="Lists"/> */}
 
                 <ListContainer>
                     <ListItem title="Favorites" bookCount="6" color="lightblue"/>
