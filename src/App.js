@@ -33,9 +33,9 @@ class App extends Component {
 
                 {/* <Loading /> */}
                 <BookList />
-                {/* <Footer /> */}
                 <LogContainer />
                 <ListsContainer />
+                <Footer />
             </>
         );
     }
@@ -88,20 +88,20 @@ class PageTitle extends Component {
 //     };
 // }
 
-// class Footer extends Component {
-//     render() {
-//         return (
-//             <>
-//                 <footer>
-//                     <p>Copyright&copy; 2020 | Lisi Case and Greyson Fields</p>
-//                     <p>Contact: Lisi Case <a href="mailto:casee@uw.edu">casee@uw.edu</a> | Greyson Fields <a
-//                         href="mailto:gfields5@uw.edu">gfields5@uw.edu</a></p>
-//                     <p>Data from <a href="https://developers.google.com/books/docs/overview">Google Books API</a></p>
-//                 </footer>
-//             </>
-//         );
-//     }
-// }
+class Footer extends Component {
+    render() {
+        return (
+            <>
+                <footer>
+                    <p>Copyright&copy; 2020 | Lisi Case and Greyson Fields</p>
+                    <p>Contact: Lisi Case <a href="mailto:casee@uw.edu">casee@uw.edu</a> | Greyson Fields <a
+                        href="mailto:gfields5@uw.edu">gfields5@uw.edu</a></p>
+                    <p>Data from <a href="https://developers.google.com/books/docs/overview">Google Books API</a></p>
+                </footer>
+            </>
+        );
+    }
+}
 
 // class SortButton extends Component {
 
