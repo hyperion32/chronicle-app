@@ -1,61 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SearchResults from './SearchResults';
-//import request from 'superagent';
 import BookSearchResults from './BookSearchResults';
-
-// class BookCard extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             error: null,
-//             books: [],
-//             isLoaded: false,
-//             searchInput: "harry potter" // TESTING ONLY
-//         }
-//     }
-
-//     componentDidMount() {    // temporary loading point 
-//         fetch("https://www.googleapis.com/books/v1/volumes?q=" + this.state.searchInput)
-//             .then(res => res.json())
-//             .then(
-//                 (result) => {
-//                 let searchResults = data.items;
-//                 this.setState({ books: searchResults, isLoaded: true })
-//             });
-//             (error) => {
-//                 this.setState({
-//                   isLoaded: true,
-//                   error
-//                 });
-//               }
-
-//     }
-
-//     // data = (e) => {
-//     //     e.preventDefault();
-//     //     request
-//     //         .get("https://www.googleapis.com/books/v1/volumes")
-//     //         .query({ q: this.state.searchInput })
-//     //         .then((data) => {
-//     //             console.log(data);
-//     //             this.setState({ books: [...data.body.items] })
-//     //         })
-//     // }
-
-
-
-//     render() {
-//         return (
-//              <div>
-//                  <SearchResults data={this.data} handleSubmit={this.handleSubmit}  />
-//                  <BookSearchResults books={this.state.books} />
-//              </div>
-//         );
-//     }
-// }
-
-// export default BookCard;
-
 
 class BookCard extends React.Component {
     constructor(props) {
@@ -69,8 +14,9 @@ class BookCard extends React.Component {
     }
 
     componentDidMount() {
-        preventDefault();
+        console.log(this.state.searchInput)
         fetch("https://www.googleapis.com/books/v1/volumes?q=" + this.state.searchInput)
+            
             .then(res => res.json())
             .then(
                 (result) => {
@@ -96,7 +42,7 @@ class BookCard extends React.Component {
     }
 
     render() {
-        const { error, isLoaded, items } = this.state;
+        const { error, isLoaded } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -106,6 +52,7 @@ class BookCard extends React.Component {
                 <div>
                   <SearchResults data={this.data} handleSubmit={this.handleSubmit}  />
                   <BookSearchResults items={this.state.items} />
+                  
               </div>
             );
         }
