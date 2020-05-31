@@ -184,8 +184,7 @@ hr {
 }
 
 /*https://www.jquery-az.com/bootstrap-button-9-demos-of-custom-color-size-dropdown-navbar-and-more/*/
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .open .dropdown-toggle.btn-primary,
-.btn-info:hover, .btn-info:focus, .btn-info:active, .open .dropdown-toggle.btn-info {
+.card-button:hover, .card-button:focus, .card-button:active, .open .dropdown-toggle.card-button {
     background-color: #5d5d9e;
     border-color: #5d5d9e;     
 }
@@ -333,6 +332,13 @@ div .card {
 .text-center {
     height: 500px;
     width: auto;
+}
+
+.card-button {
+    color: white;
+    text-decoration: none;
+    padding: 0.25em;
+    border-radius: 2px;
 }
 
 .text-center img {
