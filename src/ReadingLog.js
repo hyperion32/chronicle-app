@@ -50,8 +50,8 @@ class Session extends Component {
         return (
             <ListGroup.Item className="session">
                 <div className="d-flex w-100 justify-content-between">
-                    <h3 className="list-favorites mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem",  marginBottom: "0.5rem"}}>{title}</h3>
-                    <p className="list-book-count" style={{marginBottom: "1.5rem"}}>{bookCount} books</p>
+                    <h3 className="list-favorites mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginLeft: ".5rem", marginTop: "1rem",  marginBottom: "0.5rem"}}>{title}</h3>
+                    <p className="list-book-count" style={{marginBottom: "1.5rem", marginLeft: ".5rem"}}>{bookCount} books</p>
                 </div>
                 <a href="view-lists.html">
                     <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
