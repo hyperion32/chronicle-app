@@ -1,45 +1,23 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
+import PageHeaderWithAdd from './ReadingLog.js';
+import ListContainer from './List.js';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 class ListsContainer extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <ReadingListHeader></ReadingListHeader>
+                <PageHeaderWithAdd title="Lists"/>
 
-                <div className="container-fluid">
-                    <div className="row">
-                        <div id="lists" className="col">
-                            <ul id="lists-list" className="list-group list-group-flush" style={{listStyle: "none"}}>
-                                <ListItem title="Favorites" bookCount="6" color="lightblue"></ListItem>
-                                <ListItem title="Fun" bookCount="3" color="lightseagreen"></ListItem>
-                                <ListItem title="Honors 230 A: Leadership, Democracy, and a More
-                                            Thoughtful Public" bookCount="20" color="plum"></ListItem>
-                                <ListItem title="Professional Development" bookCount="11" color="gold"></ListItem>
-                                <ListItem title="Recommended" bookCount="15" color="pink"></ListItem>
-                                <ListItem title="Work" bookCount="2" color="palevioletred"></ListItem>
-                            </ul>
-                        </div>
-                        <div className="buffer col"></div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
-
-class ReadingListHeader extends Component {
-    render() {
-        return (
-            <div className="row">
-                <div className="col">
-                <div className="d-flex w-100">
-                        <h2 className="page-title">Lists</h2>
-                        <div className="button-add"><Button variant="light" id="add-new-list"
-                                className="add-new btn btn-light btn-lg">+</Button>
-                        </div>
-                    </div>
-                </div>
+                <ListContainer>
+                    <ListItem title="Favorites" bookCount="6" color="lightblue"/>
+                    <ListItem title="Fun" bookCount="3" color="lightseagreen"/>
+                    <ListItem title="Honors 230 A: Leadership, Democracy, and a More
+                                Thoughtful Public" bookCount="20" color="plum"/>
+                    <ListItem title="Professional Development" bookCount="11" color="gold"/>
+                    <ListItem title="Recommended" bookCount="15" color="pink"/>
+                    <ListItem title="Work" bookCount="2" color="palevioletred"/>
+                </ListContainer>
             </div>
         );
     }
@@ -53,7 +31,7 @@ class ListItem extends Component {
         let borderStyle = "5px solid " + color;
 
         return (
-            <li className="session list-group-item">
+            <ListGroup.Item className="session">
                 <div className="d-flex w-100 justify-content-between">
                     <h3 className="list-favorites mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem",  marginBottom: "0.5rem"}}>{title}</h3>
                     <p className="list-book-count" style={{marginBottom: "1.5rem"}}>{bookCount} books</p>
@@ -61,7 +39,7 @@ class ListItem extends Component {
                 <a href="view-lists.html">
                     <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
-            </li>
+            </ListGroup.Item>
         )
     }
 }
