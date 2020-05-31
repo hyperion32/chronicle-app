@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchResults from './SearchResults';
-import request from 'superagent';
+//import request from 'superagent';
 import BookSearchResults from './BookSearchResults';
 
 class BookCard extends Component {
@@ -8,31 +8,42 @@ class BookCard extends Component {
         super(props);
         this.state = {
             books: [],
-            searchInput: ""
+            searchInput: "harry potter" // TESTING ONLY
+            //searchInput: ""
         }
     }
 
-    data = (e) => {
-        e.preventDefault();
-        request
-            .get("https://www.googleapis.com/books/v1/volumes")
-            .query({ q: this.state.searchInput })
+    componentDidMount() {    
+        //fetch("https://www.googleapis.com/books/v1/volumes?q=harry%20potter") // TESTING ONLY
+        fetch("https://www.googleapis.com/books/v1/volumes?q=" + this.searchInput)
+            .then((res) => res.json())
             .then((data) => {
-                console.log(data);
-                this.setState({ books: [...data.body.items] })
-            })
+                let searchResults = data.items;
+                this.setState({ books: searchResults })
+        })
     }
 
-    handleSubmit = (e) => {
-        this.setState({ searchInput: e.target.value })
-    }
+    // data = (e) => {
+    //     e.preventDefault();
+    //     request
+    //         .get("https://www.googleapis.com/books/v1/volumes")
+    //         .query({ q: this.state.searchInput })
+    //         .then((data) => {
+    //             console.log(data);
+    //             this.setState({ books: [...data.body.items] })
+    //         })
+    // }
+
+    // handleSubmit = (e) => {
+    //     this.setState({ searchInput: e.target.value })
+    // }
 
     render() {
         return (
-            <div>
-                <SearchResults data={this.data} handleSubmit={this.handleSubmit}  />
-                <BookSearchResults books={this.state.books} />
-            </div>
+             <div>
+                 <SearchResults data={this.data} handleSubmit={this.handleSubmit}  />
+                 <BookSearchResults books={this.state.books} />
+             </div>
         );
     }
 }
