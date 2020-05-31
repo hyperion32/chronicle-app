@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BookList from './BookList';
+import ListsContainer from './ReadingList';
 import './style.css';
 // import Button from 'react-bootstrap/Button';
 // import Card from 'react-bootstrap/Card';
@@ -32,6 +33,7 @@ class App extends Component {
                 {/* <Loading /> */}
                 <BookList />
                 {/* <Footer /> */}
+                <ListsContainer />
             </>
         );
     }
