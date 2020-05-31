@@ -255,38 +255,6 @@ li.session h5 {
     padding-left: 5px;
 } 
 
-/* List title link */
-
-li.session h5.session-list a {
-    color: black;
-}
-
-/*** LIST COLORS ***/
-
-h5.list-recommended {
-    border-left: 5px solid pink;
-}
-
-h5.list-fun {
-    border-left: 5px solid lightseagreen;
-}
-
-h5.list-favorites {
-    border-left: 5px solid lightblue;
-}
-
-h5.list-profdev {
-    border-left: 5px solid gold;
-}
-
-h5.list-work {
-    border-left: 5px solid palevioletred;
-}
-
-h5.list-honors-class {
-    border-left: 5px solid plum;
-}
-
 /*** SESSION ***/
 
 li.session p.date {

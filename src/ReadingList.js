@@ -10,14 +10,14 @@ class ListsContainer extends Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div id="lists" className="col">
-                            <ul id="lists-list" className="list-group list-group-flush">
-                                <ListItem listTitle="Favorites" bookCount="6"></ListItem>
-                                <ListItem listTitle="Fun" bookCount="3"></ListItem>
-                                <ListItem listTitle="Honors 230 A: Leadership, Democracy, and a More
-                                            Thoughtful Public" bookCount="20"></ListItem>
-                                <ListItem listTitle="Professional Development" bookCount="11"></ListItem>
-                                <ListItem listTitle="Recommended" bookCount="15"></ListItem>
-                                <ListItem listTitle="Work" bookCount="2"></ListItem>
+                            <ul id="lists-list" className="list-group list-group-flush" style={{listStyle: "none"}}>
+                                <ListItem title="Favorites" bookCount="6" color="lightblue"></ListItem>
+                                <ListItem title="Fun" bookCount="3" color="lightseagreen"></ListItem>
+                                <ListItem title="Honors 230 A: Leadership, Democracy, and a More
+                                            Thoughtful Public" bookCount="20" color="plum"></ListItem>
+                                <ListItem title="Professional Development" bookCount="11" color="gold"></ListItem>
+                                <ListItem title="Recommended" bookCount="15" color="pink"></ListItem>
+                                <ListItem title="Work" bookCount="2" color="palevioletred"></ListItem>
                             </ul>
                         </div>
                         <div className="buffer col"></div>
@@ -47,13 +47,16 @@ class ReadingListHeader extends Component {
 
 class ListItem extends Component {
     render() {
-        let listTitle = this.props.listTitle;
+        let title = this.props.title;
         let bookCount = this.props.bookCount;
+        let color = this.props.color;
+        let borderStyle = "5px solid " + color;
+
         return (
             <li className="session list-group-item">
                 <div className="d-flex w-100 justify-content-between">
-                    <h5 className="list-favorites mb-1">{listTitle}</h5>
-                    <p className="list-book-count">{bookCount} books</p>
+                    <h3 className="list-favorites mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem",  marginBottom: "0.5rem"}}>{title}</h3>
+                    <p className="list-book-count" style={{marginBottom: "1.5rem"}}>{bookCount} books</p>
                 </div>
                 <a href="view-lists.html">
                     <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
