@@ -8,13 +8,12 @@ class BookCard extends Component {
         super(props);
         this.state = {
             books: [],
-            searchInput: ""
+            searchInput: "harry potter" // TESTING ONLY
         }
     }
 
-    componentDidMount() {    
-        fetch("https://www.googleapis.com/books/v1/volumes?q=harry%20potter") // TESTING ONLY
-        //fetch("https://www.googleapis.com/books/v1/volumes?q=" + this.state.searchInput)
+    componentDidMount() {    // temporary loading point 
+        fetch("https://www.googleapis.com/books/v1/volumes?q=" + this.state.searchInput)
             .then((res) => res.json())
             .then((data) => {
                 let searchResults = data.items;
