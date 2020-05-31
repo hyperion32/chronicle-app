@@ -9,8 +9,8 @@ const CardResults = (props) => {
                 <h2 className="card-text">{props.title}</h2>
                 <h3 className="card-text">{props.author}</h3>
                 <p className="card-text">{props.pages} pages</p>
-                <p className="card-text">{props.rating} out of 5 stars</p>
-                <Button variant="primary" className="card-button" href={props.bookInfo}>Learn More</Button>{' '}
+                <p className="card-text" style={{marginBottom: "2em"}}>{props.rating} out of 5 stars</p>
+                <Button variant="primary" className="card-button" href={props.bookInfo} style={{marginLeft: "5em"}}>Learn More</Button>{' '}
                 {/*<p className="card-text">ISBN10: {props.isbn10}</p>*/}
                 {/*<p className="card-text">ISBN13: {props.isbn13}</p>*/}
             </div>
