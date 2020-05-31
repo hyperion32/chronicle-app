@@ -1,53 +1,19 @@
 import React, { Component } from 'react';
+import BookList from './BookList';
 import './style.css';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-import Form from 'react-bootstrap/Form';
-import NavLink from 'react-bootstrap/NavLink';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+// import Navbar from 'react-bootstrap/Navbar';
+// import Nav from 'react-bootstrap/Nav';
+// import Button from 'react-bootstrap/Button';
+// import Card from 'react-bootstrap/Card';
+// import DropdownButton from 'react-bootstrap/DropdownButton';
+// import Dropdown from 'react-bootstrap/Dropdown';
+// import InputGroup from 'react-bootstrap/InputGroup';
+// import FormControl from 'react-bootstrap/FormControl';
+// import Form from 'react-bootstrap/Form';
+// import NavLink from 'react-bootstrap/NavLink';
+// import NavDropdown from 'react-bootstrap/NavDropdown';
 
-
-// nav bar 
-// explore, search, sort 
-// display results 
-// footer information 
-
-export default class App extends Component {
-
-    constructor(props) {
-        super(props); //pass up to parent
-
-        // // initialize state 
-        // this.state = { tasks: this.props.initialTasks };
-
-        //Example 3A initialize state if we are going to load from a file 
-        this.state = {
-            tasks: [] //SAMPLE_TASKS //store the tasks in the STATE, initialize
-        };
-
-    }
-
-    componentDidMount() {
-        //fetch('https://api.github.com/repos/info340a-au18/lecture-demos/issues')
-        fetch('./tasks.json') //local file
-            .then((res) => res.json())
-            .then((data) => {
-                let issueTasks = data.map((issue) => {
-                    return {
-                        id: issue.id,
-                        description: issue.description,
-                        complete: false
-                    }
-                })
-                this.setState({ tasks: issueTasks })
-            })
-    }
+class App extends Component {
 
     render() {
         return (
@@ -59,17 +25,17 @@ export default class App extends Component {
                             <PageTitle title="Explore" />
                         </div>
                         <div className="col">
-                            <SearchBar />
+                            {/* <SearchBar /> */}
                         </div>
                         <div className="col">
-                            <SortButton />
+                            {/* <SortButton /> */}
                         </div>
                     </div>
                 </div>
 
                 {/* <Loading /> */}
-                <SearchResults />
-                <Footer />
+                <BookList />
+                {/* <Footer /> */}
             </>
         );
     }
@@ -78,38 +44,44 @@ export default class App extends Component {
 class NavBar extends Component {
     render() {
         return (
-            <Navbar bg="dark" expand="lg">
+            // <Navbar bg="dark" expand="lg">
+            //     <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
+            //     <Navbar.Brand href="#explore">Chronicle</Navbar.Brand>
+            //     <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            //     <Navbar.Collapse id="basic-navbar-nav">
+            //         <NavLinks />
+            //     </Navbar.Collapse>
+            // </Navbar>
+            <header>
                 <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
-                <Navbar.Brand href="#explore">Chronicle</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <NavLinks />
-                </Navbar.Collapse>
-            </Navbar>
+                <h1>Chronicle</h1>
+            </header>
         );
     }
 }
 
-class NavLinks extends Component {
-    render() {
-        return (
-            <Nav className="mr-auto">
-                <Nav.Link href="#explore">Explore</Nav.Link>
-                <Nav.Link href="#log">Log</Nav.Link>
-                <Nav.Link href="#lists">Lists</Nav.Link>
-                <Nav.Link href="#objectives">Objectives</Nav.Link>
-                <Nav.Link href="#account">Account</Nav.Link>
-                <Nav.Link href="#about">About</Nav.Link>
-            </Nav>
-        );
-    }
-}
+// class NavLinks extends Component {
+//     render() {
+//         return (
+//             <Nav className="mr-auto">
+//                 <Nav.Link href="#explore">Explore</Nav.Link>
+//                 <Nav.Link href="#log">Log</Nav.Link>
+//                 <Nav.Link href="#lists">Lists</Nav.Link>
+//                 <Nav.Link href="#objectives">Objectives</Nav.Link>
+//                 <Nav.Link href="#account">Account</Nav.Link>
+//                 <Nav.Link href="#about">About</Nav.Link>
+//             </Nav>
+//         );
+//     }
+// }
 
 class PageTitle extends Component {
     render() {
         let title = this.props.title;
         return (
-            <h2 className="page-title">{title}</h2>
+            <div className="container-fluid">
+                <h2 className="page-title">{title}</h2>
+            </div>
         );
     }
 }
@@ -124,180 +96,87 @@ class PageTitle extends Component {
 //     };
 // }
 
-class BookCard extends Component {
-    render() {
-        let bookInfo = this.props.bookInfo;
-        let pages = bookInfo.pageCount + " pages";
-        let rating = bookInfo.rating + " out of 5 stars";
 
-        return (
-            <Card id="search" className="text-center mb-8 border-lightgray mt-4" style={{ height: '500', width: '300' }}>
-                <Card.Img variant="top" src={bookInfo.imgLink} alt="Book cover" className="rounded mt-3" />
-                <Card.Body>
-                    <Card.Text></Card.Text>
-                    <div className="card-body text-dark">
-                        <h4 className="card-text card-booktitle">{bookInfo.title}</h4>
-                        <h5 className="card-text card-author">{bookInfo.authors}</h5>
-                        <h6 className="card-text card-pages">{pages}</h6>
-                        <p className="card-text card-rating">{rating}</p>
-                        <p className="bottom-buffer"></p>
-                        <Button href={bookInfo.url} variant="primary">Learn More</Button>{' '}
-                    </div>
-                </Card.Body>
-            </Card>
-
-
-            // <Card style={{ width: '18rem' }}>
-            //     <Card.Img variant="top" src={bookInfo.imgLink} alt="Book cover" className="rounded mt-3" />
-            //     <Card.Body>
-            //         <Card.Title>Card Title</Card.Title>
-            //         <Card.Text></Card.Text>
-            //         <div className="card-body text-dark">
-            //             <h4 className="card-text card-booktitle">{bookInfo.title}</h4>
-            //             <h5 className="card-text card-author">{bookInfo.authors}</h5>
-            //             <h6 className="card-text card-pages">{pages}</h6>
-            //             <p className="card-text card-rating">{rating}</p>
-            //             <p className="bottom-buffer"></p>
-            //             <Button href={bookInfo.url} variant="primary">Learn More</Button>{' '}
-            //         </div>
-            //     </Card.Body>
-            // </Card>
-        );
-    }
-}
-
-class SearchResults extends Component {
-    render() {
-        let bookInfo = {
-            title: "Book Title",
-            authors: "Author Name(s)",
-            imgLink: "https://via.placeholder.com/150",
-            rating: "4.57",
-            pageCount: "230",
-            url: "#",
-            isbn10: "isbn10",
-            isbn13: "isbn13"
-        }
-        return (
-            <div className="container-fluid">
-                <div className="card-columns">
-                    <div className="search-results text-center">
-                        <BookCard bookInfo={bookInfo} />
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
-
-class SearchBar extends Component {
-    render() {
-        return (
-            <div className="search-box">
-                {/* https://react-bootstrap.github.io/components/input-group/
-                <InputGroup className="mb-3">
-                    <FormControl placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
-                    <InputGroup.Append>
-                        <InputGroup.Text id="basic-addon2">@example.com</InputGroup.Text>
-                    </InputGroup.Append>
-                </InputGroup>
-                */}
-
-                <div className="input-group mb-3 form-inline">
-                    <input id="search-value" type="text" className="form-control"
-                        placeholder="Search books" />
-                    <div className="input-group-append">
-                        <Button variant="primary" id="search-button" className="btn btn-secondary btn-small" type="submit">
-                            <i className="fa fa-search" aria-hidden="true"></i>
-                        </Button>{' '}
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
-
-class Footer extends Component {
-    render() {
-        return (
-            <>
-                <footer>
-                    <p>Copyright&copy; 2020 | Lisi Case and Greyson Fields</p>
-                    <p>Contact: Lisi Case <a href="mailto:casee@uw.edu">casee@uw.edu</a> | Greyson Fields <a
-                        href="mailto:gfields5@uw.edu">gfields5@uw.edu</a></p>
-                    <p>Data from <a href="https://developers.google.com/books/docs/overview">Google Books API</a></p>
-                </footer>
-            </>
-        );
-    }
-}
-
-class SortButton extends Component {
-
-    sortClick() {
-        console.log("sort is clicked");
-    }
-
-    render() {
-        return <button onClick={this.sortClick}>Sort</button>;
-        // <DropdownButton id="dropdown-basic-button" size="sm" variant="secondary" title="Sort" onClick={this.sortClick}>
-        //     <Dropdown.Item>Sort By Pages</Dropdown.Item>
-        //     <Dropdown.Item>Sort By Rating</Dropdown.Item>
-        //     <Dropdown.Item>Sort By Price</Dropdown.Item>
-        // </DropdownButton>
-
-    }
-}
-
-// class dataFetch extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             error: null,
-//             isLoaded: false,
-//             items: []
-//         };
+// class SearchResults extends Component {
+//     render() {
+//         // let bookInfo = {
+//         //     title: "Book Title",
+//         //     authors: "Author Name(s)",
+//         //     imgLink: "https://via.placeholder.com/150",
+//         //     rating: "4.57",
+//         //     pageCount: "230",
+//         //     url: "#",
+//         //     isbn10: "isbn10",
+//         //     isbn13: "isbn13"
+//         // }
+//         return (
+//             <div className="search-results">
+//                 <form action="">
+//                     <input onChange={SearchResults.props.calcSearch} type="text" />
+//                     <button type="submit">Search Books</button>
+//                 </form>
+//             </div>
+//         );
 //     }
+// }
 
-//     componentDidMount() {
-//         let search = document.getElementById("search-value").value;
-//         fetch("https://www.googleapis.com/books/v1/volumes?q=" + search)
-//             .then(res => res.json())
-//             .then(
-//                 (result) => {
-//                     this.setState({
-//                         isLoaded: true,
-//                         items: result.items
-//                     });
-//                 },
-//                 // Note: it's important to handle errors here
-//                 // instead of a catch() block so that we don't swallow
-//                 // exceptions from actual bugs in components.
-//                 (error) => {
-//                     this.setState({
-//                         isLoaded: true,
-//                         error
-//                     });
-//                 }
-//             )
+// class SearchBar extends Component {
+//     render() {
+//         return (
+//             // <div className="search-box">
+//             //     https://react-bootstrap.github.io/components/input-group/
+//             //     <InputGroup className="mb-3">
+//             //         <FormControl placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+//             //         <InputGroup.Append>
+//             //             <InputGroup.Text id="basic-addon2">@example.com</InputGroup.Text>
+//             //         </InputGroup.Append>
+//             //     </InputGroup>
+
+
+//                 <div className="input-group mb-3 form-inline">
+//                     <input id="search-value" type="text" className="form-control"
+//                         placeholder="Search books" />
+//                     <div className="input-group-append">
+//                         <Button variant="primary" id="search-button" className="btn btn-secondary btn-small" type="submit">
+//                             <i className="fa fa-search" aria-hidden="true"></i>
+//                         </Button>{' '}
+//                     </div>
+//                 </div>
+//             // </div>
+//         );
+//     }
+// }
+
+// class Footer extends Component {
+//     render() {
+//         return (
+//             <>
+//                 <footer>
+//                     <p>Copyright&copy; 2020 | Lisi Case and Greyson Fields</p>
+//                     <p>Contact: Lisi Case <a href="mailto:casee@uw.edu">casee@uw.edu</a> | Greyson Fields <a
+//                         href="mailto:gfields5@uw.edu">gfields5@uw.edu</a></p>
+//                     <p>Data from <a href="https://developers.google.com/books/docs/overview">Google Books API</a></p>
+//                 </footer>
+//             </>
+//         );
+//     }
+// }
+
+// class SortButton extends Component {
+
+//     sortClick() {
+//         console.log("sort is clicked");
 //     }
 
 //     render() {
-//         const { error, isLoaded, items } = this.state;
-//         if (error) {
-//             return <div>Error: {error.message}</div>;
-//         } else if (!isLoaded) {
-//             return <div>Loading...</div>;
-//         } else {
-//             return (
-//                 <ul>
-//                     {items.map(item => (
-//                         <li key={item.name}>
-//                             {item.name} {item.price}
-//                         </li>
-//                     ))}
-//                 </ul>
-//             );
-//         }
+//         return <button onClick={this.sortClick}>Sort</button>;
+//         // <DropdownButton id="dropdown-basic-button" size="sm" variant="secondary" title="Sort" onClick={this.sortClick}>
+//         //     <Dropdown.Item>Sort By Pages</Dropdown.Item>
+//         //     <Dropdown.Item>Sort By Rating</Dropdown.Item>
+//         //     <Dropdown.Item>Sort By Price</Dropdown.Item>
+//         // </DropdownButton>
+
 //     }
 // }
+
+export default App;
