@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import BookList from './BookList';
 import './style.css';
-// import Navbar from 'react-bootstrap/Navbar';
-// import Nav from 'react-bootstrap/Nav';
 // import Button from 'react-bootstrap/Button';
 // import Card from 'react-bootstrap/Card';
 // import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -10,8 +8,6 @@ import './style.css';
 // import InputGroup from 'react-bootstrap/InputGroup';
 // import FormControl from 'react-bootstrap/FormControl';
 // import Form from 'react-bootstrap/Form';
-// import NavLink from 'react-bootstrap/NavLink';
-// import NavDropdown from 'react-bootstrap/NavDropdown';
 
 class App extends Component {
 
@@ -44,14 +40,6 @@ class App extends Component {
 class NavBar extends Component {
     render() {
         return (
-            // <Navbar bg="dark" expand="lg">
-            //     <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
-            //     <Navbar.Brand href="#explore">Chronicle</Navbar.Brand>
-            //     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            //     <Navbar.Collapse id="basic-navbar-nav">
-            //         <NavLinks />
-            //     </Navbar.Collapse>
-            // </Navbar>
             <header>
                 <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
                 <h1>Chronicle</h1>
@@ -94,57 +82,6 @@ class PageTitle extends Component {
 //             </div>
 //         )
 //     };
-// }
-
-
-// class SearchResults extends Component {
-//     render() {
-//         // let bookInfo = {
-//         //     title: "Book Title",
-//         //     authors: "Author Name(s)",
-//         //     imgLink: "https://via.placeholder.com/150",
-//         //     rating: "4.57",
-//         //     pageCount: "230",
-//         //     url: "#",
-//         //     isbn10: "isbn10",
-//         //     isbn13: "isbn13"
-//         // }
-//         return (
-//             <div className="search-results">
-//                 <form action="">
-//                     <input onChange={SearchResults.props.calcSearch} type="text" />
-//                     <button type="submit">Search Books</button>
-//                 </form>
-//             </div>
-//         );
-//     }
-// }
-
-// class SearchBar extends Component {
-//     render() {
-//         return (
-//             // <div className="search-box">
-//             //     https://react-bootstrap.github.io/components/input-group/
-//             //     <InputGroup className="mb-3">
-//             //         <FormControl placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
-//             //         <InputGroup.Append>
-//             //             <InputGroup.Text id="basic-addon2">@example.com</InputGroup.Text>
-//             //         </InputGroup.Append>
-//             //     </InputGroup>
-
-
-//                 <div className="input-group mb-3 form-inline">
-//                     <input id="search-value" type="text" className="form-control"
-//                         placeholder="Search books" />
-//                     <div className="input-group-append">
-//                         <Button variant="primary" id="search-button" className="btn btn-secondary btn-small" type="submit">
-//                             <i className="fa fa-search" aria-hidden="true"></i>
-//                         </Button>{' '}
-//                     </div>
-//                 </div>
-//             // </div>
-//         );
-//     }
 // }
 
 // class Footer extends Component {
