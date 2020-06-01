@@ -3,7 +3,7 @@ import BookList from './BookList';
 import LogContainer from './ReadingLog';
 import ListsContainer from './ReadingList';
 import './style.css';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 // import Card from 'react-bootstrap/Card';
 // import DropdownButton from 'react-bootstrap/DropdownButton';
 // import Dropdown from 'react-bootstrap/Dropdown';
@@ -12,7 +12,7 @@ import Button from 'react-bootstrap/Button';
 // import Form from 'react-bootstrap/Form';
 // import NavBar from 'react-bootstrap/Navbar';
 
-import SearchResults from './SearchResults';
+// import SearchResults from './SearchResults';
 
 class App extends Component {
 
@@ -26,7 +26,7 @@ class App extends Component {
                             <h2>Explore</h2>
                         </div>
                         <div className="col">
-                            <SearchResults />
+                            {/* <SearchResults data={this.data} handleSubmit={this.handleSubmit} /> */}                            
                         </div>
                         <div className="col">
                             {/* <SortButton /> */}
@@ -37,7 +37,7 @@ class App extends Component {
                 <Loading />
                 <BookList />
                 <LogContainer />
-                <ListsContainer lists={this.props.lists}/>
+                <ListsContainer lists={this.props.lists} />
                 <Footer />
             </>
         );

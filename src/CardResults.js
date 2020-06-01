@@ -12,7 +12,8 @@ const CardResults = (props) => {
                     <Card.Text>{props.author}</Card.Text>
                     <Card.Text>{props.pages} pages</Card.Text>
                     <Card.Text>{props.rating} out of 5 stars</Card.Text>
-                    {/* <Card.Text>{props.author}</Card.Text> */}
+                    {/* <Card.Text>{props.isbn10}</Card.Text>
+                    <Card.Text>{props.isbn13}</Card.Text> */}
                     <Button variant="primary" className="card-button" href={props.bookInfo}>Learn More</Button>{' '}
                 </Card.Body>
             </Card>

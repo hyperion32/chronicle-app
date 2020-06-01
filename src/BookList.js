@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchResults from './SearchResults';
 import BookSearchResults from './BookSearchResults';
+// import Button from 'react-bootstrap/Button';
 
 class BookCard extends React.Component {
     constructor(props) {
@@ -8,15 +9,17 @@ class BookCard extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            searchInput: "harry potter",
+            searchInput: "dog",
             items: []
         };
     }
 
+    // if (searchInput !== "") { 
+
     componentDidMount() {
         console.log(this.state.searchInput)
         fetch("https://www.googleapis.com/books/v1/volumes?q=" + this.state.searchInput)
-            
+
             .then(res => res.json())
             .then(
                 (result) => {
@@ -25,9 +28,7 @@ class BookCard extends React.Component {
                         items: result.items
                     });
                 },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
+
                 (error) => {
                     this.setState({
                         isLoaded: true,
@@ -35,25 +36,37 @@ class BookCard extends React.Component {
                     });
                 }
             )
+
     }
 
-    handleSubmit = (e) => {
-        this.setState({ searchInput: e.target.value })
+    // handleSubmit = (e) => {
+    //     console.log("hello")
+    //     this.setState({ searchInput: e.target.value })
+    // }
+
+    handleSubmit(searchVal) {
+        
+        console.log(this.state)
+        this.setState({ searchInput: searchVal })
     }
+
+    // bind the function and then pass it down to searchresults as prop
+    // creating a child and giving it a tool to give to the parent
+        // have to give the parent the instruction on how to do it
+    
 
     render() {
         const { error, isLoaded } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return <div className="text-center">Loading...</div>;
         } else {
             return (
                 <div>
-                  {/* <SearchResults data={this.data} handleSubmit={this.handleSubmit}  /> */}
-                  <BookSearchResults items={this.state.items} />
-                  
-              </div>
+                    <SearchResults data={this.data} handleSubmit={this.handleSubmit.bind(this)}  />
+                    <BookSearchResults items={this.state.items} />
+                </div>
             );
         }
     }
