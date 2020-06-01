@@ -9,9 +9,10 @@ class SearchResults extends React.Component {
             searchVal: input.value
         }
     }
-    submitSearch(event) {
+
+    submitSearch = (event) => {
         event.preventDefault();
-        this.props.handleSubmit(this.state.searchVal);
+        this.props.updateResults(this.state.searchVal);
     }
     
     render() {
