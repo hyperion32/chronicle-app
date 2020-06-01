@@ -69,7 +69,7 @@ header {
     color: #fff;
 }
 
-header h1 {
+.header-div {
     display: inline;
     margin: 10px;
     padding-bottom: 1rem;

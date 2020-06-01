@@ -11,6 +11,7 @@ import './style.css';
 // import FormControl from 'react-bootstrap/FormControl';
 // import Form from 'react-bootstrap/Form';
 
+
 class App extends Component {
 
     render() {
@@ -45,8 +46,14 @@ class NavBar extends Component {
     render() {
         return (
             <header>
+                <div className="header-div">
                 <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
                 <h1>Chronicle</h1>
+                <h3>Explore</h3>
+                <h3>Log</h3>
+                <h3>Lists</h3>
+                <h3>Account</h3>
+                </div>
             </header>
         );
     }
