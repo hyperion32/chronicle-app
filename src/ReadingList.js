@@ -9,14 +9,25 @@ class ListsContainer extends Component {
         super(props);
         this.state = {
             lists: [
-                { title: "Recommended", color: "pink", books: [] },
-                { title: "Fun", color: "lightseagreen", books: [] },
-                { title: "Favorites", color: "lightblue", books: [] },
-                { title: "Work", color: "palevioletred", books: [] },
-                { title: "Professional Development", color: "gold", books: [] },
-                { title: "Honors 230: Leadership, Democracy, and a More Thoughtful Public", color: "plum", books: [] }
+                { title: "Recommended", color: "pink", books: ["", "" ]},
+                { title: "Fun", color: "lightseagreen", books: ["", "", ""] },
+                { title: "Favorites", color: "lightblue", books: ["", "", "", "", "", ""] },
+                { title: "Work", color: "palevioletred", books: ["", "", "", "", "", "", ""] },
+                { title: "Professional Development", color: "gold", books: ["", ""] },
+                { title: "Honors 230: Leadership, Democracy, and a More Thoughtful Public", color: "plum", books: ["", "", ""] }
             ]
         }
+    }
+
+    addList = (listName, listColor) => {
+        let newList = {title: listName, color: listColor, books: []};
+        console.log("adding list");
+        this.setState((prevState) => {
+            let shallowCopy = Object.assign([], prevState.lists); //don't modify prevState!
+            console.log(shallowCopy);
+            shallowCopy.push(newList); //add new entry  
+            return {lists: shallowCopy} //return updated object
+        })
     }
 
     render() {
@@ -34,7 +45,7 @@ class ListsContainer extends Component {
                         <div className="d-flex w-100">
                             <h2 className="page-title">Lists</h2>
                         </div>
-                        <AddNewList/>
+                        <AddNewList addListCallback={this.addList}/>
                     </div>
                 </div>
 
@@ -75,9 +86,32 @@ class ListItem extends Component {
 }
 
 class AddNewList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            listName: "",
+            listColor: ""
+        }
+    }
+
+    handleChange = (event) => {
+        if (event.target.type === "text") {
+            this.setState({listName: event.target.value});
+        } else {
+            this.setState({listColor: event.target.value});
+        }
+    }
+
+    handleClick = (event) => {
+        event.preventDefault();
+        this.props.addListCallback(this.state.listName, this.state.listColor);
+        //let newList = <ListItem title={this.state.listName} bookCount="0" color={this.state.listColor} />;
+        //console.log(newList);
+    }
+
     render() {
-        let colorPalette = ["lightsalmon", "orange", "gold", "greenyellow", "forestgreen", "lightseagreen", "lightblue",
-        "deepskyblue", "plum", "mediumorchard", "violet", "hotpink", "pink"];
+        let colorPalette = ["lightsalmon", "orange", "gold", "greenyellow", "forestgreen", "lightseagreen",
+                            "lightblue", "deepskyblue", "plum", "mediumorchard", "violet", "hotpink", "pink"];
         let index = -1;
         let colorOptions = colorPalette.map((color) => {
             index++;
@@ -88,15 +122,15 @@ class AddNewList extends Component {
             <Form>
                 <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label style={{marginLeft: ".5rem", marginRight: ".5rem"}}>Name</Form.Label>
-                    <Form.Control type="text" placeholder="e.g., My List" />
+                    <Form.Control onChange={this.handleChange} type="text" placeholder="e.g., My List" />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label style={{marginLeft: ".5rem", marginRight: ".5rem"}}>Color</Form.Label>
-                    <Form.Control as="select">
+                    <Form.Control onChange={this.handleChange} as="select">
                         {colorOptions}
                     </Form.Control>
                 </Form.Group>
-                <Button variant="light" type="submit" style={{marginLeft: ".5rem"}}>Add List</Button>
+                <Button onClick={this.handleClick} variant="light" type="submit" style={{marginLeft: ".5rem"}}>Add List</Button>
             </Form>
         )
     }
