@@ -50,7 +50,7 @@ class BookCard extends React.Component {
         } else {
             return (
                 <div>
-                  <SearchResults data={this.data} handleSubmit={this.handleSubmit}  />
+                  {/* <SearchResults data={this.data} handleSubmit={this.handleSubmit}  /> */}
                   <BookSearchResults items={this.state.items} />
                   
               </div>

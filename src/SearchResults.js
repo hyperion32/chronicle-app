@@ -6,7 +6,7 @@ const SearchResults = (props) => {
         <div className="search-results">
             <form onSubmit={props.data} action="">
                 <input onChange={props.handleSubmit} type="text" placeholder="Search"/>
-                <Button variant="primary" id="search-button" type="submit">
+                <Button variant="primary btn-sm" id="search-button" type="submit">
                     <i className="fa fa-search" aria-hidden="true"></i>
                 </Button>{' '}
             </form>

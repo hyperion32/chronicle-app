@@ -3,16 +3,19 @@
     margin: 0;
 }
 
-header {
+.header-div {
     padding: 5px;
     background: #9999ff;
     color: #fff;
 }
 
-header h1 {
+header h3, header p {
     display: inline;
     margin: 10px;
-    padding-bottom: 1rem;
+}
+
+header p {
+    font-size: 14px;;
 }
 
 .input {
@@ -21,11 +24,11 @@ header h1 {
     margin: 0 auto;
 }
 
-.search-results form {
+/* .search-results form {
     width: 500px;
     margin: 0 auto;
-    /* padding: 20px 0px 20px 140px; */
-}
+    padding: 20px 0px 20px 140px;
+} */
 
 .search-results button {
     display: inline;
@@ -36,43 +39,10 @@ header h1 {
     position: relative;
 }
 
-.list {
-    display: grid;
-    margin: 20px 0 50px 0;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 1fr;
-    grid-gap: 1em;
-}
-
-.card-container {
-    width: 250px;
-    border: 1px solid rgba(0,0,0,.125);
-    margin: 0 auto;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-img {
-    width: 100%;
-    height: 250px;
-}
-
 /******** GENERAL ********/
 
 .hidden {
     display: none;
-}
-
-header {
-    padding: 5px;
-    background: #9999ff;
-    color: #fff;
-}
-
-header h1 {
-    display: inline;
-    margin: 10px;
-    padding-bottom: 1rem;
 }
 
 .bottom-buffer {
@@ -97,10 +67,10 @@ main {
 }
 
 .logo {
-    height: 75px;
-    width: 75px;
-    padding: 1rem;
-    display: inline;
+    height: 50px;
+    width: 50px;
+    padding: .5rem;
+    position: relative;
 }
 
 .nav-name {
@@ -129,7 +99,7 @@ nav li:hover {
 }
 
 .page-title {
-    padding: 2rem;
+    padding: 1rem;
     font-weight: 1;
 }
 
@@ -312,7 +282,7 @@ div .card {
 .text-center img {
     height: 200px;
     width: auto;
-} */
+}
 
 /* sets the size of search result cards  */
 div #search {
@@ -324,6 +294,7 @@ div #search {
 .card-columns {
     display: inline-block;
     align-items: auto;
+    padding: 5px
 }
 
 @media (min-width:356px) {
