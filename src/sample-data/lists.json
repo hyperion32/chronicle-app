@@ -1,8 +1,8 @@
 [
-  { "id": 0, "title": "Favorites", "color": "lightblue", "books": ["", "", "", "", "", ""] },
-  { "id": 1, "title": "Fun", "color": "lightseagreen", "books": ["", "", ""] },
+  { "id": 0, "title": "Favorites", "color": "lightblue", "books": ["Purple Hibiscus", "Where the Crawdads Sing", "", "", "", ""] },
+  { "id": 1, "title": "Fun", "color": "lightseagreen", "books": ["The Hunger Games", "", ""] },
   { "id": 2, "title": "Honors 230: Leadership, Democracy, and a More Thoughtful Public", "color": "plum", "books": ["", "", ""] },
   { "id": 3, "title": "Professional Development", "color": "gold", "books": ["", ""] },
-  { "id": 4, "title": "Recommended", "color": "pink", "books": ["", "" ]},
+  { "id": 4, "title": "Recommended", "color": "pink", "books": ["The Hobbit", "" ]},
   { "id": 5, "title": "Work", "color": "palevioletred", "books": ["", "", "", "", "", "", ""] }
 ]

@@ -17,7 +17,7 @@ class ListsContainer extends Component {
         this.setState((prevState) => {
             let shallowCopy = Object.assign([], prevState.lists); //don't modify prevState!
             shallowCopy.push(newList); //add new entry  
-            return {lists: shallowCopy} //return updated object
+            return {lists: shallowCopy}; //return updated object
         })
     }
 
@@ -68,9 +68,7 @@ class ListItem extends Component {
                     <h3 className="list-favorites mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem"}}>{title}</h3>
                     <p className="list-book-count" style={{marginBottom: "1.5rem", marginLeft: ".5rem"}}>{bookCount} books</p>
                 </div>
-                <a href="">
-                    <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
+                <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
             </ListGroup.Item>
         )
     }
@@ -96,8 +94,6 @@ class AddNewList extends Component {
     handleClick = (event) => {
         event.preventDefault();
         this.props.addListCallback(this.state.listName, this.state.listColor);
-        //let newList = <ListItem title={this.state.listName} bookCount="0" color={this.state.listColor} />;
-        //console.log(newList);
     }
 
     render() {
@@ -111,11 +107,11 @@ class AddNewList extends Component {
 
         return (
             <Form style={{marginLeft: "1rem"}}>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="formListName">
                     <Form.Label>Name</Form.Label>
                     <Form.Control onChange={this.handleChange} type="text" placeholder="e.g., My List" />
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlSelect1">
+                <Form.Group controlId="formColor">
                     <Form.Label>Color</Form.Label>
                     <Form.Control onChange={this.handleChange} as="select">
                         <option>Choose...</option>

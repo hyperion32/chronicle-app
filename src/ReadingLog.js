@@ -14,6 +14,47 @@ class LogContainer extends Component {
         }
     }
 
+    addSession = (sessionTitle, sessionStartPage, sessionEndPage, sessionMinutes, sessionNotes) => {
+        let sessionDate = this.getFormattedDate();
+        let sessionListId = this.findListId(sessionTitle);
+
+        let newSession = {title: sessionTitle, date: sessionDate, startPage: sessionStartPage, endPage: sessionEndPage,
+                        minutes: sessionMinutes, listId: sessionListId, notes: sessionNotes};
+        this.setState((prevState) => {
+            let shallowCopy = Object.assign([], prevState.sessions);
+            shallowCopy.push(newSession);
+            return {sessions: shallowCopy};
+        })
+    }
+
+    findListId = (bookTitle) => {
+        let lists = this.props.lists;
+        for (let i = 0; i < lists.length; i++) {
+            if (lists[i].books.includes(bookTitle)) {
+                return lists[i].id;
+            }
+        }
+        return undefined;
+    }
+
+    getFormattedDate = () => {
+        let currDate = new Date();
+        let month = currDate.getMonth() + 1;
+        let date = currDate.getDate();
+        let year = currDate.getFullYear() % 100;
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (date < 10) {
+            date = "0" + date;
+        }
+        if (year < 10) {
+            year = "0" + year;
+        }
+        let formattedDate = month + "/" + date + "/" + year;
+        return formattedDate;
+    }
+
     render() {
         let sessions = this.state.sessions;
         let index = -1;
@@ -35,7 +76,7 @@ class LogContainer extends Component {
                         <div className="d-flex w-100">
                             <h2 className="page-title">Log</h2>
                         </div>
-                        <AddNewSession />
+                        <AddNewSession addSessionCallback={this.addSession} />
                     </div>
                 </div>
 
@@ -70,9 +111,7 @@ class Session extends Component {
                     <h3 className="session-list mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem"}}>{title}</h3>
                     <p className="date" style={{marginBottom: "1.5rem", marginLeft: ".5rem"}}>{date}</p>
                 </div>
-                <a href="">
-                    <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
+                <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
                 <p className="progress-count">{pages} pages • {minutes} minutes</p>
                 <small className="notes">{notes}</small>
             </ListGroup.Item>
@@ -93,52 +132,51 @@ class AddNewSession extends Component {
     }
 
     handleChange = (event) => {
-        // if (event.target.type === "text") {
-        //     this.setState({listName: event.target.value});
-        // } else {
-        //     this.setState({listColor: event.target.value});
-        // }
+        let form = event.target.id;
+        if (form === "formTitle") {
+            this.setState({title: event.target.value});
+        } else if (form === "formStart") {
+            this.setState({startPage: event.target.value});
+        } else if (form === "formEnd") {
+            this.setState({endPage: event.target.value});
+        } else if (form === "formTime") {
+            this.setState({minutes: event.target.value});
+        } else {
+            this.setState({notes: event.target.value});
+        }
     }
 
     handleClick = (event) => {
-        // event.preventDefault();
-        // this.props.addListCallback(this.state.listName, this.state.listColor);
-        // //let newList = <ListItem title={this.state.listName} bookCount="0" color={this.state.listColor} />;
-        // //console.log(newList);
+        event.preventDefault();
+        this.props.addSessionCallback(this.state.title, this.state.startPage, this.state.endPage, this.state.minutes, this.state.notes);
     }
 
     render() {
         return (
             <Form style={{marginLeft: "1rem"}}>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group>
                     <Form.Label>Book</Form.Label>
-                    <Form.Control onChange={this.handleChange} type="text" placeholder="title" />
+                    <Form.Control id="formTitle" onChange={this.handleChange} type="text" placeholder="title" />
                 </Form.Group>
-                
                 <Form.Row>
-                    <Form.Group as={Col} controlId="formGridCity">
+                    <Form.Group as={Col}>
                         <Form.Label>Start</Form.Label>
-                        <Form.Control onChange={this.handleChange} type="number" placeholder="page" />
+                        <Form.Control id="formStart" onChange={this.handleChange} type="number" placeholder="page" />
                     </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridState">
+                    <Form.Group as={Col}>
                         <Form.Label>End</Form.Label>
-                        <Form.Control onChange={this.handleChange} type="number" placeholder="page" />
+                        <Form.Control id="formEnd" onChange={this.handleChange} type="number" placeholder="page" />
                     </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridZip">
+                    <Form.Group as={Col}>
                         <Form.Label>Time</Form.Label>
-                        <Form.Control onChange={this.handleChange} type="number" placeholder="minutes" />
+                        <Form.Control id="formTime" onChange={this.handleChange} type="number" placeholder="minutes" />
                     </Form.Group>
                 </Form.Row>
-
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group>
                     <Form.Label>Notes</Form.Label>
-                    <Form.Control onChange={this.handleChange} type="text" />
+                    <Form.Control id="formNotes" onChange={this.handleChange} type="text" />
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    
-                </Form.Group>
+
                 <Button onClick={this.handleClick} variant="light" type="submit">Add Session</Button>
             </Form>
         )
