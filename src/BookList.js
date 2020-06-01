@@ -42,11 +42,6 @@ class BookCard extends React.Component {
         this.updateResults(this.state.searchInput);
     }
 
-    handleSubmit(searchVal) {
-        this.setState({ searchInput: searchVal });
-        console.log(this.state.searchInput)
-    }
-
     render() {
         const { error, isLoaded } = this.state;
         if (error) {
@@ -56,7 +51,7 @@ class BookCard extends React.Component {
         } else {
             return (
                 <div>
-                    <SearchResults data={this.data} updateResults={this.updateResults} handleSubmit={this.handleSubmit.bind(this)}  />
+                    <SearchResults data={this.data} updateResults={this.updateResults}  />
                     <BookSearchResults items={this.state.items} />
                 </div>
             );
