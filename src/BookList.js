@@ -14,11 +14,11 @@ class BookCard extends React.Component {
         };
     }
 
-    componentDidMount() {
-        // console.log(this.state.searchInput)
-        // let query = this.state.searchInput;
-        // console.log(query);
-        fetch("https://www.googleapis.com/books/v1/volumes?q=" + this.state.searchInput)
+    updateResults = (searchVal) => {
+        this.setState({ searchInput: searchVal });
+        console.log(searchVal);
+
+        fetch("https://www.googleapis.com/books/v1/volumes?q=" + searchVal)
 
             .then(res => res.json())
             .then(
@@ -36,7 +36,10 @@ class BookCard extends React.Component {
                     });
                 }
             )
+    }
 
+    componentDidMount() {
+        this.updateResults(this.state.searchInput);
     }
 
     handleSubmit(searchVal) {
@@ -53,7 +56,7 @@ class BookCard extends React.Component {
         } else {
             return (
                 <div>
-                    <SearchResults data={this.data} handleSubmit={this.handleSubmit.bind(this)}  />
+                    <SearchResults data={this.data} updateResults={this.updateResults} handleSubmit={this.handleSubmit.bind(this)}  />
                     <BookSearchResults items={this.state.items} />
                 </div>
             );
