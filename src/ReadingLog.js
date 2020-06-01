@@ -58,7 +58,8 @@ class LogContainer extends Component {
     render() {
         let sessions = this.state.sessions;
         let index = -1;
-        let sessionElements = sessions.map((session) => {
+        // https://www.geeksforgeeks.org/how-to-use-map-on-an-array-in-reverse-order-with-javascript/
+        let sessionElements = sessions.slice(0).reverse().map((session) => {
             let listId = session.listId;
             let color = "black";
             if (listId !== undefined) {
@@ -108,7 +109,7 @@ class Session extends Component {
         return (
             <ListGroup.Item className="session">
                 <div className="d-flex w-100 justify-content-between">
-                    <h3 className="session-list mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem"}}>{title}</h3>
+                    <h3 className="session-list mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem", fontSize: "20px"}}>{title}</h3>
                     <p className="date" style={{marginBottom: "1.5rem", marginLeft: ".5rem"}}>{date}</p>
                 </div>
                 <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
