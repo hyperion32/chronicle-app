@@ -6,9 +6,11 @@ import * as serviceWorker from './serviceWorker';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import SAMPLE_LISTS from './sample-data/lists.json';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App lists={SAMPLE_LISTS}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

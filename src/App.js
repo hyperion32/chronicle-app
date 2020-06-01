@@ -37,7 +37,7 @@ class App extends Component {
                 <Loading />
                 <BookList />
                 <LogContainer />
-                <ListsContainer />
+                <ListsContainer lists={this.props.lists}/>
                 <Footer />
             </>
         );

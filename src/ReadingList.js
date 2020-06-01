@@ -8,23 +8,14 @@ class ListsContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lists: [
-                { title: "Recommended", color: "pink", books: ["", "" ]},
-                { title: "Fun", color: "lightseagreen", books: ["", "", ""] },
-                { title: "Favorites", color: "lightblue", books: ["", "", "", "", "", ""] },
-                { title: "Work", color: "palevioletred", books: ["", "", "", "", "", "", ""] },
-                { title: "Professional Development", color: "gold", books: ["", ""] },
-                { title: "Honors 230: Leadership, Democracy, and a More Thoughtful Public", color: "plum", books: ["", "", ""] }
-            ]
+            lists: this.props.lists
         }
     }
 
     addList = (listName, listColor) => {
         let newList = {title: listName, color: listColor, books: []};
-        console.log("adding list");
         this.setState((prevState) => {
             let shallowCopy = Object.assign([], prevState.lists); //don't modify prevState!
-            console.log(shallowCopy);
             shallowCopy.push(newList); //add new entry  
             return {lists: shallowCopy} //return updated object
         })
@@ -110,8 +101,8 @@ class AddNewList extends Component {
     }
 
     render() {
-        let colorPalette = ["lightsalmon", "orange", "gold", "greenyellow", "forestgreen", "lightseagreen",
-                            "lightblue", "deepskyblue", "plum", "mediumorchard", "violet", "hotpink", "pink"];
+        let colorPalette = ["crimson", "tomato", "lightcoral", "lightsalmon", "orange", "gold", "greenyellow", "forestgreen", "lightseagreen",
+                            "lightblue", "deepskyblue", "plum", "violet", "hotpink", "pink"];
         let index = -1;
         let colorOptions = colorPalette.map((color) => {
             index++;
@@ -127,6 +118,7 @@ class AddNewList extends Component {
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label style={{marginLeft: ".5rem", marginRight: ".5rem"}}>Color</Form.Label>
                     <Form.Control onChange={this.handleChange} as="select">
+                        <option>Choose...</option>
                         {colorOptions}
                     </Form.Control>
                 </Form.Group>

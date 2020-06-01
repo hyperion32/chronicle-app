@@ -1,0 +1,8 @@
+[
+  { "title": "Favorites", "color": "lightblue", "books": ["", "", "", "", "", ""] },
+  { "title": "Fun", "color": "lightseagreen", "books": ["", "", ""] },
+  { "title": "Honors 230: Leadership, Democracy, and a More Thoughtful Public", "color": "plum", "books": ["", "", ""] },
+  { "title": "Professional Development", "color": "gold", "books": ["", ""] },
+  { "title": "Recommended", "color": "pink", "books": ["", "" ]},
+  { "title": "Work", "color": "palevioletred", "books": ["", "", "", "", "", "", ""] }
+]
