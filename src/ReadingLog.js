@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 //import ListContainer from './List.js';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 
 class LogContainer extends Component {
     constructor(props) {
@@ -16,9 +18,14 @@ class LogContainer extends Component {
         let sessions = this.state.sessions;
         let index = -1;
         let sessionElements = sessions.map((session) => {
+            let listId = session.listId;
+            let color = "black";
+            if (listId !== undefined) {
+                color = this.props.lists[listId].color;
+            }
             index++;
             return <Session key={index} title={session.title} date={session.date} startPage={session.startPage} 
-                    endPage={session.endPage} minutes={session.minutes} notes={session.notes} color="black"/>
+                    endPage={session.endPage} minutes={session.minutes} notes={session.notes} color={color} />
         });
 
         return (
@@ -28,9 +35,7 @@ class LogContainer extends Component {
                         <div className="d-flex w-100">
                             <h2 className="page-title">Log</h2>
                         </div>
-                        <div className="button-add">
-                            <Button variant="light" id="add-new-list" className="add-new btn btn-light btn-lg">+</Button>
-                        </div>
+                        <AddNewSession />
                     </div>
                 </div>
 
@@ -68,12 +73,76 @@ class Session extends Component {
                 <a href="">
                     <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
-                <p class="progress-count">{pages} pages • {minutes} minutes</p>
-                <small class="notes">{notes}</small>
+                <p className="progress-count">{pages} pages • {minutes} minutes</p>
+                <small className="notes">{notes}</small>
             </ListGroup.Item>
         )
     }
 }
 
+class AddNewSession extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: "",
+            startPage: "",
+            endPage: "",
+            minutes: "",
+            notes: ""
+        }
+    }
+
+    handleChange = (event) => {
+        // if (event.target.type === "text") {
+        //     this.setState({listName: event.target.value});
+        // } else {
+        //     this.setState({listColor: event.target.value});
+        // }
+    }
+
+    handleClick = (event) => {
+        // event.preventDefault();
+        // this.props.addListCallback(this.state.listName, this.state.listColor);
+        // //let newList = <ListItem title={this.state.listName} bookCount="0" color={this.state.listColor} />;
+        // //console.log(newList);
+    }
+
+    render() {
+        return (
+            <Form style={{marginLeft: "1rem"}}>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Book</Form.Label>
+                    <Form.Control onChange={this.handleChange} type="text" placeholder="title" />
+                </Form.Group>
+                
+                <Form.Row>
+                    <Form.Group as={Col} controlId="formGridCity">
+                        <Form.Label>Start</Form.Label>
+                        <Form.Control onChange={this.handleChange} type="number" placeholder="page" />
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridState">
+                        <Form.Label>End</Form.Label>
+                        <Form.Control onChange={this.handleChange} type="number" placeholder="page" />
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridZip">
+                        <Form.Label>Time</Form.Label>
+                        <Form.Control onChange={this.handleChange} type="number" placeholder="minutes" />
+                    </Form.Group>
+                </Form.Row>
+
+                <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Notes</Form.Label>
+                    <Form.Control onChange={this.handleChange} type="text" />
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                    
+                </Form.Group>
+                <Button onClick={this.handleClick} variant="light" type="submit">Add Session</Button>
+            </Form>
+        )
+    }
+}
 
 export default LogContainer;

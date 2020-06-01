@@ -110,19 +110,19 @@ class AddNewList extends Component {
         });
 
         return (
-            <Form>
+            <Form style={{marginLeft: "1rem"}}>
                 <Form.Group controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{marginLeft: ".5rem", marginRight: ".5rem"}}>Name</Form.Label>
+                    <Form.Label>Name</Form.Label>
                     <Form.Control onChange={this.handleChange} type="text" placeholder="e.g., My List" />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label style={{marginLeft: ".5rem", marginRight: ".5rem"}}>Color</Form.Label>
+                    <Form.Label>Color</Form.Label>
                     <Form.Control onChange={this.handleChange} as="select">
                         <option>Choose...</option>
                         {colorOptions}
                     </Form.Control>
                 </Form.Group>
-                <Button onClick={this.handleClick} variant="light" type="submit" style={{marginLeft: ".5rem"}}>Add List</Button>
+                <Button onClick={this.handleClick} variant="light" type="submit">Add List</Button>
             </Form>
         )
     }
