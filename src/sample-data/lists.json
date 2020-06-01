@@ -1,8 +1,8 @@
 [
-  { "title": "Favorites", "color": "lightblue", "books": ["", "", "", "", "", ""] },
-  { "title": "Fun", "color": "lightseagreen", "books": ["", "", ""] },
-  { "title": "Honors 230: Leadership, Democracy, and a More Thoughtful Public", "color": "plum", "books": ["", "", ""] },
-  { "title": "Professional Development", "color": "gold", "books": ["", ""] },
-  { "title": "Recommended", "color": "pink", "books": ["", "" ]},
-  { "title": "Work", "color": "palevioletred", "books": ["", "", "", "", "", "", ""] }
+  { "id": 0, "title": "Favorites", "color": "lightblue", "books": ["", "", "", "", "", ""] },
+  { "id": 1, "title": "Fun", "color": "lightseagreen", "books": ["", "", ""] },
+  { "id": 2, "title": "Honors 230: Leadership, Democracy, and a More Thoughtful Public", "color": "plum", "books": ["", "", ""] },
+  { "id": 3, "title": "Professional Development", "color": "gold", "books": ["", ""] },
+  { "id": 4, "title": "Recommended", "color": "pink", "books": ["", "" ]},
+  { "id": 5, "title": "Work", "color": "palevioletred", "books": ["", "", "", "", "", "", ""] }
 ]

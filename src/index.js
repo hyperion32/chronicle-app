@@ -6,11 +6,12 @@ import * as serviceWorker from './serviceWorker';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import SAMPLE_SESSIONS from './sample-data/sessions.json';
 import SAMPLE_LISTS from './sample-data/lists.json';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App lists={SAMPLE_LISTS}/>
+    <App sessions={SAMPLE_SESSIONS} lists={SAMPLE_LISTS}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

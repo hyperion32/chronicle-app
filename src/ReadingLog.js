@@ -3,21 +3,31 @@ import React, { Component } from 'react';
 //import ListContainer from './List.js';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 
 class LogContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sessions: [
-                { title: "The Hunger Games", date: "03/12/20", startPage: 1, endPage: 24, minutes: 12, list: 2, notes: "Feeling like Peeta. Quarantine is like living in a dystopia and my only talent is making bread." },
-                { title: "The Hobbit", date: "03/15/20", startPage: 1, endPage: 6, minutes: 14, list: 1, notes: "So boreddddd" },
-                { title: "Where the Crawdads Sing", date: "03/15/20", startPage: 1, endPage: 57, minutes: 35, list: 3, notes: "" },
-                { title: "Purple Hibiscus", date: "03/17/20", startPage: 1, endPage: 38, minutes: 20, list: 3, notes: "I really enjoyed this part!" }
-            ]
+            sessions: this.props.sessions
         }
     }
 
     render() {
+        let sessions = this.state.sessions;
+        let index = -1;
+        let sessionElements = sessions.map((session) => {
+            let listId = session.listId;
+            let color = "black";
+            if (listId !== undefined) {
+                color = this.props.lists[listId].color;
+            }
+            index++;
+            return <Session key={index} title={session.title} date={session.date} startPage={session.startPage} 
+                    endPage={session.endPage} minutes={session.minutes} notes={session.notes} color={color} />
+        });
+
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -25,9 +35,7 @@ class LogContainer extends Component {
                         <div className="d-flex w-100">
                             <h2 className="page-title">Log</h2>
                         </div>
-                        <div className="button-add">
-                            <Button variant="light" id="add-new-list" className="add-new btn btn-light btn-lg">+</Button>
-                        </div>
+                        <AddNewSession />
                     </div>
                 </div>
 
@@ -35,13 +43,7 @@ class LogContainer extends Component {
                     <div className="row">
                         <div id="lists" className="col">
                             <ListGroup variant="flush">
-                                <Session title="Favorites" bookCount="6" color="lightblue" />
-                                <Session title="Fun" bookCount="3" color="lightseagreen" />
-                                <Session title="Honors 230 A: Leadership, Democracy, and a More
-                                            Thoughtful Public" bookCount="20" color="plum" />
-                                <Session title="Professional Development" bookCount="11" color="gold" />
-                                <Session title="Recommended" bookCount="15" color="pink" />
-                                <Session title="Work" bookCount="2" color="palevioletred" />
+                                {sessionElements}
                             </ListGroup>
                         </div>
                         <div className="buffer col"></div>
@@ -55,20 +57,90 @@ class LogContainer extends Component {
 class Session extends Component {
     render() {
         let title = this.props.title;
-        let bookCount = this.props.bookCount;
+        let date = this.props.date;
         let color = this.props.color;
         let borderStyle = "5px solid " + color;
+        let pages = this.props.endPage - this.props.startPage;
+        let minutes = this.props.minutes;
+        let notes = this.props.notes;
 
         return (
             <ListGroup.Item className="session">
                 <div className="d-flex w-100 justify-content-between">
-                    <h3 className="list-favorites mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginLeft: ".5rem", marginTop: "1rem",  marginBottom: "0.5rem"}}>{title}</h3>
-                    <p className="list-book-count" style={{marginBottom: "1.5rem", marginLeft: ".5rem"}}>{bookCount} books</p>
+                    <h3 className="session-list mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem"}}>{title}</h3>
+                    <p className="date" style={{marginBottom: "1.5rem", marginLeft: ".5rem"}}>{date}</p>
                 </div>
-                <a href="view-lists.html">
+                <a href="">
                     <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
+                <p className="progress-count">{pages} pages • {minutes} minutes</p>
+                <small className="notes">{notes}</small>
             </ListGroup.Item>
+        )
+    }
+}
+
+class AddNewSession extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: "",
+            startPage: "",
+            endPage: "",
+            minutes: "",
+            notes: ""
+        }
+    }
+
+    handleChange = (event) => {
+        // if (event.target.type === "text") {
+        //     this.setState({listName: event.target.value});
+        // } else {
+        //     this.setState({listColor: event.target.value});
+        // }
+    }
+
+    handleClick = (event) => {
+        // event.preventDefault();
+        // this.props.addListCallback(this.state.listName, this.state.listColor);
+        // //let newList = <ListItem title={this.state.listName} bookCount="0" color={this.state.listColor} />;
+        // //console.log(newList);
+    }
+
+    render() {
+        return (
+            <Form style={{marginLeft: "1rem"}}>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Book</Form.Label>
+                    <Form.Control onChange={this.handleChange} type="text" placeholder="title" />
+                </Form.Group>
+                
+                <Form.Row>
+                    <Form.Group as={Col} controlId="formGridCity">
+                        <Form.Label>Start</Form.Label>
+                        <Form.Control onChange={this.handleChange} type="number" placeholder="page" />
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridState">
+                        <Form.Label>End</Form.Label>
+                        <Form.Control onChange={this.handleChange} type="number" placeholder="page" />
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridZip">
+                        <Form.Label>Time</Form.Label>
+                        <Form.Control onChange={this.handleChange} type="number" placeholder="minutes" />
+                    </Form.Group>
+                </Form.Row>
+
+                <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Notes</Form.Label>
+                    <Form.Control onChange={this.handleChange} type="text" />
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                    
+                </Form.Group>
+                <Button onClick={this.handleClick} variant="light" type="submit">Add Session</Button>
+            </Form>
         )
     }
 }
