@@ -65,10 +65,10 @@ class ListItem extends Component {
         return (
             <ListGroup.Item className="session">
                 <div className="d-flex w-100 justify-content-between">
-                    <h3 className="list-favorites mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem",  marginBottom: "0.5rem", marginLeft: ".5rem"}}>{title}</h3>
+                    <h3 className="list-favorites mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem"}}>{title}</h3>
                     <p className="list-book-count" style={{marginBottom: "1.5rem", marginLeft: ".5rem"}}>{bookCount} books</p>
                 </div>
-                <a href="view-lists.html">
+                <a href="">
                     <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
             </ListGroup.Item>

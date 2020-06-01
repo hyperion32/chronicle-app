@@ -36,7 +36,7 @@ class App extends Component {
 
                 <Loading />
                 <BookList />
-                <LogContainer />
+                <LogContainer sessions={this.props.sessions}  lists={this.props.lists}/>
                 <ListsContainer lists={this.props.lists}/>
                 <Footer />
             </>
