@@ -3,16 +3,19 @@
     margin: 0;
 }
 
-header {
+.header-div {
     padding: 5px;
     background: #9999ff;
     color: #fff;
 }
 
-header h1 {
+header h3, header p {
     display: inline;
     margin: 10px;
-    padding-bottom: 1rem;
+}
+
+header p {
+    font-size: 14px;;
 }
 
 .input {
@@ -63,18 +66,6 @@ img {
     display: none;
 }
 
-header {
-    padding: 5px;
-    background: #9999ff;
-    color: #fff;
-}
-
-.header-div {
-    display: inline;
-    margin: 10px;
-    padding-bottom: 1rem;
-}
-
 .bottom-buffer {
     margin-bottom: 1.5rem;
 }
@@ -97,10 +88,10 @@ main {
 }
 
 .logo {
-    height: 75px;
-    width: 75px;
-    padding: 1rem;
-    display: inline;
+    height: 50px;
+    width: 50px;
+    padding: .5rem;
+    position: relative;
 }
 
 .nav-name {
@@ -129,7 +120,7 @@ nav li:hover {
 }
 
 .page-title {
-    padding: 2rem;
+    padding: 1rem;
     font-weight: 1;
 }
 

@@ -10,7 +10,7 @@ import './style.css';
 // import InputGroup from 'react-bootstrap/InputGroup';
 // import FormControl from 'react-bootstrap/FormControl';
 // import Form from 'react-bootstrap/Form';
-
+// import NavBar from 'react-bootstrap/Navbar';
 
 class App extends Component {
 
@@ -47,15 +47,15 @@ class NavBar extends Component {
         return (
             <header>
                 <div className="header-div">
-                <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
-                <h1>Chronicle</h1>
-                <h3>Explore</h3>
-                <h3>Log</h3>
-                <h3>Lists</h3>
-                <h3>Account</h3>
+                    <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
+                    <h3>Chronicle</h3>
+                    <p>Explore</p>
+                    <p>Log</p>
+                    <p>Lists</p>
+                    <p>Account</p>
                 </div>
             </header>
-        );
+        )
     }
 }
 
