@@ -15,10 +15,8 @@ class BookCard extends React.Component {
     }
 
     componentDidMount() {
-        // console.log(this.state.searchInput)
-        // let query = this.state.searchInput;
-        // console.log(query);
-        fetch("https://www.googleapis.com/books/v1/volumes?q=" + this.state.searchInput)
+        let query = this.state.searchInput;
+        fetch("https://www.googleapis.com/books/v1/volumes?q=" + query)
 
             .then(res => res.json())
             .then(
