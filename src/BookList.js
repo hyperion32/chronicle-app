@@ -9,15 +9,15 @@ class BookCard extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            searchInput: "dog",
+            searchInput: "test",
             items: []
         };
     }
 
-    // if (searchInput !== "") { 
-
     componentDidMount() {
-        console.log(this.state.searchInput)
+        // console.log(this.state.searchInput)
+        // let query = this.state.searchInput;
+        // console.log(query);
         fetch("https://www.googleapis.com/books/v1/volumes?q=" + this.state.searchInput)
 
             .then(res => res.json())
@@ -39,21 +39,10 @@ class BookCard extends React.Component {
 
     }
 
-    // handleSubmit = (e) => {
-    //     console.log("hello")
-    //     this.setState({ searchInput: e.target.value })
-    // }
-
     handleSubmit(searchVal) {
-        
-        console.log(this.state)
-        this.setState({ searchInput: searchVal })
+        this.setState({ searchInput: searchVal });
+        console.log(this.state.searchInput)
     }
-
-    // bind the function and then pass it down to searchresults as prop
-    // creating a child and giving it a tool to give to the parent
-        // have to give the parent the instruction on how to do it
-    
 
     render() {
         const { error, isLoaded } = this.state;

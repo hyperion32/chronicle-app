@@ -267,11 +267,6 @@ div .card {
     display: flex;
 }
 
-.text-center {
-    height: 500px;
-    width: auto;
-}
-
 .card-button {
     color: white;
     text-decoration: none;

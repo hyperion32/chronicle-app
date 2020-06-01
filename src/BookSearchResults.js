@@ -14,8 +14,8 @@ const BookSearchResults = (props) => {
                     pages={book.volumeInfo.pageCount} 
                     rating={book.volumeInfo.averageRating} 
                     bookInfo={book.volumeInfo.infoLink}
-                    isbn10={book.volumeInfo.industryIdentifiers[0].identifier}
-                    isbn13={book.volumeInfo.industryIdentifiers[1].identifier}
+                    // isbn10={book.volumeInfo.industryIdentifiers[0].identifier}
+                    // isbn13={book.volumeInfo.industryIdentifiers[1].identifier}
                     />
                 })
             }
