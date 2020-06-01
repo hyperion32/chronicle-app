@@ -24,7 +24,8 @@ class ListsContainer extends Component {
     render() {
         let lists = this.state.lists;
         let index = -1;
-        let listElements = lists.map((list) => {
+        // https://www.geeksforgeeks.org/how-to-use-map-on-an-array-in-reverse-order-with-javascript/
+        let listElements = lists.slice(0).reverse().map((list) => {
             index++;
             return <ListItem key={index} title={list.title} bookCount={list.books.length} color={list.color}/>
         });
@@ -65,7 +66,7 @@ class ListItem extends Component {
         return (
             <ListGroup.Item className="session">
                 <div className="d-flex w-100 justify-content-between">
-                    <h3 className="list-favorites mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem"}}>{title}</h3>
+                    <h3 className="list-favorites mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem", fontSize: "20px"}}>{title}</h3>
                     <p className="list-book-count" style={{marginBottom: "1.5rem", marginLeft: ".5rem"}}>{bookCount} books</p>
                 </div>
                 <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
