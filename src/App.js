@@ -3,7 +3,7 @@ import BookList from './BookList';
 import LogContainer from './ReadingLog';
 import ListsContainer from './ReadingList';
 import './style.css';
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 // import Card from 'react-bootstrap/Card';
 // import DropdownButton from 'react-bootstrap/DropdownButton';
 // import Dropdown from 'react-bootstrap/Dropdown';
@@ -12,19 +12,21 @@ import './style.css';
 // import Form from 'react-bootstrap/Form';
 // import NavBar from 'react-bootstrap/Navbar';
 
+import SearchResults from './SearchResults';
+
 class App extends Component {
 
     render() {
         return (
             <>
                 <NavBar />
-                <div className="container-fluid">
+                <div className="container-fluid mt-3">
                     <div className="row">
                         <div className="col">
-                            <PageTitle title="Explore" />
+                            <h2>Explore</h2>
                         </div>
                         <div className="col">
-                            {/* <SearchBar /> */}
+                            <SearchResults />
                         </div>
                         <div className="col">
                             {/* <SortButton /> */}
@@ -32,7 +34,7 @@ class App extends Component {
                     </div>
                 </div>
 
-                {/* <Loading /> */}
+                <Loading />
                 <BookList />
                 <LogContainer />
                 <ListsContainer />
@@ -74,26 +76,26 @@ class NavBar extends Component {
 //     }
 // }
 
-class PageTitle extends Component {
-    render() {
-        let title = this.props.title;
-        return (
-            <div className="container-fluid">
-                <h2 className="page-title">{title}</h2>
-            </div>
-        );
-    }
-}
-
-// class Loading extends Component {
+// class PageTitle extends Component {
 //     render() {
+//         let title = this.props.title;
 //         return (
-//             <div className="loading-icon">
-//                 <i className="d-none fa fa-spinner fa-spin fa-lg" aria-hidden="true"></i>
+//             <div className="container-fluid">
+//                 <h2 className="page-title">{title}</h2>
 //             </div>
-//         )
-//     };
+//         );
+//     }
 // }
+
+class Loading extends Component {
+    render() {
+        return (
+            <div className="loading-icon">
+                <i className="d-none fa fa-spinner fa-spin fa-lg" aria-hidden="true"></i>
+            </div>
+        )
+    };
+}
 
 class Footer extends Component {
     render() {

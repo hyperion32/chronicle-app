@@ -3,7 +3,7 @@ import CardResults from "./CardResults";
 
 const BookSearchResults = (props) => {
     return (
-        <div className="list">
+        <div className="card-columns">
             {
                 props.items.map((book, i) => {
                     return <CardResults 
