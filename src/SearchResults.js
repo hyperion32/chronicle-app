@@ -36,7 +36,7 @@ class SearchResults extends React.Component {
                 <div className="col">
                     <select defaultValue="Sort" onChange={this.props.handleSort}>
                         <option disabled value="Sort">Sort</option>
-                        <option value="MostPage">Most Pages</option>
+                        <option value="MostPages">Most Pages</option>
                         <option value="LeastPages">Least Pages</option>
                     </select>
                 </div>

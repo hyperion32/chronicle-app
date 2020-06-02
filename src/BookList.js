@@ -11,7 +11,7 @@ class BookCard extends React.Component {
             isLoaded: false,
             searchInput: "webdev",
             items: [],
-            sort: ""
+            sortPageCount: ""
         };
     }
 
@@ -25,10 +25,10 @@ class BookCard extends React.Component {
             .then(
                 (result) => {
                     console.log(result);
-                    // const cleanData = this.cleanData(result)
+                    const cleanData = this.cleanData(result)
                     this.setState({
                         isLoaded: true,
-                        items: result.items
+                        items: cleanData
                     });
                 },
 
@@ -51,13 +51,17 @@ class BookCard extends React.Component {
     }
 
     cleanData = (result) => {
-        const cleanedData = result.body.items.map((book) => {
+        const cleanedData = result.items.map((book) => {
             if (book.volumeInfo.hasOwnProperty('pageCount') === false) {
                 book.volumeInfo['pageCount'] = 'null';
             }
 
+            else if (book.volumeInfo.hasOwnProperty('averageRating') === false) {
+                book.volumeInfo['averageRating'] = 'null';
+            }
+
             else if (book.volumeInfo.hasOwnProperty('imageLinks') === false) {
-                book.volumeInfo['imageLinks'] = { thumbnail: 'https://via.placeholder.com/150' }
+                book.volumeInfo['imageLinks'] = { thumbnail: 'https://bitsofco.de/content/images/2018/12/broken-1.png'};
             }
 
             return book;
@@ -67,13 +71,13 @@ class BookCard extends React.Component {
     }
 
     render() {
-        // const sortedBooks = this.state.books.sort((a, b) => {
-        //     if (this.state.sort === "MostPage") {
-        //         return (a.pageCount > b.pageCount) ? 1 : ((b.pageCount > a.pageCount) ? -1 : 0);
-        //     } else if (this.state.sort === "LeastPage") {
-        //         return (b.pageCount > a.pageCount) ? 1 : ((a.pageCount > b.pageCount) ? -1 : 0);
-        //     }
-        // })
+        const sortedBooks = this.state.items.sort((a, b) => {
+            if (this.state.sortPageCount === "MostPages") {
+                return (a.pageCount > b.pageCount) ? 1 : ((b.pageCount > a.pageCount) ? -1 : 0);
+            } else if (this.state.sort === "LeastPages") {
+                return (b.pageCount > a.pageCount) ? 1 : ((a.pageCount > b.pageCount) ? -1 : 0);
+            }
+        })
 
         const { error, isLoaded } = this.state;
         if (error) {
@@ -84,7 +88,7 @@ class BookCard extends React.Component {
             return (
                 <div>
                     <SearchResults data={this.data} updateResults={this.updateResults} handleSort={this.handleSort} />
-                    <BookSearchResults items={this.state.items} />
+                    <BookSearchResults items={sortedBooks} />
                 </div>
             );
         }
