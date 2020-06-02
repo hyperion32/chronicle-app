@@ -20,20 +20,6 @@ class App extends Component {
         return (
             <>
                 <NavBar />
-                <div className="container-fluid mt-3">
-                    <div className="row">
-                        <div className="col">
-                            <h2>Explore</h2>
-                        </div>
-                        <div className="col">
-                            {/* <SearchResults data={this.data} handleSubmit={this.handleSubmit} /> */}                            
-                        </div>
-                        <div className="col">
-                            {/* <SortButton /> */}
-                        </div>
-                    </div>
-                </div>
-
                 <Loading />
                 <BookList />
                 <LogContainer sessions={this.props.sessions}  lists={this.props.lists}/>

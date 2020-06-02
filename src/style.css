@@ -24,11 +24,10 @@ header p {
     margin: 0 auto;
 }
 
-/* .search-results form {
-    width: 500px;
-    margin: 0 auto;
-    padding: 20px 0px 20px 140px;
-} */
+div h2 {
+    font-weight: 300;
+    padding-left: 20px;
+}
 
 .search-results button {
     display: inline;
