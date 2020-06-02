@@ -36,8 +36,10 @@ class SearchResults extends React.Component {
                 <div className="col">
                     <select defaultValue="Sort" onChange={this.props.handleSort}>
                         <option disabled value="Sort">Sort</option>
-                        <option value="MostPages">Most Pages</option>
-                        <option value="LeastPages">Least Pages</option>
+                        {/* <option value="MostPages">Most Pages</option>
+                        <option value="LeastPages">Least Pages</option> */}
+                        <option value="oldest">Oldest</option>
+                        <option value="newest">Newest</option>
                     </select>
                 </div>
             </div>
