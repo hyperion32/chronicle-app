@@ -25,7 +25,7 @@ class BookCard extends React.Component {
             .then(
                 (result) => {
                     console.log(result);
-                    const cleanData = this.cleanData(result)
+                    let cleanData = this.cleanData(result)
                     this.setState({
                         isLoaded: true,
                         items: cleanData
@@ -71,13 +71,15 @@ class BookCard extends React.Component {
     }
 
     render() {
-        const sortedBooks = this.state.items.sort((a, b) => {
+        let sortedBooks = this.state.items.sort((a, b) => {
             if (this.state.sortPageCount === "MostPages") {
-                return (a.pageCount > b.pageCount) ? 1 : ((b.pageCount > a.pageCount) ? -1 : 0);
-            } else if (this.state.sort === "LeastPages") {
+                return parseInt(a.pageCount > b.pageCount) ? 1 : (parseInt(b.pageCount > a.pageCount) ? -1 : 0);
+            } else if (this.state.sortPageCount === "LeastPages") {
                 return (b.pageCount > a.pageCount) ? 1 : ((a.pageCount > b.pageCount) ? -1 : 0);
             }
+            
         })
+        console.log(sortedBooks);
 
         const { error, isLoaded } = this.state;
         if (error) {
