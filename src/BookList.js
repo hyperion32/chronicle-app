@@ -25,7 +25,7 @@ class BookCard extends React.Component {
             .then(
                 (result) => {
                     // console.log(result);
-                    const cleanData = this.cleanData(result)
+                    let cleanData = this.cleanData(result)
                     this.setState({
                         isLoaded: true,
                         items: cleanData
@@ -51,7 +51,7 @@ class BookCard extends React.Component {
     }
 
     cleanData = (result) => {
-        const cleanedData = result.items.map((book) => {
+        let cleanedData = result.items.map((book) => {
             if (book.volumeInfo.hasOwnProperty('pageCount') === false) {
                 book.volumeInfo['pageCount'] = 'null';
             }
@@ -71,7 +71,7 @@ class BookCard extends React.Component {
     }
 
     render() {
-        const sorted = this.state.items.sort((a, b) => {
+        let sorted = this.state.items.sort((a, b) => {
             if (this.state.sortPageCount === "newest") {
                 console.log("newest");
                 // console.log(a.volumeInfo.pageCount);

@@ -8,7 +8,7 @@ const BookSearchResults = (props) => {
                 props.items.map((book, i) => {
                     return <CardResults 
                     key={i}
-                    image={book.volumeInfo.imageLinks.thumbnail} 
+                    // image={book.volumeInfo.imageLinks.thumbnail} 
                     title={book.volumeInfo.title} 
                     author={book.volumeInfo.authors} 
                     pages={book.volumeInfo.pageCount} 
