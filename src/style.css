@@ -252,16 +252,20 @@ li.search-results h5, li.search-results p {
 
 /******** CARDS ********/
 
- .text-center card {
+ /* .text-center card {
     height: auto;
     width: auto;
+} */
+
+div .card {
+    height: 500px;
+    width: 300px;
 }
 
 .card-img-top {
-    height: 200px;
-    width: 100%;
-    padding: 5px;
-    /* object-fit: cover; */
+    height: auto;
+    width: auto;
+    object-fit: cover;
 }
 
 div .card-text {
@@ -270,29 +274,17 @@ div .card-text {
     margin: 5px;
 }
 
-/* div .card {
-    display: flex;
-}  */
-
-/* .card-button {
-    color: white;
-    text-decoration: none;
-    padding: 0.25em;
-    border-radius: 2px;
-} */
+.text-center img {
+    height: 200px;
+    width: auto;
+}
 
 /* sets the size of search result cards  */
-div #search {
-    display: flex;
-    height: 520px;
-    width: 300px;
-}
+
 
 .card-columns {
     display: inline-block;
     align-items: auto;
-    width: auto;
-    padding: 5px
 }
 
 @media (min-width:356px) {
@@ -385,7 +377,7 @@ div.book-details.popup.card h3.author {
 
 /******** MISCELLANEOUS ********/
 
-.checked {
+/* .checked {
     color: gold;
 }
 
@@ -434,4 +426,4 @@ li.search-results div.rating {
         padding-top: 3rem;
         padding-bottom: 3rem;
     }
-}
+} */

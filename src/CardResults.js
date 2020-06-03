@@ -10,8 +10,8 @@ const CardResults = (props) => {
     const date = volumeInfo.hasOwnProperty('publishedDate') === false ? volumeInfo['publishedDate'] = "0000" : volumeInfo.publishedDate;
 
     return (
-        <div className="container-fluid">
-            <Card className='text-center'>
+        <div>
+            <Card className='mb-8 border-lightgray mt-4'>
                 <Card.Img variant="top" src={thumbNail} alt="" />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>

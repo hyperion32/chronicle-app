@@ -70,10 +70,14 @@ class BookCard extends React.Component {
             return <div className="text-center">Loading...</div>;
         } else {
             return (
-                <div>
+                <>
                     <SearchResults data={this.data} updateResults={this.updateResults} handleSort={this.handleSort} />
-                    <BookSearchResults items={sorted} />
-                </div>
+                    <div className="container-fluid text-center">
+                        <BookSearchResults items={sorted} />
+                    </div>
+                </>
+
+
             );
         }
     }
