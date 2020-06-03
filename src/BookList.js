@@ -25,10 +25,10 @@ class BookCard extends React.Component {
             .then(
                 (result) => {
                     // console.log(result);
-                    let cleanData = this.cleanData(result)
+                    // let cleanData = this.cleanData(result)
                     this.setState({
                         isLoaded: true,
-                        items: cleanData
+                        items: result.items
                     });
                 },
 
@@ -50,43 +50,18 @@ class BookCard extends React.Component {
         this.setState({ sortPageCount: e.target.value })
     }
 
-    cleanData = (result) => {
-        let cleanedData = result.items.map((book) => {
-            if (book.volumeInfo.hasOwnProperty('pageCount') === false) {
-                book.volumeInfo['pageCount'] = 'null';
-            }
-
-            else if (book.volumeInfo.hasOwnProperty('averageRating') === false) {
-                book.volumeInfo['averageRating'] = 'null';
-            }
-
-            else if (book.volumeInfo.hasOwnProperty('imageLinks') === false) {
-                book.volumeInfo['imageLinks'] = { thumbnail: 'https://bitsofco.de/content/images/2018/12/broken-1.png' };
-            }
-
-            return book;
-        })
-
-        return cleanedData;
-    }
-
     render() {
-        let sorted = this.state.items.sort((a, b) => {
+        const sorted = this.state.items.sort((a, b) => {
             if (this.state.sortPageCount === "newest") {
                 console.log("newest");
-                // console.log(a.volumeInfo.pageCount);
-                // return parseInt(b.volumeInfo.pageCount - a.volumeInfo.pageCount);
                 return parseInt(b.volumeInfo.publishedDate.substring(0, 4)) - parseInt(a.volumeInfo.publishedDate.substring(0, 4));
             } else if (this.state.sortPageCount === "oldest") {
                 console.log("oldest");
-                // console.log(b.volumeInfo.pageCount)
-                // return parseInt(a.volumeInfo.pageCount - b.volumeInfo.pageCount);
                 return parseInt(a.volumeInfo.publishedDate.substring(0, 4)) - parseInt(b.volumeInfo.publishedDate.substring(0, 4));
             }
 
+            return;
         })
-
-        console.log(sorted)
 
         const { error, isLoaded } = this.state;
         if (error) {

@@ -7,6 +7,7 @@
     padding: 5px;
     background: #9999ff;
     color: #fff;
+    width: auto;
 }
 
 header h3, header p {
@@ -251,32 +252,34 @@ li.search-results h5, li.search-results p {
 
 /******** CARDS ********/
 
- .text-center {
-    height: 550px;
+ .text-center card {
+    height: auto;
     width: auto;
 }
 
 .card-img-top {
-    height: auto;
-    width: auto;
-    object-fit: cover;
+    height: 200px;
+    width: 100%;
+    padding: 5px;
+    /* object-fit: cover; */
 }
 
-.card-text {
+div .card-text {
     text-align: center;
-    font-weight: 2;
+    font-weight: 4;
+    margin: 5px;
 }
 
-div .card {
+/* div .card {
     display: flex;
-}
+}  */
 
-.card-button {
+/* .card-button {
     color: white;
     text-decoration: none;
     padding: 0.25em;
     border-radius: 2px;
-}
+} */
 
 /* sets the size of search result cards  */
 div #search {
@@ -288,6 +291,7 @@ div #search {
 .card-columns {
     display: inline-block;
     align-items: auto;
+    width: auto;
     padding: 5px
 }
 
