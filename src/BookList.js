@@ -24,8 +24,7 @@ class BookCard extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    // console.log(result);
-                    // let cleanData = this.cleanData(result)
+                    console.log(result)
                     this.setState({
                         isLoaded: true,
                         items: result.items
@@ -72,8 +71,10 @@ class BookCard extends React.Component {
             return (
                 <>
                     <SearchResults data={this.data} updateResults={this.updateResults} handleSort={this.handleSort} />
-                    <div className="container-fluid text-center">
-                        <BookSearchResults items={sorted} />
+                    <div className="container-fluid">
+                        <div className="text-center">
+                            <BookSearchResults items={sorted} />
+                        </div>
                     </div>
                 </>
 
