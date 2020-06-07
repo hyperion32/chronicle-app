@@ -3,7 +3,7 @@ import BookList from './BookList';
 import LogContainer from './ReadingLog';
 import ListsContainer from './ReadingList';
 import './style.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {Route, Switch, Link, Redirect, NavLink} from 'react-router-dom';
 // import Button from 'react-bootstrap/Button';
 // import Card from 'react-bootstrap/Card';
 // import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -18,8 +18,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 class App extends Component {
 
     render() {
+        let renderLogContainer = (props) => <LogContainer {...props} sessions={this.props.sessions}  lists={this.props.lists} />
+        let renderListsContainer = (props) => <ListsContainer {...props} lists={this.props.lists} />
+
         return (
             <>
+<<<<<<< HEAD
             {/* <div className="header-div">
                 <header>
                     <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
@@ -41,25 +45,16 @@ class App extends Component {
                     {/* <Route path="/list" component={ListsContainer}>
                         <ReadingList />
                     </Route> */}
+=======
+                <NavBar />
+                <Switch>
+                        <Route exact path="/" component={Loading, BookList} />
+                        <Route path="/log" render={renderLogContainer} />
+                        <Route path="/lists" render={renderListsContainer} />
+                        <Redirect to="/" />
+>>>>>>> a4d9d1def15bad671611dd49efac5399e7632c25
                 </Switch>
-                <Footer />
-            </Router >
-
-        </>
-
-            // ============================================================================
-            // {/*use these to replace <a> tags*/ }
-            // < Link to = "/home" > This Link navigates to the "Home" route</Link >
-
-
-                // <>
-                //     <NavBar />
-                //     <Loading />
-                //     <BookList />
-                //     <LogContainer sessions={this.props.sessions} lists={this.props.lists} />
-                //     <ListsContainer lists={this.props.lists} />
-                //     {/* <Footer /> */}
-                // </>
+            </>
         );
     }
 }
@@ -70,10 +65,10 @@ class NavBar extends Component {
             <header>
                 <div className="header-div">
                     <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
-                    <h3>Chronicle</h3>
-                    < Link to='/home'><p>Explore</p></Link>
-                    <p>Log</p>
-                    <p>Lists</p>
+                    <h3><NavLink exact to='/' className="navLink" activeClassName='activeLink'>Chronicle</NavLink></h3>
+                    <p><NavLink exact to='/' className="navLink" activeClassName='activeLink'>Explore</NavLink></p>
+                    <p><NavLink exact to='/log' className="navLink" activeClassName='activeLink'>Log</NavLink></p>
+                    <p><NavLink exact to='/lists' className="navLink" activeClassName='activeLink'>Lists</NavLink></p>
                     <p>Account</p>
                 </div>
             </header>
