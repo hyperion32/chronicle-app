@@ -74,22 +74,26 @@ class LogContainer extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col">
-                        <div className="d-flex w-100">
-                            <h2 className="page-title">Log</h2>
+                        <div className="row">
+                            <div className="col">
+                                <div className="d-flex w-100">
+                                    <h2 className="page-title">Log</h2>
+                                </div>
+                                <AddNewSession addSessionCallback={this.addSession} />
+                            </div>
                         </div>
-                        <AddNewSession addSessionCallback={this.addSession} />
-                    </div>
-                </div>
 
-                <div className="container-fluid">
-                    <div className="row">
-                        <div id="lists" className="col">
-                            <ListGroup variant="flush">
-                                {sessionElements}
-                            </ListGroup>
+                        <div className="container-fluid">
+                            <div className="row">
+                                <div id="lists" className="col">
+                                    <ListGroup variant="flush">
+                                        {sessionElements}
+                                    </ListGroup>
+                                </div>
+                            </div>
                         </div>
-                        <div className="buffer col"></div>
                     </div>
+                    <div className="buffer col"></div> 
                 </div>
             </div>
         );

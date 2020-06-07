@@ -34,22 +34,26 @@ class ListsContainer extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col">
-                        <div className="d-flex w-100">
-                            <h2 className="page-title">Lists</h2>
+                        <div className="row">
+                            <div className="col">
+                                <div className="d-flex w-100">
+                                    <h2 className="page-title">Lists</h2>
+                                </div>
+                                <AddNewList addListCallback={this.addList}/>
+                            </div>
                         </div>
-                        <AddNewList addListCallback={this.addList}/>
-                    </div>
-                </div>
 
-                <div className="container-fluid">
-                    <div className="row">
-                        <div id="lists" className="col">
-                            <ListGroup variant="flush">
-                                {listElements}
-                            </ListGroup>
+                        <div className="container-fluid">
+                            <div className="row">
+                                <div id="lists" className="col">
+                                    <ListGroup variant="flush">
+                                        {listElements}
+                                    </ListGroup>
+                                </div>
+                            </div>
                         </div>
-                        <div className="buffer col"></div>
                     </div>
+                    <div className="buffer col"></div>
                 </div>
             </div>
         );
