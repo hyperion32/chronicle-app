@@ -26,10 +26,11 @@ class App extends Component {
                 <NavBar />
                 <Switch>
                         <Route exact path="/" component={Loading, BookList} />
-                        <Route path="/log" render={renderLogContainer} />
-                        <Route path="/lists" render={renderListsContainer} />
+                        <Route path="/log" render={Loading, renderLogContainer} />
+                        <Route path="/lists" render={Loading, renderListsContainer} />
                         <Redirect to="/" />
                 </Switch>
+                <Footer />
             </>
         );
     }
