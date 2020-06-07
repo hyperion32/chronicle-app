@@ -24,6 +24,7 @@ class App extends Component {
                 <header>
                     <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
                     <h3>Chronicle</h3>
+                    <p>Explore</p>
                 </header>
             </div>
 
@@ -31,9 +32,9 @@ class App extends Component {
             < Router >
                 {/* <Navbar /> */}
                 <Switch>
-                    {/* <Route path="/home" component={BookList}>
+                    <Route path="/home" component={BookList}>
                         <BookList />
-                    </Route> */}
+                    </Route>
                     {/* <Route path="/log" component={LogContainer}>
                         <ReadingLog />
                     </Route>
