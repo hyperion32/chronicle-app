@@ -20,25 +20,25 @@ class App extends Component {
     render() {
         return (
             <>
-            <div className="header-div">
+            {/* <div className="header-div">
                 <header>
                     <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
                     <h3>Chronicle</h3>
                     <p>Explore</p>
                 </header>
-            </div>
+            </div> */}
 
             {/*Navbar and Footer are outside of the Switch so that no matter what page you're currently viewing, they can still be visible */ }
             < Router >
-                {/* <Navbar /> */}
+                <Navbar />
                 <Switch>
                     <Route path="/home" component={BookList}>
                         <BookList />
                     </Route>
                     {/* <Route path="/log" component={LogContainer}>
                         <ReadingLog />
-                    </Route>
-                    <Route path="/list" component={ListsContainer}>
+                    </Route> */}
+                    {/* <Route path="/list" component={ListsContainer}>
                         <ReadingList />
                     </Route> */}
                 </Switch>
