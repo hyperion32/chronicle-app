@@ -24,8 +24,6 @@ class App extends Component {
         return (
             <>
                 <NavBar />
-                <LogContainer sessions={this.props.sessions}  lists={this.props.lists}/>
-
                 <Switch>
                         <Route exact path="/" component={Loading, BookList} />
                         <Route path="/log" render={renderLogContainer} />
