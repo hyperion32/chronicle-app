@@ -39,7 +39,6 @@ class SearchResults extends React.Component {
                                         <Button onClick={this.submitSearch.bind(this)} variant="primary btn-sm" id="search-button" type="submit">
                                             <i className="fa fa-search" aria-hidden="true"></i>
                                         </Button>{' '}
-
                                     </form>
                                 </div>
                             </div>
@@ -52,7 +51,6 @@ class SearchResults extends React.Component {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="buffer col"></div> */}
                 </div>
             </div>
         );

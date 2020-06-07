@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from 'react';
 // import { Button, FormGroup, FormControl } from "react-bootstrap";
 import firebase from 'firebase/app';
 
 
-class Account extends React.Component {
+class Account extends Component {
 
     constructor(props) {
         super(props)
