@@ -23,36 +23,12 @@ class App extends Component {
 
         return (
             <>
-<<<<<<< HEAD
-            {/* <div className="header-div">
-                <header>
-                    <a href="#explore"><img className="logo" src="img/book.png" alt="book logo" /></a>
-                    <h3>Chronicle</h3>
-                    <p>Explore</p>
-                </header>
-            </div> */}
-
-            {/*Navbar and Footer are outside of the Switch so that no matter what page you're currently viewing, they can still be visible */ }
-            < Router >
-                <Navbar />
-                <Switch>
-                    <Route path="/home" component={BookList}>
-                        <BookList />
-                    </Route>
-                    {/* <Route path="/log" component={LogContainer}>
-                        <ReadingLog />
-                    </Route> */}
-                    {/* <Route path="/list" component={ListsContainer}>
-                        <ReadingList />
-                    </Route> */}
-=======
                 <NavBar />
                 <Switch>
                         <Route exact path="/" component={Loading, BookList} />
                         <Route path="/log" render={renderLogContainer} />
                         <Route path="/lists" render={renderListsContainer} />
                         <Redirect to="/" />
->>>>>>> a4d9d1def15bad671611dd49efac5399e7632c25
                 </Switch>
             </>
         );
