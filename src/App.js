@@ -32,9 +32,6 @@ class App extends Component {
                         <Route path="/lists" render={renderListsContainer} />
                         <Redirect to="/" />
                 </Switch>
-
-
-                <Footer />
             </>
         );
     }
