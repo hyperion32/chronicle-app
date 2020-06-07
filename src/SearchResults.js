@@ -5,6 +5,11 @@ class SearchResults extends React.Component {
     constructor(props) {
         super(props);
         let input = document.querySelector("input");
+
+        if (input === null) {
+            input = "";
+        }
+
         this.state = {
             searchVal: input.value
         }
