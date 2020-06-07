@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import { Button, FormGroup, FormControl } from "react-bootstrap";
 import firebase from 'firebase/app';
 
 
-class SignUp extends Component {
+class SignUp extends React.Component {
 
     constructor(props) {
         super(props)
@@ -13,7 +13,7 @@ class SignUp extends Component {
             username: '',
             user: null,
         };
-    }
+    } 
 
     componentDidMount() {
 
@@ -139,5 +139,6 @@ class SignUp extends Component {
         );
     }
 }
+
 
 export default SignUp;

@@ -38,9 +38,9 @@ class App extends Component {
                     <Redirect to="/" />
                 </Switch>
                 <Footer />
-                <div>
+                {/* <div>
                     <Account />
-                </div>
+                </div> */}
             </>
         );
     }
