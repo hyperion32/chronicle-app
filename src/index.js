@@ -9,9 +9,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SAMPLE_SESSIONS from './sample-data/sessions.json';
 import SAMPLE_LISTS from './sample-data/lists.json';
 
+import {BrowserRouter} from 'react-router-dom';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App sessions={SAMPLE_SESSIONS} lists={SAMPLE_LISTS}/>
+    <BrowserRouter><App sessions={SAMPLE_SESSIONS} lists={SAMPLE_LISTS}/></BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
