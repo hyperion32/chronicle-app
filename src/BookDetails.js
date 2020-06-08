@@ -8,8 +8,9 @@ class BookDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            book: undefined,
-            error: null
+            error: null,
+            isLoaded: false,
+            book: undefined
         };
     }
 
@@ -28,67 +29,82 @@ class BookDetails extends Component {
                 (result) => {
                     console.log("result: ");
                     console.log(result.items[0]);
-                    this.setState({book: result.items[0]});
+                    this.setState({
+                        isLoaded: true,
+                        book: result.items[0]
+                    });
+                    // this.setState(prevState => {
+                    //     let shallowCopy = Object.assign({}, prevState.book);
+                    //     return result.items[0];
+                    //   })
                 },
 
-                (newError) => {
-                    this.setState({error: newError});
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
                 }
             )
     }
 
     render() {
         console.log("rendering...");
-        let bookId = this.props.match.params.bookId;
-        console.log("bookId: " + bookId);
 
-        this.getBookFromId(bookId);
-        console.log("state: ")
-        console.log(this.state);
-
-        let bookInfo = this.state.book;
-        console.log("book info ");
-        console.log(bookInfo);
-
-
-        let volumeInfo = bookInfo.volumeInfo;
-        let saleInfo = bookInfo.saleInfo;
-        let isbn10;
-        let isbn13;
-        if (volumeInfo.industryIdentifiers[0].type === "ISBN_10") {
-            isbn10 = volumeInfo.industryIdentifiers[0].identifier;
-            isbn13 = volumeInfo.industryIdentifiers[1].identifier;
+        const { error, isLoaded } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div className="text-center">Loading...</div>;
         } else {
-            isbn10 = volumeInfo.industryIdentifiers[1].identifier;
-            isbn13 = volumeInfo.industryIdentifiers[0].identifier;
-        }
+            // information sources
+            let bookInfo = this.state.book;
+            let volumeInfo = bookInfo.volumeInfo;
+            let saleInfo = bookInfo.saleInfo;
 
-        return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col">
-                        <Heading title={volumeInfo.title} authors={volumeInfo.authors} rating={volumeInfo.averageRating} />
+            // isbn
+            let isbn10;
+            let isbn13;
+            if (volumeInfo.industryIdentifiers[0].type === "ISBN_10") {
+                isbn10 = volumeInfo.industryIdentifiers[0].identifier;
+                isbn13 = volumeInfo.industryIdentifiers[1].identifier;
+            } else {
+                isbn10 = volumeInfo.industryIdentifiers[1].identifier;
+                isbn13 = volumeInfo.industryIdentifiers[0].identifier;
+            }
+
+            return (
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col">
+                            <Heading title={volumeInfo.title} authors={volumeInfo.authors} rating={volumeInfo.averageRating} 
+                            imgLink={volumeInfo.imageLinks.thumbnail} />
+                        </div>
+                        <div className="buffer col"></div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <Description description={volumeInfo.description} />
+                        </div>
+                        <div className="buffer col"></div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <QuickInfo rating={volumeInfo.averageRating} pageCount={volumeInfo.pageCount} language={volumeInfo.language}
+                            publishedDate={saleInfo.publishedDate} price={saleInfo.retailPrice.amount} currency={saleInfo.retailPrice.currency}
+                            categories={volumeInfo.categories} isbn10={isbn10} isbn13={isbn13} />
+                        </div>
+                        <div className="buffer col"></div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <ActionButtons />
+                        </div>
+                        <div className="buffer col"></div>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col">
-                        <Description description={volumeInfo.description} />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <QuickInfo rating={volumeInfo.rating} pageCount={volumeInfo.pageCount} language={volumeInfo.language}
-                        publishedDate={saleInfo.publishedDate} price={saleInfo.retailPrice.amount} currency={saleInfo.retailPrice.currency}
-                        categories={volumeInfo.categories} isbn10={isbn10} isbn13={isbn13} />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                    <ActionButtons />
-                    </div>
-                </div>
-            </div>
-        );
+            );
+        }
     }
 }
 
@@ -96,7 +112,7 @@ class Heading extends Component {
     render() {
         return (
             <header>
-                <img src="http://books.google.com/books/content?id=lPV1CQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" className="details book-cover" alt="Book cover" />
+                <img src={this.props.imgLink} className="details book-cover" alt="Book cover" />
                 <h2 className="title" >{this.props.title}</h2>
                 <h3 className="author">{this.props.authors}</h3>
                 <p>{this.props.rating} out of 5 stars</p>
@@ -116,6 +132,7 @@ class Description extends Component {
     render() {
         return (
             <>
+            <h3>Description</h3>
             <p>{this.props.description}</p>
             <p><a href="#">See more from this author.</a></p>
             </>
