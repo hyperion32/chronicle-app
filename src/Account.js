@@ -41,6 +41,14 @@ class SignUp extends React.Component {
                 let user = userCredential.user;
                 console.log(user);
 
+                let usersRef = firebase.database().ref("users");
+                let emailInput = this.state.email;
+                let usernameInput = this.state.username;
+                let passwordInput = this.state.password;
+                usersRef.set({
+                    [emailInput]: {username:{usernameInput}, password:{passwordInput}}
+                });
+
                 let updatePromise = user.updateProfile({ displayName: this.state.username })
                 return updatePromise;
             })
