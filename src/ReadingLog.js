@@ -56,7 +56,50 @@ class LogContainer extends Component {
     }
 
     render() {
-        let sessions = this.state.sessions;
+        return (
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col">
+                        <TitleRow />
+                        <FormRow addSessionCallback={this.addSession} />
+                        <SessionsDataRow sessions={this.state.sessions} lists={this.props.lists} />
+                    </div>
+                    <div className="buffer col"></div> 
+                </div>
+            </div>
+        );
+    }
+}
+
+class TitleRow extends Component {
+    render() {
+        return(
+            <div className="row">
+                <div className="col">
+                    <div className="d-flex w-100">
+                        <h2 className="page-title">Log</h2>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+class FormRow extends Component {
+    render() {
+        return (
+            <div className="row">
+                <div className="col">
+                <AddNewSession addSessionCallback={this.props.addSessionCallback} />
+                </div>
+            </div>
+        );
+    }
+}
+
+class SessionsDataRow extends Component {
+    render() {
+        let sessions = this.props.sessions;
         let index = -1;
         // https://www.geeksforgeeks.org/how-to-use-map-on-an-array-in-reverse-order-with-javascript/
         let sessionElements = sessions.slice(0).reverse().map((session) => {
@@ -71,29 +114,11 @@ class LogContainer extends Component {
         });
 
         return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col">
-                        <div className="row">
-                            <div className="col">
-                                <div className="d-flex w-100">
-                                    <h2 className="page-title">Log</h2>
-                                </div>
-                                <AddNewSession addSessionCallback={this.addSession} />
-                            </div>
-                        </div>
-
-                        <div className="container-fluid">
-                            <div className="row">
-                                <div id="lists" className="col">
-                                    <ListGroup variant="flush">
-                                        {sessionElements}
-                                    </ListGroup>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="buffer col"></div> 
+            <div className="row">
+                <div id="lists" className="col">
+                    <ListGroup variant="flush">
+                        {sessionElements}
+                    </ListGroup>
                 </div>
             </div>
         );
