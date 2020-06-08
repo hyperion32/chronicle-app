@@ -1,10 +1,7 @@
 import React from 'react';
 import SearchResults from './SearchResults';
-//import CardResults from "./CardResults";
-//import BookSearchResults from './BookSearchResults';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card'
-// import Button from 'react-bootstrap/Button';
 
 class BookCard extends React.Component {
     constructor(props) {
