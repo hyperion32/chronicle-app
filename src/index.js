@@ -1,17 +1,20 @@
+// React
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './style.css';
-import App from './App';
+import {BrowserRouter} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+// Style
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './style.css';
+// Firebase
 import firebase from 'firebase/app';
 import 'firebase/auth';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import 'firebase/database';
+// Data
 import SAMPLE_SESSIONS from './sample-data/sessions.json';
 import SAMPLE_LISTS from './sample-data/lists.json';
-
-import {BrowserRouter} from 'react-router-dom';
+// Components
+import App from './App';
 
 var firebaseConfig = {
   apiKey: "AIzaSyCIv5weJQV0tKIa09FJvXJV8TviDDQ8img",
