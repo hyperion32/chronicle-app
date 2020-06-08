@@ -88,12 +88,12 @@ class Account extends Component {
             content = (
                 <div>
 
-                    <div className="alert alert-success">
-                        <h3>Logged in as {this.state.user.displayName}
+                    <div className="alert alert-success" style={{backgroundColor: "#f2edfb", borderColor: "#f2edfb"}}>
+                        <p style={{color: "black", fontSize: "20px"}}>Logged in as <strong style={{fontWeight: "900"}}>{this.state.user.displayName}</strong>
                             <button className="btn btn-warning float-right" onClick={this.handleSignOut}>
                                 Sign Out
                             </button>
-                        </h3>
+                        </p>
                     </div>
                 </div>
             )
