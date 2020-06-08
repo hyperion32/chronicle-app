@@ -4,7 +4,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 // import firebase from 'firebase/app';
-import BookDetails from './BookDetails.js';
 
 class ListsContainer extends Component {
     constructor(props) {
@@ -32,7 +31,7 @@ class ListsContainer extends Component {
                     <div className="col">
                         <TitleRow />
                         <FormRow addListCallback={this.addList} />
-                        <ListsDataRow lists={this.state.lists} />                        
+                        <ListsDataRow lists={this.state.lists} />
                     </div>
                     <div className="buffer col"></div>
                 </div>

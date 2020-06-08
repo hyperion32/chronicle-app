@@ -6,13 +6,43 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 class BookDetails extends Component {
     render() {
+        let volumeInfo = this.props.info.volumeInfo;
+        let saleInfo = this.props.info.saleInfo;
+        let isbn10;
+        let isbn13;
+        if (volumeInfo.industryIdentifiers[0].type === "ISBN_10") {
+            isbn10 = volumeInfo.industryIdentifiers[0].identifier;
+            isbn13 = volumeInfo.industryIdentifiers[1].identifier;
+        } else {
+            isbn10 = volumeInfo.industryIdentifiers[1].identifier;
+            isbn13 = volumeInfo.industryIdentifiers[0].identifier;
+        }
+
         return (
-            <>
-                <Heading />
-                <Description />
-                <QuickInfo />
-                <ActionButtons />
-            </>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col">
+                        <Heading title={volumeInfo.title} authors={volumeInfo.authors} rating={volumeInfo.averageRating} />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <Description description={volumeInfo.description} />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <QuickInfo rating={volumeInfo.rating} pageCount={volumeInfo.pageCount} language={volumeInfo.language}
+                        publishedDate={saleInfo.publishedDate} price={saleInfo.retailPrice.amount} currency={saleInfo.retailPrice.currency}
+                        categories={volumeInfo.categories} isbn10={isbn10} isbn13={isbn13} />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                    <ActionButtons />
+                    </div>
+                </div>
+            </div>
         );
     }
 }
@@ -22,15 +52,16 @@ class Heading extends Component {
         return (
             <header>
                 <img src="http://books.google.com/books/content?id=lPV1CQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" className="details book-cover" alt="Book cover" />
-                <h2 className="title">Twilight (Twilight, #1)</h2>
-                <h3 className="author">Stephenie Meyer</h3>
-                <div className="rating">
+                <h2 className="title" >{this.props.title}</h2>
+                <h3 className="author">{this.props.authors}</h3>
+                <p>{this.props.rating} out of 5 stars</p>
+                {/* <div className="rating">
                     <span className="fa fa-star checked"></span>
                     <span className="fa fa-star checked"></span>
                     <span className="fa fa-star checked"></span>
                     <span className="fa fa-star checked"></span>
                     <span className="fa fa-star"></span>
-                </div>
+                </div> */}
             </header>
         );
     }
@@ -40,14 +71,7 @@ class Description extends Component {
     render() {
         return (
             <>
-            <h3>Description</h3>
-            <p>About three things I was absolutely positive.</p>
-            <p>First, Edward was a vampire.</p>
-            <p>Second, there was a part of him—and I didn't know how dominant
-                that part might be—that thirsted for my blood.</p>
-            <p>And third, I was unconditionally and irrevocably in love with him.</p>
-            <p>Deeply seductive and extraordinarily suspenseful,
-                Twilight is a love story with bite.</p>
+            <p>{this.props.description}</p>
             <p><a href="#">See more from this author.</a></p>
             </>
         );
@@ -60,12 +84,13 @@ class QuickInfo extends Component {
             <>
             <h3>Quick Info</h3>
             <ul>
-                <li>Rating: 3.59/5</li>
-                <li>Length: 501 pages</li>
-                <li>Paperback price: $15.29</li>
-                <li>Language: English</li>
-                <li>ISBN: 0316015849 (ISBN13: 9780316015844)</li>
-                <li>Genres: Young Adult, Fantasy, Romance</li>
+                <li>Rating: {this.props.rating}/5</li>
+                <li>Length: {this.props.pageCount} pages</li>
+                <li>Language: {this.props.language}</li>
+                <li>Published: {this.props.publishedDate}</li>
+                <li>Retail Price: {this.props.price} {this.props.currency}</li>
+                <li>Genre: {this.props.categories}</li>
+                <li>ISBN: {this.props.isbn10}, ISBN13: {this.props.isbn13}</li>
             </ul>
             </>
         );
