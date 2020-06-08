@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import firebase from 'firebase/app';
+// import firebase from 'firebase/app';
 
 class ListsContainer extends Component {
     constructor(props) {

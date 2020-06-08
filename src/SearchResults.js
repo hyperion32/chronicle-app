@@ -27,12 +27,8 @@ class SearchResults extends React.Component {
                 <div className="row">
                     <div className="col">
                         <div className="row">
-                            <div className="col">
-                                <div className="d-flex w-100">
-                                    <h2 className="page-title">Explore</h2>
-                                </div>
-                            </div>
-                            <div className="col">
+                            <TitleRow />
+                            {/* <div className="col">
                                 <div className="search-results">
                                     <form onSubmit={this.props.data} action="" className="mt-3">
                                         <input onKeyUp={(e) => { this.setState({ searchVal: e.target.value }) }} type="text" placeholder="Search" />
@@ -41,10 +37,7 @@ class SearchResults extends React.Component {
                                         </Button>{' '}
                                     </form>
                                 </div>
-                            </div>
-                            <div className="col">
-                                <SortDropdown handleSort={this.props.handleSort} />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -53,8 +46,49 @@ class SearchResults extends React.Component {
     }
 }
 
-class SortDropdown extends React.Component {
+class TitleRow extends React.Component {
+
     render() {
+
+        return (
+            <div className="row">
+                <div className="col">
+                    <div className="d-flex w-100">
+                        <h2 className="page-title">Explore</h2>
+                    </div>
+                </div>
+                {/* <SearchResultForm submitSearch={this.props.submitSearch}/> */}
+                <div className="col">
+                    <SortDropdown handleSort={this.props.handleSort} />
+                </div>
+            </div>
+        );
+    }
+}
+
+// class SearchResultForm extends React.Component {
+
+//     render() {
+
+//         return (
+//             <div className="col">
+//                 <div className="search-results">
+//                     <form onSubmit={this.props.data} action="" className="mt-3">
+//                         <input onKeyUp={(e) => { this.setState({ searchVal: e.target.value }) }} type="text" placeholder="Search" />
+//                         <Button onClick={this.submitSearch.bind(this)} variant="primary btn-sm" id="search-button" type="submit">
+//                             <i className="fa fa-search" aria-hidden="true"></i>
+//                         </Button>{' '}
+//                     </form>
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
+
+class SortDropdown extends React.Component {
+
+    render() {
+
         return (
             <select defaultValue="Sort" onChange={this.props.handleSort} className="mt-4">
                 <option disabled value="Sort">Sort</option>

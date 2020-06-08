@@ -18,12 +18,14 @@ class LogContainer extends Component {
         let sessionDate = this.getFormattedDate();
         let sessionListId = this.findListId(sessionTitle);
 
-        let newSession = {title: sessionTitle, date: sessionDate, startPage: sessionStartPage, endPage: sessionEndPage,
-                        minutes: sessionMinutes, listId: sessionListId, notes: sessionNotes};
+        let newSession = {
+            title: sessionTitle, date: sessionDate, startPage: sessionStartPage, endPage: sessionEndPage,
+            minutes: sessionMinutes, listId: sessionListId, notes: sessionNotes
+        };
         this.setState((prevState) => {
             let shallowCopy = Object.assign([], prevState.sessions);
             shallowCopy.push(newSession);
-            return {sessions: shallowCopy};
+            return { sessions: shallowCopy };
         })
     }
 
@@ -66,8 +68,8 @@ class LogContainer extends Component {
                 color = this.props.lists[listId].color;
             }
             index++;
-            return <Session key={index} title={session.title} date={session.date} startPage={session.startPage} 
-                    endPage={session.endPage} minutes={session.minutes} notes={session.notes} color={color} />
+            return <Session key={index} title={session.title} date={session.date} startPage={session.startPage}
+                endPage={session.endPage} minutes={session.minutes} notes={session.notes} color={color} />
         });
 
         return (
@@ -93,7 +95,7 @@ class LogContainer extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="buffer col"></div> 
+                    <div className="buffer col"></div>
                 </div>
             </div>
         );
@@ -113,8 +115,8 @@ class Session extends Component {
         return (
             <ListGroup.Item className="session">
                 <div className="d-flex w-100 justify-content-between">
-                    <h3 className="session-list mb-1" style={{borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem", fontSize: "20px"}}>{title}</h3>
-                    <p className="date" style={{marginBottom: "1.5rem", marginLeft: ".5rem"}}>{date}</p>
+                    <h3 className="session-list mb-1" style={{ borderLeft: borderStyle, paddingLeft: "7px", marginTop: "1rem", fontSize: "20px" }}>{title}</h3>
+                    <p className="date" style={{ marginBottom: "1.5rem", marginLeft: ".5rem" }}>{date}</p>
                 </div>
                 <i className="open-details fa fa-chevron-right" aria-hidden="true"></i>
                 <p className="progress-count">{pages} pages • {minutes} minutes</p>
@@ -139,15 +141,15 @@ class AddNewSession extends Component {
     handleChange = (event) => {
         let form = event.target.id;
         if (form === "formTitle") {
-            this.setState({title: event.target.value});
+            this.setState({ title: event.target.value });
         } else if (form === "formStart") {
-            this.setState({startPage: event.target.value});
+            this.setState({ startPage: event.target.value });
         } else if (form === "formEnd") {
-            this.setState({endPage: event.target.value});
+            this.setState({ endPage: event.target.value });
         } else if (form === "formTime") {
-            this.setState({minutes: event.target.value});
+            this.setState({ minutes: event.target.value });
         } else {
-            this.setState({notes: event.target.value});
+            this.setState({ notes: event.target.value });
         }
     }
 
@@ -158,7 +160,7 @@ class AddNewSession extends Component {
 
     render() {
         return (
-            <Form style={{marginLeft: "1rem"}}>
+            <Form style={{ marginLeft: "1rem" }}>
                 <Form.Group>
                     <Form.Label>Book</Form.Label>
                     <Form.Control id="formTitle" onChange={this.handleChange} type="text" placeholder="title" />
