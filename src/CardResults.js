@@ -12,7 +12,7 @@ const CardResults = (props) => {
     return (
         <div>
             <Card className='mb-8 border-lightgray mt-4'>
-                <Card.Img variant="top" src={thumbNail} alt="" />
+                <Card.Img variant="top" src={thumbNail} alt="" style={{paddingTop: "2rem"}} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>{authors}</Card.Text>
