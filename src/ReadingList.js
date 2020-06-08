@@ -23,7 +23,52 @@ class ListsContainer extends Component {
     }
 
     render() {
-        let lists = this.state.lists;
+        
+
+        return (
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col">
+                        <TitleRow />
+                        <FormRow addListCallback={this.addList} />
+                        <ListsDataRow lists={this.state.lists} />                        
+                    </div>
+                    <div className="buffer col"></div>
+                </div>
+            </div>
+        );
+    }
+}
+
+class TitleRow extends Component {
+    render() {
+        return(
+            <div className="row">
+                <div className="col">
+                    <div className="d-flex w-100">
+                        <h2 className="page-title">Lists</h2>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+class FormRow extends Component {
+    render() {
+        return (
+            <div className="row">
+                <div className="col">
+                    <AddNewList addListCallback={this.props.addListCallback} />
+                </div>
+            </div>
+        );
+    }
+}
+
+class ListsDataRow extends Component {
+    render() {
+        let lists = this.props.lists;
         let index = -1;
         // https://www.geeksforgeeks.org/how-to-use-map-on-an-array-in-reverse-order-with-javascript/
         let listElements = lists.slice(0).reverse().map((list) => {
@@ -32,34 +77,17 @@ class ListsContainer extends Component {
         });
 
         return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col">
-                        <div className="row">
-                            <div className="col">
-                                <div className="d-flex w-100">
-                                    <h2 className="page-title">Lists</h2>
-                                </div>
-                                <AddNewList addListCallback={this.addList}/>
-                            </div>
-                        </div>
-
-                        <div className="container-fluid">
-                            <div className="row">
-                                <div id="lists" className="col">
-                                    <ListGroup variant="flush">
-                                        {listElements}
-                                    </ListGroup>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="buffer col"></div>
+            <div className="row">
+                <div id="lists" className="col">
+                    <ListGroup variant="flush">
+                        {listElements}
+                    </ListGroup>
                 </div>
             </div>
         );
     }
 }
+
 
 class ListItem extends Component {
     render() {
