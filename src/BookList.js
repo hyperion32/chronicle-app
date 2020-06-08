@@ -1,6 +1,9 @@
 import React from 'react';
 import SearchResults from './SearchResults';
-import BookSearchResults from './BookSearchResults';
+import CardResults from "./CardResults";
+//import BookSearchResults from './BookSearchResults';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card'
 // import Button from 'react-bootstrap/Button';
 
 class BookCard extends React.Component {
@@ -14,6 +17,10 @@ class BookCard extends React.Component {
             sortPageCount: ""
         };
     }
+
+    // handleClick = () => {
+    //     this.setState({redirectTo: this.props.book});
+    // }
 
     updateResults = (searchVal) => {
         this.setState({ searchInput: searchVal });
@@ -74,6 +81,19 @@ class BookCard extends React.Component {
                 </>
             );
         }
+    }
+}
+
+class BookSearchResults extends React.Component {
+    render() {
+        let allCards = this.props.items.map((book) => {
+            return <CardResults key={book.id} info={book} />
+        })
+        return (
+            <div className="card-columns">
+                {allCards}
+            </div>
+        );
     }
 }
 
