@@ -85,8 +85,8 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <h2>Sign up!</h2>
+            <div className="container-fluid">
+                <h2 className="page-title">Account</h2>
 
                 {/* Only included if first clause is true */}
                 {this.state.errorMessage &&
@@ -124,14 +124,14 @@ class SignUp extends React.Component {
                     />
                 </div>
 
-                <div className="form-group mb-5">
-                    <button className="btn btn-primary mr-2" onClick={this.handleSignUp}>
+                <div className="form-group mb-5 text-center">
+                    <button className="btn btn-primary mr-5" onClick={this.handleSignUp}>
                         Sign Up
                 </button>
-                    <button className="btn btn-success mr-2" onClick={this.handleSignIn}>
+                    <button className="btn btn-success mr-5" onClick={this.handleSignIn}>
                         Sign In
                 </button>
-                    <button className="btn btn-warning mr-2" onClick={this.handleSignOut}>
+                    <button className="btn btn-warning mr-5" onClick={this.handleSignOut}>
                         Sign Out
                 </button>
                 </div>
