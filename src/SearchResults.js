@@ -43,11 +43,7 @@ class SearchResults extends React.Component {
                                 </div>
                             </div>
                             <div className="col">
-                                <select defaultValue="Sort" onChange={this.props.handleSort} className="mt-4">
-                                    <option disabled value="Sort">Sort</option>
-                                    <option value="oldest">Oldest</option>
-                                    <option value="newest">Newest</option>
-                                </select>
+                                <SortDropdown handleSort={this.props.handleSort} />
                             </div>
                         </div>
                     </div>
@@ -56,4 +52,17 @@ class SearchResults extends React.Component {
         );
     }
 }
+
+class SortDropdown extends React.Component {
+    render() {
+        return (
+            <select defaultValue="Sort" onChange={this.props.handleSort} className="mt-4">
+                <option disabled value="Sort">Sort</option>
+                <option value="oldest">Oldest</option>
+                <option value="newest">Newest</option>
+            </select>
+        );
+    }
+}
+
 export default SearchResults;
