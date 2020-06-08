@@ -91,7 +91,7 @@ class BookDetails extends Component {
                     <div className="row">
                         <div className="col">
                             <QuickInfo rating={volumeInfo.averageRating} pageCount={volumeInfo.pageCount} language={volumeInfo.language}
-                            publishedDate={saleInfo.publishedDate} price={saleInfo.retailPrice.amount} currency={saleInfo.retailPrice.currency}
+                            publishedDate={volumeInfo.publishedDate} price={saleInfo.retailPrice.amount} currency={saleInfo.retailPrice.currencyCode}
                             categories={volumeInfo.categories} isbn10={isbn10} isbn13={isbn13} />
                         </div>
                         <div className="buffer col"></div>
