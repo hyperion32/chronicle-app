@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchResults from './SearchResults';
-import CardResults from "./CardResults";
+//import CardResults from "./CardResults";
 //import BookSearchResults from './BookSearchResults';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card'
@@ -92,6 +92,31 @@ class BookSearchResults extends React.Component {
         return (
             <div className="card-columns">
                 {allCards}
+            </div>
+        );
+    }
+}
+
+class CardResults extends React.Component {
+    render () {
+        const { volumeInfo } = this.props.info;
+        const {title, authors, pageCount, averageRating, infoLink} = this.props.info.volumeInfo;
+        const thumbNail = volumeInfo.hasOwnProperty('imageLinks') === false ? "https://bitsofco.de/content/images/2018/12/broken-1.png" : volumeInfo.imageLinks.thumbnail;
+        const date = volumeInfo.hasOwnProperty('publishedDate') === false ? volumeInfo['publishedDate'] = "0000" : volumeInfo.publishedDate;
+        
+        return (
+            <div>
+                <Card className='mb-8 border-lightgray mt-4'>
+                    <Card.Img variant="top" src={thumbNail} alt="" style={{paddingTop: "2rem"}} />
+                    <Card.Body>
+                        <Card.Title>{title}</Card.Title>
+                        <Card.Text>{authors}</Card.Text>
+                        <Card.Text>{pageCount} pages</Card.Text>
+                        <Card.Text>{averageRating} out of 5 stars</Card.Text>
+                        <Card.Text>Published Date: {date === '0000' ? 'date unknown' : date.substring(0, 4)}</Card.Text>
+                        <Button variant="primary" className="card-button" href={infoLink}>Learn More</Button>{' '}
+                    </Card.Body>
+                </Card>
             </div>
         );
     }
