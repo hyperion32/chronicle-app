@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BookList from './BookList';
 import LogContainer from './ReadingLog';
 import ListsContainer from './ReadingList';
+import BookDetails from './BookDetails';
 import SignUp from './Account.js';
 import './style.css';
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
@@ -35,6 +36,7 @@ class App extends Component {
                     <Route path="/log" render={Loading, renderLogContainer} />
                     <Route path="/lists" render={Loading, renderListsContainer} />
                     <Route path="/account" component={SignUp} />
+                    <Route path="/viewdetails/:bookId" component={BookDetails} />
                     <Redirect to="/" />
                 </Switch>
                 <Footer />

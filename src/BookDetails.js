@@ -5,9 +5,54 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 class BookDetails extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            book: undefined,
+            error: null
+        };
+    }
+
+    componentDidMount() {
+        console.log("mounted");
+        let bookId = this.props.match.params.bookId;
+
+        this.getBookFromId(bookId);
+    }
+
+    getBookFromId = (id) => {
+        fetch("https://www.googleapis.com/books/v1/volumes?q=" + id)
+
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log("result: ");
+                    console.log(result.items[0]);
+                    this.setState({book: result.items[0]});
+                },
+
+                (newError) => {
+                    this.setState({error: newError});
+                }
+            )
+    }
+
     render() {
-        let volumeInfo = this.props.info.volumeInfo;
-        let saleInfo = this.props.info.saleInfo;
+        console.log("rendering...");
+        let bookId = this.props.match.params.bookId;
+        console.log("bookId: " + bookId);
+
+        this.getBookFromId(bookId);
+        console.log("state: ")
+        console.log(this.state);
+
+        let bookInfo = this.state.book;
+        console.log("book info ");
+        console.log(bookInfo);
+
+
+        let volumeInfo = bookInfo.volumeInfo;
+        let saleInfo = bookInfo.saleInfo;
         let isbn10;
         let isbn13;
         if (volumeInfo.industryIdentifiers[0].type === "ISBN_10") {
