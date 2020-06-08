@@ -17,11 +17,8 @@ const CardResults = (props) => {
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>{authors}</Card.Text>
                     <Card.Text>{pageCount} pages</Card.Text>
-                    {/* // add conditional info to pages and rating */}
                     <Card.Text>{averageRating} out of 5 stars</Card.Text>
                     <Card.Text>Published Date: {date === '0000' ? 'date unknown' : date.substring(0, 4)}</Card.Text>
-                    {/* <Card.Text>{props.isbn10}</Card.Text>
-                    <Card.Text>{props.isbn13}</Card.Text> */}
                     <Button variant="primary" className="card-button" href={infoLink}>Learn More</Button>{' '}
                 </Card.Body>
             </Card>
