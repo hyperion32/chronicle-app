@@ -9,14 +9,11 @@ class Account extends Component {
         this.state = { user: null }
     }
 
-    //Configure FirebaseUI (inside the component, public class field)
     uiConfig = {
-        //which sign in values should we support?
         signInOptions: [
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
             firebase.auth.GoogleAuthProvider.PROVIDER_ID
         ],
-        //for external sign-in methods, use popup instead of redirect
         signInFlow: 'popup',
     };
 
@@ -34,9 +31,8 @@ class Account extends Component {
 
     }
 
-    //A callback function for registering new users
     handleSignUp = () => {
-        this.setState({ errorMessage: null }); //clear old error
+        this.setState({ errorMessage: null });
 
         console.log("Creating user", this.state.email);
 
@@ -45,7 +41,6 @@ class Account extends Component {
                 let user = userCredential.user;
                 console.log(user);
 
-                // add new user to database
                 let usersRef = firebase.database().ref("users");
                 let emailInput = this.state.email;
                 let usernameInput = this.state.username;
@@ -60,7 +55,7 @@ class Account extends Component {
             .then(() => {
                 this.setState((prevState) => {
                     let updatedUser = { ...prevState.user, displayName: this.state.username }
-                    return { user: updatedUser }; //updating the state
+                    return { user: updatedUser }; 
                 });
             })
             .catch((err) => {
@@ -79,12 +74,12 @@ class Account extends Component {
 
     render() {
         let content = null;
-        if (!this.state.user) { //signed out
+        if (!this.state.user) { 
             content = (
                 <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
             )
         }
-        else { //signed in
+        else { 
             content = (
                 <div>
 
@@ -102,12 +97,10 @@ class Account extends Component {
         return (
             <div className="container-fluid">
                 <h2 className="page-title">Account</h2>
-                {/* Only included if first clause is true */}
                 {this.state.errorMessage &&
                     <p className="alert alert-danger">{this.state.errorMessage}</p>
                 }
 
-                {/* Show content based on user login state */}
                 {content}
 
             </div>
