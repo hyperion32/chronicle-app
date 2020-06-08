@@ -1,24 +1,28 @@
-import React from 'react';
-// import { Button, FormGroup, FormControl } from "react-bootstrap";
+import React, { Component } from 'react';
 import firebase from 'firebase/app';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
-
-class SignUp extends React.Component {
-
+class Account extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            email: '',
-            password: '',
-            username: '',
-            user: null,
-        };
-    } 
+
+        this.state = { user: null }
+    }
+
+    //Configure FirebaseUI (inside the component, public class field)
+    uiConfig = {
+        //which sign in values should we support?
+        signInOptions: [
+            firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        ],
+        //for external sign-in methods, use popup instead of redirect
+        signInFlow: 'popup',
+    };
 
     componentDidMount() {
-
         //when I signed in or signed out
-        firebase.auth().onAuthStateChanged((firebaseUser) => {
+        this.authUnSubFunction = firebase.auth().onAuthStateChanged((firebaseUser) => {
             if (firebaseUser) { //if exists, then we logged in
                 console.log("Logged in as", firebaseUser.email);
                 this.setState({ user: firebaseUser })
@@ -27,118 +31,52 @@ class SignUp extends React.Component {
                 this.setState({ user: null })
             }
         })
-
     }
 
-    //A callback function for registering new users
-    handleSignUp = () => {
-        this.setState({ errorMessage: null }); //clear old error
-
-        console.log("Creating user", this.state.email);
-
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then((userCredential) => {
-                let user = userCredential.user;
-                console.log(user);
-
-                let updatePromise = user.updateProfile({ displayName: this.state.username })
-                return updatePromise;
-            })
-            .then(() => {
-                this.setState((prevState) => {
-                    let updatedUser = { ...prevState.user, displayName: this.state.username }
-                    return { user: updatedUser }; //updating the state
-                });
-            })
-            .catch((err) => {
-                this.setState({ errorMessage: err.message });
-            })
-
+    componentWillUnmount() {
+        this.authUnSubFunction();
     }
 
-    //A callback function for logging in existing users
-    handleSignIn = () => {
-        this.setState({ errorMessage: null }); //clear old error
-
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-            .catch((err) => {
-                this.setState({ errorMessage: err.message });
-            })
-    }
-
-    //A callback function for logging out the current user
     handleSignOut = () => {
-        this.setState({ errorMessage: null }); //clear old error
-
         firebase.auth().signOut()
-
-    }
-
-    handleChange = (event) => {
-        let field = event.target.name; //which input
-        let value = event.target.value; //what value
-
-        let changes = {}; //object to hold changes
-        changes[field] = value; //change this field
-        this.setState(changes); //update state
     }
 
     render() {
+        let content = null;
+        if (!this.state.user) { //signed out
+            content = (
+                <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+            )
+        }
+        else { //signed in
+            content = (
+                <div>
+
+                    <div className="alert alert-success">
+                        <h3>Logged in as {this.state.user.displayName}
+                            <button className="btn btn-warning float-right" onClick={this.handleSignOut}>
+                                Sign Out
+                            </button>
+                        </h3>
+                    </div>
+                </div>
+            )
+        }
+
         return (
             <div className="container-fluid">
                 <h2 className="page-title">Account</h2>
-
                 {/* Only included if first clause is true */}
                 {this.state.errorMessage &&
                     <p className="alert alert-danger">{this.state.errorMessage}</p>
                 }
 
-                {this.state.user &&
-                    <div className="alert alert-success"><h3>Logged in as {this.state.user.displayName}</h3></div>
-                }
+                {/* Show content based on user login state */}
+                {content}
 
-                <div className="form-group">
-                    <label>Email:</label>
-                    <input className="form-control"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label>Password:</label>
-                    <input type="password" className="form-control"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label>Username:</label>
-                    <input className="form-control"
-                        name="username"
-                        value={this.state.username}
-                        onChange={this.handleChange}
-                    />
-                </div>
-
-                <div className="form-group mb-5 text-center">
-                    <button className="btn btn-primary mr-5" onClick={this.handleSignUp}>
-                        Sign Up
-                </button>
-                    <button className="btn btn-success mr-5" onClick={this.handleSignIn}>
-                        Sign In
-                </button>
-                    <button className="btn btn-warning mr-5" onClick={this.handleSignOut}>
-                        Sign Out
-                </button>
-                </div>
             </div>
-        );
+        )
     }
 }
 
-
-export default SignUp;
+export default Account;
