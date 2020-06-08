@@ -363,11 +363,12 @@ body.popup, main.popup {
     margin: 0;
 }
 
-div.popup.card img.book-cover {
-    max-width: 4rem;
+img.book-cover.details {
+    max-width: 15rem;
     float: left;
     margin-right: 1.5rem;
     margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 div.book-details.popup.card h2.title {

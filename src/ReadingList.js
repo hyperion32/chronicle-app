@@ -4,6 +4,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 // import firebase from 'firebase/app';
+import BookDetails from './BookDetails.js';
 
 class ListsContainer extends Component {
     constructor(props) {
