@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BookList from './BookList';
 import LogContainer from './ReadingLog';
 import ListsContainer from './ReadingList';
-import Account from './Account.js';
+import SignUp from './Account.js';
 import './style.css';
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ class App extends Component {
 
         let content = null;
         if (this.state.showSignForm) {
-            content = <Account />
+            content = <SignUp />
         } else {
             //...
         }
@@ -34,7 +34,7 @@ class App extends Component {
                     <Route exact path="/" component={Loading, BookList} />
                     <Route path="/log" render={Loading, renderLogContainer} />
                     <Route path="/lists" render={Loading, renderListsContainer} />
-                    <Route path="/account" render={Account} />
+                    <Route path="/account" component={SignUp} />
                     <Redirect to="/" />
                 </Switch>
                 <Footer />
