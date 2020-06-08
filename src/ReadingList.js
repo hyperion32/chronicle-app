@@ -102,30 +102,38 @@ class AddNewList extends Component {
     }
 
     render() {
-        let colorPalette = ["crimson", "tomato", "lightcoral", "lightsalmon", "orange", "gold", "greenyellow", "forestgreen", "lightseagreen",
-                            "lightblue", "deepskyblue", "plum", "violet", "hotpink", "pink"];
-        let index = -1;
-        let colorOptions = colorPalette.map((color) => {
-            index++;
-            return <option key={index}>{color}</option>
-        });
-
         return (
             <Form style={{marginLeft: "1rem"}}>
                 <Form.Group controlId="formListName">
                     <Form.Label>Name</Form.Label>
                     <Form.Control onChange={this.handleChange} type="text" placeholder="e.g., My List" />
                 </Form.Group>
-                <Form.Group controlId="formColor">
-                    <Form.Label>Color</Form.Label>
-                    <Form.Control onChange={this.handleChange} as="select">
-                        <option>Choose...</option>
-                        {colorOptions}
-                    </Form.Control>
-                </Form.Group>
+                <ColorPicker handleChange={this.handleChange} />
                 <Button onClick={this.handleClick} variant="light" type="submit">Add List</Button>
             </Form>
         )
+    }
+}
+
+class ColorPicker extends Component {
+    render() {
+        let colorPalette = ["crimson", "tomato", "lightcoral", "lightsalmon", "orange", "gold", "greenyellow", "forestgreen", "lightseagreen",
+        "lightblue", "deepskyblue", "plum", "violet", "hotpink", "pink"];
+        let index = -1;
+        let colorOptions = colorPalette.map((color) => {
+            index++;
+            return <option key={index}>{color}</option>
+        });
+        
+        return(
+            <Form.Group controlId="formColor">
+                <Form.Label>Color</Form.Label>
+                <Form.Control onChange={this.props.handleChange} as="select">
+                    <option>Choose...</option>
+                    {colorOptions}
+                </Form.Control>
+            </Form.Group>
+        );
     }
 }
 
