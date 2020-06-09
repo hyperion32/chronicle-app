@@ -50,7 +50,7 @@ class NavBar extends Component {
         return (
             <header>
                 <div className="header-div">
-                    <a href="#explore"><img className="logo" src="./img/book.png" alt="book logo" /></a>
+                    <NavLink exact to='/'><img className="logo" src="./img/book.png" alt="book logo" /></NavLink>
                     <h3><NavLink exact to='/' className="navLink" activeClassName='activeLink'>Chronicle</NavLink></h3>
                     <p><NavLink exact to='/' className="navLink" activeClassName='activeLink'>Explore</NavLink></p>
                     <p><NavLink exact to='/log' className="navLink" activeClassName='activeLink'>Log</NavLink></p>

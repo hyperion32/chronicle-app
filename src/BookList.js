@@ -55,7 +55,7 @@ class BookCard extends React.Component {
                 return parseInt(a.volumeInfo.publishedDate.substring(0, 4)) - parseInt(b.volumeInfo.publishedDate.substring(0, 4));
             }
 
-            return;
+            return undefined;
         })
 
         const { error, isLoaded } = this.state;

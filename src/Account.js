@@ -23,6 +23,12 @@ class Account extends Component {
             if (firebaseUser) { //if exists, then we logged in
                 console.log("Logged in as", firebaseUser.email);
                 this.setState({ user: firebaseUser })
+
+                let listsRef = firebase.database().ref("users/" + firebaseUser.uid + "/lists");
+                let logsRef = firebase.database().ref("users/" + firebaseUser.uid + "/logs");
+
+                listsRef.push("a");
+                logsRef.push("b");
             } else {
                 console.log("Logged out");
                 this.setState({ user: null })
@@ -40,14 +46,6 @@ class Account extends Component {
             .then((userCredential) => {
                 let user = userCredential.user;
                 console.log(user);
-
-                let usersRef = firebase.database().ref("users");
-                let emailInput = this.state.email;
-                let usernameInput = this.state.username;
-                let passwordInput = this.state.password;
-                usersRef.set({
-                    [emailInput]: {username:{usernameInput}, password:{passwordInput}}
-                });
 
                 let updatePromise = user.updateProfile({ displayName: this.state.username })
                 return updatePromise;

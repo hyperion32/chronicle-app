@@ -3,8 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Route, Switch, Redirect, Link } from 'react-router-dom';
-import BookList from "./BookList.js";
+import { Link } from 'react-router-dom';
 
 class BookDetails extends Component {
     constructor(props) {
@@ -66,7 +65,7 @@ class BookDetails extends Component {
                     </div>
                     <div className="row">
                         <div className="col">
-                            <Description description={volumeInfo.description} link={volumeInfo.infoLink} />
+                            <Description description={volumeInfo.description} link={volumeInfo.infoLink} authors={volumeInfo.authors} />
                         </div>
                         <div className="buffer col"></div>
                     </div>
@@ -109,12 +108,13 @@ class Heading extends Component {
 }
 
 class Description extends Component {
+    
     render() {
         return (
             <>
                 <h3>Description</h3>
                 <p>{this.props.description}</p>
-                <a href={this.props.infoLink}>See more from this author.</a>
+                <Button variant="light" className="float-left mb-3" type="reset">See more from {this.props.authors}</Button>{' '}
             </>
         );
     }
@@ -158,11 +158,12 @@ class QuickInfo extends Component {
 }
 
 class ActionButtons extends Component {
+
     render() {
         return (
             <Form className="mb-3">
                 <p></p>
-                <Button variant="light" className="float-left mt-4" type="reset">Close</Button>{' '}
+                <Link to="/"><Button variant="light" className="float-left mt-4" type="reset">Close</Button>{' '}</Link>
                 <DropdownButton variant="info" className="float-right" type="submit" title="Add to List">
                     <Dropdown.Item>Favorites</Dropdown.Item>
                     <Dropdown.Item>Fun</Dropdown.Item>
