@@ -22,9 +22,9 @@ class Account extends Component {
     };
 
     componentDidMount() {
-        //when I signed in or signed out
+        // sign in/out
         this.authUnSubFunction = firebase.auth().onAuthStateChanged((firebaseUser) => {
-            if (firebaseUser) { //if exists, then we logged in
+            if (firebaseUser) {
                 console.log("Logged in as", firebaseUser.email);
                 this.setState({ user: firebaseUser })
                 this.props.updateUserUid(firebaseUser.uid);

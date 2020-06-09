@@ -26,6 +26,7 @@ class LogContainer extends Component {
             console.log("all logs: ");
             console.log(allLogs);
 
+            this.setState({sessions: []})
             let logKeys = Object.keys(allLogs);
             logKeys.map((key) => {
                 let log = allLogs[key];
