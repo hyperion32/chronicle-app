@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
+import 'firebase/database';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 class Account extends Component {
     constructor(props) {
         super(props)
 
-        this.state = { user: null }
+        this.state = {
+            user: null,
+            userRef: null
+        }
     }
 
     uiConfig = {
@@ -23,12 +27,7 @@ class Account extends Component {
             if (firebaseUser) { //if exists, then we logged in
                 console.log("Logged in as", firebaseUser.email);
                 this.setState({ user: firebaseUser })
-
-                let listsRef = firebase.database().ref("users/" + firebaseUser.uid + "/lists");
-                let logsRef = firebase.database().ref("users/" + firebaseUser.uid + "/logs");
-
-                listsRef.push("a");
-                logsRef.push("b");
+                this.props.updateUserRef(firebaseUser);
             } else {
                 console.log("Logged out");
                 this.setState({ user: null })
