@@ -6,7 +6,8 @@ import BookDetails from './BookDetails';
 import Account from './Account.js';
 import './style.css';
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
-
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import firebase from 'firebase/app';
 import 'firebase/database';
 
@@ -40,7 +41,7 @@ class App extends Component {
 
         return (
             <>
-                <NavBar />
+                <NavigationBar />
                 <Switch>
                     <Route exact path="/" component={Loading, BookList} />
                     <Route path="/log" render={Loading, renderLogContainer} />
@@ -55,17 +56,24 @@ class App extends Component {
     }
 }
 
-class NavBar extends Component {
+class NavigationBar extends Component {
     render() {
         return (
             <header>
                 <div className="header-div">
-                    <img className="logo" src="img/book.png" alt="book logo" />
-                    <h3><NavLink exact to='/' className="navLink" activeClassName='activeLink'>Chronicle</NavLink></h3>
-                    <p><NavLink exact to='/' className="navLink" activeClassName='activeLink'>Explore</NavLink></p>
-                    <p><NavLink exact to='/log' className="navLink" activeClassName='activeLink'>Log</NavLink></p>
-                    <p><NavLink exact to='/lists' className="navLink" activeClassName='activeLink'>Lists</NavLink></p>
-                    <p><NavLink exact to='/account' className="navLink" activeClassName='activeLink'>Account</NavLink></p>
+                    <Navbar expand="lg">
+                        <img className="logo mr-4" src="img/book.png" alt="book logo" />
+                        <Navbar.Brand><NavLink exact to='/' className="navLink">Chronicle</NavLink></Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="mr-auto">
+                                <Nav.Link><NavLink exact to='/' className="navLink" >Explore</NavLink></Nav.Link>
+                                <Nav.Link><NavLink exact to='/log' className="navLink" >Log</NavLink></Nav.Link>
+                                <Nav.Link><NavLink exact to='/lists' className="navLink">Lists</NavLink></Nav.Link>
+                                <Nav.Link><NavLink exact to='/account' className="navLink">Account</NavLink></Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Navbar>
                 </div>
             </header>
         )

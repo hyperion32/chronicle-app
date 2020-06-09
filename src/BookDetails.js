@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Route, Switch, Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class BookDetails extends Component {
     constructor(props) {
@@ -26,7 +26,8 @@ class BookDetails extends Component {
 
             .then(res => res.json())
             .then(
-                (result) => {;
+                (result) => {
+                    ;
                     this.setState({
                         isLoaded: true,
                         book: result.items[0]
@@ -57,14 +58,13 @@ class BookDetails extends Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col">
-                            <Heading title={volumeInfo.title} authors={volumeInfo.authors} rating={volumeInfo.averageRating} 
-                            imgLink={volumeInfo.imageLinks.thumbnail} />
-                        </div>
-                        <div className="buffer col"></div>
+                            <Heading title={volumeInfo.title} authors={volumeInfo.authors} rating={volumeInfo.averageRating}
+                                imgLink={volumeInfo.imageLinks.thumbnail} />
+                        </div>                    
                     </div>
                     <div className="row">
                         <div className="col">
-                            <Description description={volumeInfo.description} link={volumeInfo.infoLink}/>
+                            <Description description={volumeInfo.description} link={volumeInfo.infoLink} authors={volumeInfo.authors}/>
                         </div>
                         <div className="buffer col"></div>
                     </div>
@@ -91,7 +91,7 @@ class Heading extends Component {
         return (
             <header>
                 <img src={this.props.imgLink} className="details book-cover" alt="Book cover" />
-                <h2 className="title" >{this.props.title}</h2>
+                <h2 className="title mt-3" >{this.props.title}</h2>
                 <h3 className="author">{this.props.authors}</h3>
                 <p>{this.props.rating} out of 5 stars</p>
                 {/* <div className="rating">
@@ -107,23 +107,13 @@ class Heading extends Component {
 }
 
 class Description extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {};
-    // }
-
-    // handleClick = () => {
-    //     this.setState({redirectTo: this.props.info.id});
-    // }
-
+    
     render() {
-        
-
         return (
             <>
-            <h3>Description</h3>
-            <p>{this.props.description}</p>
-            <a href={this.props.infoLink}>See more from this author.</a>
+                <h3>Description</h3>
+                <p>{this.props.description}</p>
+                <Button variant="secondary" className="float-left mb-3" type="reset">See more from {this.props.authors}</Button>{' '}
             </>
         );
     }
@@ -148,31 +138,31 @@ class QuickInfo extends Component {
 
         return (
             <>
-            <h3>Quick Info</h3>
-            <ul>
-                <li>Rating: {volumeInfo.averageRating}/5</li>
-                <li>Length: {volumeInfo.pageCount} pages</li>
-                <li>Language: {lang}</li>
-                <li>Published: {volumeInfo.publishedDate}</li>
-                {retailDetails}
-                <li>Genre: {volumeInfo.categories}</li>
-                <li>Identifiers:</li>
+                <h3>Quick Info</h3>
                 <ul>
-                    {identifiers}
+                    <li>Rating: {volumeInfo.averageRating}/5</li>
+                    <li>Length: {volumeInfo.pageCount} pages</li>
+                    <li>Language: {lang}</li>
+                    <li>Published: {volumeInfo.publishedDate}</li>
+                    {retailDetails}
+                    <li>Genre: {volumeInfo.categories}</li>
+                    <li>Identifiers:</li>
+                    <ul>
+                        {identifiers}
+                    </ul>
                 </ul>
-            </ul>
             </>
         );
     }
 }
 
 class ActionButtons extends Component {
+
     render() {
         return (
             <Form className="mb-3">
                 <p></p>
                 <Link to="/"><Button variant="light" className="float-left mt-4" type="reset">Close</Button>{' '}</Link>
-                
                 <DropdownButton variant="info" className="float-right" type="submit" title="Add to List">
                     <Dropdown.Item>Favorites</Dropdown.Item>
                     <Dropdown.Item>Fun</Dropdown.Item>
