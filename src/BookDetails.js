@@ -60,12 +60,11 @@ class BookDetails extends Component {
                         <div className="col">
                             <Heading title={volumeInfo.title} authors={volumeInfo.authors} rating={volumeInfo.averageRating}
                                 imgLink={volumeInfo.imageLinks.thumbnail} />
-                        </div>
-                        <div className="buffer col"></div>
+                        </div>                    
                     </div>
                     <div className="row">
                         <div className="col">
-                            <Description description={volumeInfo.description} link={volumeInfo.infoLink}/>
+                            <Description description={volumeInfo.description} link={volumeInfo.infoLink} authors={volumeInfo.authors}/>
                         </div>
                         <div className="buffer col"></div>
                     </div>
@@ -92,7 +91,7 @@ class Heading extends Component {
         return (
             <header>
                 <img src={this.props.imgLink} className="details book-cover" alt="Book cover" />
-                <h2 className="title" >{this.props.title}</h2>
+                <h2 className="title mt-3" >{this.props.title}</h2>
                 <h3 className="author">{this.props.authors}</h3>
                 <p>{this.props.rating} out of 5 stars</p>
                 {/* <div className="rating">
@@ -114,7 +113,7 @@ class Description extends Component {
             <>
                 <h3>Description</h3>
                 <p>{this.props.description}</p>
-                <Button variant="light" className="float-left mb-3" type="reset">See more from {this.props.authors}</Button>{' '}
+                <Button variant="secondary" className="float-left mb-3" type="reset">See more from {this.props.authors}</Button>{' '}
             </>
         );
     }

@@ -77,6 +77,12 @@ main {
     color: white;
 }
 
+.navLink:hover {
+    color: white;
+    border-bottom:white;
+    border-top: 5px;
+}
+
 .nav-name {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -88,11 +94,6 @@ nav {
     background-color: #9999ff;
     color: white;
     margin: 0;
-}
-
-nav li:hover {
-    color: white;
-    border-bottom: solid white;
 }
 
 .quote {
@@ -201,9 +202,6 @@ div .filter {
 }
 
 /******** LISTS ********/
-
-/* highlight */
-
 .session:hover, .session:focus {
     background-color: #f2edfb;
 }
@@ -256,11 +254,6 @@ li.search-results h5, li.search-results p {
 
 /******** CARDS ********/
 
- /* .text-center card {
-    height: auto;
-    width: auto;
-} */
-
 div .card {
     height: 550px;
     width: 300px;
@@ -284,7 +277,6 @@ div .card-text {
 }
 
 /* sets the size of search result cards  */
-
 
 .card-columns {
     display: inline-block;
