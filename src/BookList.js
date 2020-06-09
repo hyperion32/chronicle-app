@@ -98,23 +98,23 @@ class CardResults extends React.Component {
     }
 
     handleClick = () => {
-        this.setState({redirectTo: this.props.info.id});
+        this.setState({ redirectTo: this.props.info.id });
     }
 
-    render () {
+    render() {
         if (this.state.redirectTo) {
             return <Redirect push to={"/book-details/" + this.state.redirectTo} />
         }
 
         const { volumeInfo } = this.props.info;
-        const {title, authors, pageCount, averageRating, infoLink} = this.props.info.volumeInfo;
+        const { title, authors, pageCount, averageRating, infoLink } = this.props.info.volumeInfo;
         const thumbNail = volumeInfo.hasOwnProperty('imageLinks') === false ? "https://bitsofco.de/content/images/2018/12/broken-1.png" : volumeInfo.imageLinks.thumbnail;
         const date = volumeInfo.hasOwnProperty('publishedDate') === false ? volumeInfo['publishedDate'] = "0000" : volumeInfo.publishedDate;
-        
+
         return (
             <div>
                 <Card className='mb-8 border-lightgray mt-4'>
-                    <Card.Img variant="top" src={thumbNail} alt="" style={{paddingTop: "2rem"}} />
+                    <Card.Img variant="top" src={thumbNail} alt="" style={{ paddingTop: "2rem" }} />
                     <Card.Body>
                         <Card.Title>{title}</Card.Title>
                         <Card.Text>{authors}</Card.Text>

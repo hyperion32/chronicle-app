@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { Route, Switch, Redirect, Link } from 'react-router-dom';
 
 class BookDetails extends Component {
     constructor(props) {
@@ -63,7 +64,7 @@ class BookDetails extends Component {
                     </div>
                     <div className="row">
                         <div className="col">
-                            <Description description={volumeInfo.description} />
+                            <Description description={volumeInfo.description} link={volumeInfo.infoLink}/>
                         </div>
                         <div className="buffer col"></div>
                     </div>
@@ -111,7 +112,7 @@ class Description extends Component {
             <>
             <h3>Description</h3>
             <p>{this.props.description}</p>
-            <p><a href="#">See more from this author.</a></p>
+            <a href={this.props.infoLink}>See more from this author.</a>
             </>
         );
     }
@@ -121,6 +122,7 @@ class QuickInfo extends Component {
     render() {
         let volumeInfo = this.props.info.volumeInfo;
         let saleInfo = this.props.info.saleInfo;
+        let lang = volumeInfo.language.toUpperCase();
 
         let identifiers = volumeInfo.industryIdentifiers.map((identifier) => {
             return <li key={identifier.type}>{identifier.type}: {identifier.identifier}</li>
@@ -139,7 +141,7 @@ class QuickInfo extends Component {
             <ul>
                 <li>Rating: {volumeInfo.averageRating}/5</li>
                 <li>Length: {volumeInfo.pageCount} pages</li>
-                <li>Language: {volumeInfo.language}</li>
+                <li>Language: {lang}</li>
                 <li>Published: {volumeInfo.publishedDate}</li>
                 {retailDetails}
                 <li>Genre: {volumeInfo.categories}</li>
@@ -158,7 +160,7 @@ class ActionButtons extends Component {
         return (
             <Form className="mb-3">
                 <p></p>
-                <Button variant="light" className="float-left" type="reset">Close</Button>{' '}
+                <Link to="/"><Button variant="light" className="float-left mt-4" type="reset">Close</Button>{' '}</Link>
                 
                 <DropdownButton variant="info" className="float-right" type="submit" title="Add to List">
                     <Dropdown.Item>Favorites</Dropdown.Item>
