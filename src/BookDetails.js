@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Route, Switch, Redirect, Link } from 'react-router-dom';
+import BookList from "./BookList.js";
 
 class BookDetails extends Component {
     constructor(props) {
@@ -26,7 +27,8 @@ class BookDetails extends Component {
 
             .then(res => res.json())
             .then(
-                (result) => {;
+                (result) => {
+                    ;
                     this.setState({
                         isLoaded: true,
                         book: result.items[0]
@@ -57,14 +59,14 @@ class BookDetails extends Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col">
-                            <Heading title={volumeInfo.title} authors={volumeInfo.authors} rating={volumeInfo.averageRating} 
-                            imgLink={volumeInfo.imageLinks.thumbnail} />
+                            <Heading title={volumeInfo.title} authors={volumeInfo.authors} rating={volumeInfo.averageRating}
+                                imgLink={volumeInfo.imageLinks.thumbnail} />
                         </div>
                         <div className="buffer col"></div>
                     </div>
                     <div className="row">
                         <div className="col">
-                            <Description description={volumeInfo.description} link={volumeInfo.infoLink}/>
+                            <Description description={volumeInfo.description} link={volumeInfo.infoLink} />
                         </div>
                         <div className="buffer col"></div>
                     </div>
@@ -110,9 +112,9 @@ class Description extends Component {
     render() {
         return (
             <>
-            <h3>Description</h3>
-            <p>{this.props.description}</p>
-            <a href={this.props.infoLink}>See more from this author.</a>
+                <h3>Description</h3>
+                <p>{this.props.description}</p>
+                <a href={this.props.infoLink}>See more from this author.</a>
             </>
         );
     }
@@ -137,19 +139,19 @@ class QuickInfo extends Component {
 
         return (
             <>
-            <h3>Quick Info</h3>
-            <ul>
-                <li>Rating: {volumeInfo.averageRating}/5</li>
-                <li>Length: {volumeInfo.pageCount} pages</li>
-                <li>Language: {lang}</li>
-                <li>Published: {volumeInfo.publishedDate}</li>
-                {retailDetails}
-                <li>Genre: {volumeInfo.categories}</li>
-                <li>Identifiers:</li>
+                <h3>Quick Info</h3>
                 <ul>
-                    {identifiers}
+                    <li>Rating: {volumeInfo.averageRating}/5</li>
+                    <li>Length: {volumeInfo.pageCount} pages</li>
+                    <li>Language: {lang}</li>
+                    <li>Published: {volumeInfo.publishedDate}</li>
+                    {retailDetails}
+                    <li>Genre: {volumeInfo.categories}</li>
+                    <li>Identifiers:</li>
+                    <ul>
+                        {identifiers}
+                    </ul>
                 </ul>
-            </ul>
             </>
         );
     }
@@ -160,8 +162,7 @@ class ActionButtons extends Component {
         return (
             <Form className="mb-3">
                 <p></p>
-                <Link to="/"><Button variant="light" className="float-left mt-4" type="reset">Close</Button>{' '}</Link>
-                
+                <Button variant="light" className="float-left mt-4" type="reset">Close</Button>{' '}
                 <DropdownButton variant="info" className="float-right" type="submit" title="Add to List">
                     <Dropdown.Item>Favorites</Dropdown.Item>
                     <Dropdown.Item>Fun</Dropdown.Item>
