@@ -20,6 +20,8 @@ class ListsContainer extends Component {
             shallowCopy.push(newList); //add new entry  
             return {lists: shallowCopy}; //return updated object
         })
+
+        this.props.userRef.child("lists").push(newList);
     }
 
     render() {
