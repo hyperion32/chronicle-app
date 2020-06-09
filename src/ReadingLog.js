@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import PageHeaderWithAdd from './ReadingLog.js';
 //import ListContainer from './List.js';
+import 'firebase/database';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -22,11 +23,14 @@ class LogContainer extends Component {
             title: sessionTitle, date: sessionDate, startPage: sessionStartPage, endPage: sessionEndPage,
             minutes: sessionMinutes, listId: sessionListId, notes: sessionNotes
         };
+
         this.setState((prevState) => {
             let shallowCopy = Object.assign([], prevState.sessions);
             shallowCopy.push(newSession);
             return { sessions: shallowCopy };
         })
+
+        this.props.userRef.child("logs").push(newSession);
     }
 
     findListId = (bookTitle) => {

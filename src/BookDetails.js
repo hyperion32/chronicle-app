@@ -65,7 +65,7 @@ class BookDetails extends Component {
                     </div>
                     <div className="row">
                         <div className="col">
-                            <Description description={volumeInfo.description} link={volumeInfo.infoLink} authors={volumeInfo.authors} />
+                            <Description description={volumeInfo.description} link={volumeInfo.infoLink}/>
                         </div>
                         <div className="buffer col"></div>
                     </div>

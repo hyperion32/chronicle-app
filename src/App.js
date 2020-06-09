@@ -3,27 +3,36 @@ import BookList from './BookList';
 import LogContainer from './ReadingLog';
 import ListsContainer from './ReadingList';
 import BookDetails from './BookDetails';
-import SignUp from './Account.js';
+import Account from './Account.js';
 import './style.css';
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 
-// import firebase from 'firebase/app';
+import firebase from 'firebase/app';
 
 class App extends Component {
 
     constructor(props) {
         super(props)
 
-        this.state = { showSignForm: true }
+        this.state = {
+            showSignForm: true,
+            userRef: undefined
+        }
+    }
+
+
+    updateUserRef = (firebaseUser) => {
+        this.setState({userRef: firebase.database().ref("users/" + firebaseUser.uid)});
     }
 
     render() {
-        let renderLogContainer = (props) => <LogContainer {...props} sessions={this.props.sessions} lists={this.props.lists} />
-        let renderListsContainer = (props) => <ListsContainer {...props} lists={this.props.lists} />
+        let renderLogContainer = (props) => <LogContainer {...props} sessions={this.props.sessions} lists={this.props.lists} userRef={this.state.userRef} />
+        let renderListsContainer = (props) => <ListsContainer {...props} lists={this.props.lists} userRef={this.state.userRef} />
+        let renderAccount = (props) => <Account {...props} updateUserRef={this.updateUserRef} />
 
         let content = null;
         if (this.state.showSignForm) {
-            content = <SignUp />
+            content = <Account />
         } else {
             //...
         }
@@ -35,7 +44,7 @@ class App extends Component {
                     <Route exact path="/" component={Loading, BookList} />
                     <Route path="/log" render={Loading, renderLogContainer} />
                     <Route path="/lists" render={Loading, renderListsContainer} />
-                    <Route path="/account" component={SignUp} />
+                    <Route path="/account" render={renderAccount} />
                     <Route path="/book-details/:bookId" component={BookDetails} />
                     <Redirect to="/" />
                 </Switch>
@@ -50,7 +59,7 @@ class NavBar extends Component {
         return (
             <header>
                 <div className="header-div">
-                    <NavLink exact to='/'><img className="logo" src="./img/book.png" alt="book logo" /></NavLink>
+                    <img className="logo" src="img/book.png" alt="book logo" />
                     <h3><NavLink exact to='/' className="navLink" activeClassName='activeLink'>Chronicle</NavLink></h3>
                     <p><NavLink exact to='/' className="navLink" activeClassName='activeLink'>Explore</NavLink></p>
                     <p><NavLink exact to='/log' className="navLink" activeClassName='activeLink'>Log</NavLink></p>

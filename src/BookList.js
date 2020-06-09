@@ -107,7 +107,7 @@ class CardResults extends React.Component {
         }
 
         const { volumeInfo } = this.props.info;
-        const { title, authors, pageCount, averageRating, infoLink } = this.props.info.volumeInfo;
+        const {title, authors, pageCount, averageRating} = this.props.info.volumeInfo;
         const thumbNail = volumeInfo.hasOwnProperty('imageLinks') === false ? "https://bitsofco.de/content/images/2018/12/broken-1.png" : volumeInfo.imageLinks.thumbnail;
         const date = volumeInfo.hasOwnProperty('publishedDate') === false ? volumeInfo['publishedDate'] = "0000" : volumeInfo.publishedDate;
 
