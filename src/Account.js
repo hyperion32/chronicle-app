@@ -9,7 +9,7 @@ class Account extends Component {
 
         this.state = {
             user: null,
-            userRef: null
+            userUid: null
         }
     }
 
@@ -27,7 +27,7 @@ class Account extends Component {
             if (firebaseUser) { //if exists, then we logged in
                 console.log("Logged in as", firebaseUser.email);
                 this.setState({ user: firebaseUser })
-                this.props.updateUserRef(firebaseUser);
+                this.props.updateUserUid(firebaseUser.uid);
             } else {
                 console.log("Logged out");
                 this.setState({ user: null })

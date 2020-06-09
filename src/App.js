@@ -8,6 +8,7 @@ import './style.css';
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 
 import firebase from 'firebase/app';
+import 'firebase/database';
 
 class App extends Component {
 
@@ -16,19 +17,19 @@ class App extends Component {
 
         this.state = {
             showSignForm: true,
-            userRef: undefined
+            userUid: undefined
         }
     }
 
 
-    updateUserRef = (firebaseUser) => {
-        this.setState({userRef: firebase.database().ref("users/" + firebaseUser.uid)});
+    updateUserUid = (uid) => {
+        this.setState({userUid: uid});
     }
 
     render() {
-        let renderLogContainer = (props) => <LogContainer {...props} sessions={this.props.sessions} lists={this.props.lists} userRef={this.state.userRef} />
-        let renderListsContainer = (props) => <ListsContainer {...props} lists={this.props.lists} userRef={this.state.userRef} />
-        let renderAccount = (props) => <Account {...props} updateUserRef={this.updateUserRef} />
+        let renderLogContainer = (props) => <LogContainer {...props} sessions={this.props.sessions} lists={this.props.lists} userUid={this.state.userUid} />
+        let renderListsContainer = (props) => <ListsContainer {...props} lists={this.props.lists} userUid={this.state.userUid} />
+        let renderAccount = (props) => <Account {...props} updateUserUid={this.updateUserUid} />
 
         let content = null;
         if (this.state.showSignForm) {

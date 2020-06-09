@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-// import firebase from 'firebase/app';
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 class ListsContainer extends Component {
     constructor(props) {
@@ -21,7 +22,8 @@ class ListsContainer extends Component {
             return {lists: shallowCopy}; //return updated object
         })
 
-        this.props.userRef.child("lists").push(newList);
+        let userRef = firebase.database().ref("users/" + this.props.userUid);
+        userRef.child("lists").push(newList);
     }
 
     render() {

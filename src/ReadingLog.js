@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import PageHeaderWithAdd from './ReadingLog.js';
 //import ListContainer from './List.js';
+import firebase from 'firebase/app';
 import 'firebase/database';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
@@ -10,12 +11,40 @@ import Col from 'react-bootstrap/Col';
 class LogContainer extends Component {
     constructor(props) {
         super(props);
+        //console.log("DEBUG: LogContainer props.userRef=" + props.userRef)
         this.state = {
-            sessions: this.props.sessions
+            sessions: []
         }
     }
 
-    addSession = (sessionTitle, sessionStartPage, sessionEndPage, sessionMinutes, sessionNotes) => {
+    componentDidMount() {
+        // look up database user entry for "logs"
+        // logref.on; pass function()
+        let logRef = firebase.database().ref("users/" + this.props.userUid).child("logs");
+        logRef.on('value', (snapshot) => {
+            let allLogs = snapshot.val();
+            console.log("all logs: ");
+            console.log(allLogs);
+
+            let logKeys = Object.keys(allLogs);
+            logKeys.map((key) => {
+                let log = allLogs[key];
+                this.addLogValue(log);
+            });
+        });
+    }
+
+    // add new log to sessions state, kicking off re-render
+    addLogValue = (logValue) => {
+        this.setState((prevState) => {
+            let shallowCopy = Object.assign([], prevState.sessions);
+            shallowCopy.push(logValue);
+            return { sessions: shallowCopy };
+        })
+    }
+
+    // add new log session to database
+    addNewSession = (sessionTitle, sessionStartPage, sessionEndPage, sessionMinutes, sessionNotes) => {
         let sessionDate = this.getFormattedDate();
         let sessionListId = this.findListId(sessionTitle);
 
@@ -24,13 +53,10 @@ class LogContainer extends Component {
             minutes: sessionMinutes, listId: sessionListId, notes: sessionNotes
         };
 
-        this.setState((prevState) => {
-            let shallowCopy = Object.assign([], prevState.sessions);
-            shallowCopy.push(newSession);
-            return { sessions: shallowCopy };
-        })
+        //this.addLogValue(newSession);
 
-        this.props.userRef.child("logs").push(newSession);
+        let userRef = firebase.database().ref("users/" + this.props.userUid);
+        userRef.child("logs").push(newSession);
     }
 
     findListId = (bookTitle) => {
@@ -67,8 +93,8 @@ class LogContainer extends Component {
                 <div className="row">
                     <div className="col">
                         <TitleRow />
-                        <FormRow addSessionCallback={this.addSession} />
-                        <SessionsDataRow sessions={this.state.sessions} lists={this.props.lists} />
+                        <FormRow addSessionCallback={this.addNewSession} />
+                        <SessionsDataRow sessions={this.state.sessions} lists={this.props.lists} userUid={this.props.userUid} />
                     </div>
                     <div className="buffer col"></div> 
                 </div>
@@ -104,6 +130,9 @@ class FormRow extends Component {
 }
 
 class SessionsDataRow extends Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
         let sessions = this.props.sessions;
         let index = -1;
@@ -115,6 +144,11 @@ class SessionsDataRow extends Component {
                 color = this.props.lists[listId].color;
             }
             index++;
+            let userRef = firebase.database().ref("users/" + this.props.userUid);
+            let logsRef = userRef.child("logs");
+            let test = logsRef.child("title");
+            console.log(test);
+
             return <Session key={index} title={session.title} date={session.date} startPage={session.startPage}
                 endPage={session.endPage} minutes={session.minutes} notes={session.notes} color={color} />
         });
