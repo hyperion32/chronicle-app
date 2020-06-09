@@ -23,15 +23,15 @@ class LogContainer extends Component {
         let logRef = firebase.database().ref("users/" + this.props.userUid).child("logs");
         logRef.on('value', (snapshot) => {
             let allLogs = snapshot.val();
-            console.log("all logs: ");
-            console.log(allLogs);
 
-            this.setState({sessions: []})
-            let logKeys = Object.keys(allLogs);
-            logKeys.map((key) => {
-                let log = allLogs[key];
-                this.addLogValue(log);
-            });
+            if (allLogs != undefined) {
+                this.setState({sessions: []})
+                let logKeys = Object.keys(allLogs);
+                logKeys.map((key) => {
+                    let log = allLogs[key];
+                    this.addLogValue(log);
+                });
+            }
         });
     }
 
