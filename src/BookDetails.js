@@ -64,11 +64,7 @@ class BookDetails extends Component {
                     </div>
                     <div className="row">
                         <div className="col">
-<<<<<<< HEAD
-                            <Description description={volumeInfo.description} authors={volumeInfo.authors} />
-=======
                             <Description description={volumeInfo.description} link={volumeInfo.infoLink}/>
->>>>>>> a53e06cacec15dfad5e1966f2df2214e884b2738
                         </div>
                         <div className="buffer col"></div>
                     </div>
