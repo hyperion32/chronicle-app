@@ -63,7 +63,7 @@ class BookDetails extends Component {
                     </div>
                     <div className="row">
                         <div className="col">
-                            <Description description={volumeInfo.description} />
+                            <Description description={volumeInfo.description} authors={volumeInfo.authors} />
                         </div>
                         <div className="buffer col"></div>
                     </div>
@@ -106,7 +106,18 @@ class Heading extends Component {
 }
 
 class Description extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {};
+    // }
+
+    // handleClick = () => {
+    //     this.setState({redirectTo: this.props.info.id});
+    // }
+
     render() {
+        
+
         return (
             <>
             <h3>Description</h3>
