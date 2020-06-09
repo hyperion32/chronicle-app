@@ -67,7 +67,7 @@ class LogContainer extends Component {
                 return lists[i].id;
             }
         }
-        return undefined;
+        return -1;
     }
 
     getFormattedDate = () => {
@@ -141,7 +141,7 @@ class SessionsDataRow extends Component {
         let sessionElements = sessions.slice(0).reverse().map((session) => {
             let listId = session.listId;
             let color = "black";
-            if (listId !== undefined) {
+            if (listId !== -1) {
                 color = this.props.lists[listId].color;
             }
             index++;
