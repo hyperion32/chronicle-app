@@ -15,7 +15,6 @@ class BookDetails extends Component {
     }
 
     componentDidMount() {
-        console.log("mounted");
         let bookId = this.props.match.params.bookId;
 
         this.getBookFromId(bookId);
@@ -26,17 +25,11 @@ class BookDetails extends Component {
 
             .then(res => res.json())
             .then(
-                (result) => {
-                    console.log("result: ");
-                    console.log(result.items[0]);
+                (result) => {;
                     this.setState({
                         isLoaded: true,
                         book: result.items[0]
                     });
-                    // this.setState(prevState => {
-                    //     let shallowCopy = Object.assign({}, prevState.book);
-                    //     return result.items[0];
-                    //   })
                 },
 
                 (error) => {
@@ -49,8 +42,6 @@ class BookDetails extends Component {
     }
 
     render() {
-        console.log("rendering...");
-
         const { error, isLoaded } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
@@ -60,18 +51,6 @@ class BookDetails extends Component {
             // information sources
             let bookInfo = this.state.book;
             let volumeInfo = bookInfo.volumeInfo;
-            let saleInfo = bookInfo.saleInfo;
-
-            // isbn
-            let isbn10;
-            let isbn13;
-            if (volumeInfo.industryIdentifiers[0].type === "ISBN_10") {
-                isbn10 = volumeInfo.industryIdentifiers[0].identifier;
-                isbn13 = volumeInfo.industryIdentifiers[1].identifier;
-            } else {
-                isbn10 = volumeInfo.industryIdentifiers[1].identifier;
-                isbn13 = volumeInfo.industryIdentifiers[0].identifier;
-            }
 
             return (
                 <div className="container-fluid">
@@ -90,9 +69,7 @@ class BookDetails extends Component {
                     </div>
                     <div className="row">
                         <div className="col">
-                            <QuickInfo rating={volumeInfo.averageRating} pageCount={volumeInfo.pageCount} language={volumeInfo.language}
-                            publishedDate={volumeInfo.publishedDate} price={saleInfo.retailPrice.amount} currency={saleInfo.retailPrice.currencyCode}
-                            categories={volumeInfo.categories} isbn10={isbn10} isbn13={isbn13} />
+                            <QuickInfo info={this.state.book} />
                         </div>
                         <div className="buffer col"></div>
                     </div>
@@ -142,17 +119,34 @@ class Description extends Component {
 
 class QuickInfo extends Component {
     render() {
+        let volumeInfo = this.props.info.volumeInfo;
+        let saleInfo = this.props.info.saleInfo;
+
+        let identifiers = volumeInfo.industryIdentifiers.map((identifier) => {
+            return <li key={identifier.type}>{identifier.type}: {identifier.identifier}</li>
+        });
+
+        let retailDetails;
+        if (saleInfo.saleability === "FOR_SALE") {
+            retailDetails = <li>Retail Price: {saleInfo.retailPrice.amounte} {saleInfo.retailPrice.currencyCode}</li>
+        } else {
+            retailDetails = <li>Retail Price: Not for sale</li>
+        }
+
         return (
             <>
             <h3>Quick Info</h3>
             <ul>
-                <li>Rating: {this.props.rating}/5</li>
-                <li>Length: {this.props.pageCount} pages</li>
-                <li>Language: {this.props.language}</li>
-                <li>Published: {this.props.publishedDate}</li>
-                <li>Retail Price: {this.props.price} {this.props.currency}</li>
-                <li>Genre: {this.props.categories}</li>
-                <li>ISBN: {this.props.isbn10}, ISBN13: {this.props.isbn13}</li>
+                <li>Rating: {volumeInfo.averageRating}/5</li>
+                <li>Length: {volumeInfo.pageCount} pages</li>
+                <li>Language: {volumeInfo.language}</li>
+                <li>Published: {volumeInfo.publishedDate}</li>
+                {retailDetails}
+                <li>Genre: {volumeInfo.categories}</li>
+                <li>Identifiers:</li>
+                <ul>
+                    {identifiers}
+                </ul>
             </ul>
             </>
         );

@@ -2,6 +2,7 @@ import React from 'react';
 import SearchResults from './SearchResults';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card'
+import { Redirect } from 'react-router-dom';
 
 class BookCard extends React.Component {
     constructor(props) {
@@ -14,10 +15,6 @@ class BookCard extends React.Component {
             sortPageCount: ""
         };
     }
-
-    // handleClick = () => {
-    //     this.setState({redirectTo: this.props.book});
-    // }
 
     updateResults = (searchVal) => {
         this.setState({ searchInput: searchVal });
@@ -95,7 +92,20 @@ class BookSearchResults extends React.Component {
 }
 
 class CardResults extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    handleClick = () => {
+        this.setState({redirectTo: this.props.info.id});
+    }
+
     render () {
+        if (this.state.redirectTo) {
+            return <Redirect push to={"/book-details/" + this.state.redirectTo} />
+        }
+
         const { volumeInfo } = this.props.info;
         const {title, authors, pageCount, averageRating, infoLink} = this.props.info.volumeInfo;
         const thumbNail = volumeInfo.hasOwnProperty('imageLinks') === false ? "https://bitsofco.de/content/images/2018/12/broken-1.png" : volumeInfo.imageLinks.thumbnail;
@@ -111,7 +121,7 @@ class CardResults extends React.Component {
                         <Card.Text>{pageCount} pages</Card.Text>
                         <Card.Text>{averageRating} out of 5 stars</Card.Text>
                         <Card.Text>Published Date: {date === '0000' ? 'date unknown' : date.substring(0, 4)}</Card.Text>
-                        <Button variant="primary" className="card-button" href={infoLink}>Learn More</Button>{' '}
+                        <Button variant="primary" className="card-button" onClick={this.handleClick}>Learn More</Button>{' '}
                     </Card.Body>
                 </Card>
             </div>

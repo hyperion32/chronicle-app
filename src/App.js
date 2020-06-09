@@ -36,7 +36,7 @@ class App extends Component {
                     <Route path="/log" render={Loading, renderLogContainer} />
                     <Route path="/lists" render={Loading, renderListsContainer} />
                     <Route path="/account" component={SignUp} />
-                    <Route path="/viewdetails/:bookId" component={BookDetails} />
+                    <Route path="/book-details/:bookId" component={BookDetails} />
                     <Redirect to="/" />
                 </Switch>
                 <Footer />
