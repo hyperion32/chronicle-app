@@ -32,7 +32,7 @@ class SearchResults extends React.Component {
                                     <h2 className="page-title">Explore</h2>
                                 </div>
                             </div>
-                            <div className="col">
+                            <div className="col mt-2">
                                 <div className="search-results">
                                     <form onSubmit={this.props.data} action="" className="mt-3">
                                         <input onKeyUp={(e) => { this.setState({ searchVal: e.target.value }) }} type="text" placeholder="Search" />
